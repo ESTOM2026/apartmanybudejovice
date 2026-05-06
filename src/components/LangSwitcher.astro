@@ -11,23 +11,29 @@ const { pageKey } = Astro.props;
 const currentLang = getLangFromUrl(Astro.url);
 const langs = Object.keys(languages) as Lang[];
 ---
-<div class="flex items-center gap-1 text-xs uppercase tracking-wider">
-  {langs.map((l, i) => (
-    <>
-      {i > 0 && <span class="text-[var(--color-line)]">·</span>}
+<div class="flex items-center gap-1">
+  {langs.map((l) => {
+    const code = l === 'cs' ? 'cz' : l === 'en' ? 'gb' : 'de';
+    const label = l === 'cs' ? 'Čeština' : l === 'en' ? 'English' : 'Deutsch';
+    return (
       <a
         href={getRoute(pageKey, l)}
         hreflang={l === 'cs' ? 'cs-CZ' : l === 'en' ? 'en' : 'de-DE'}
         class:list={[
-          'px-1.5 py-1 rounded transition-colors',
-          l === currentLang
-            ? 'text-[var(--color-ink)] font-semibold'
-            : 'text-[var(--color-muted)] hover:text-[var(--color-ink)]'
+          'transition-opacity',
+          l === currentLang ? 'opacity-100' : 'opacity-30 hover:opacity-60'
         ]}
         aria-current={l === currentLang ? 'true' : undefined}
+        title={label}
       >
-        {l}
+        <img
+          src={`https://hatscripts.github.io/circle-flags/flags/${code}.svg`}
+          width="24"
+          height="24"
+          alt={label}
+          loading="eager"
+        />
       </a>
-    </>
-  ))}
+    );
+  })}
 </div>

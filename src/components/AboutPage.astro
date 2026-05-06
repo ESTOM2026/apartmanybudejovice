@@ -24,21 +24,21 @@ const t = useTranslations(lang);
     <div class="space-y-4 text-[var(--color-ink-soft)] leading-relaxed">
       {lang === 'cs' && (
         <>
-          <p>Apartmány jsme začali nabízet, protože nás baví, když se hosté cítí jako doma. Místo neosobních hotelových pokojů chceme nabídnout prostor, ve kterém má každý detail svůj smysl — od plně vybavené kuchyně po hračky pro děti.</p>
+          <p>Jsme rádi, když se u nás hosté cítí jako doma. Místo neosobních hotelových pokojů chceme nabídnout prostor, ve kterém má každý detail svůj smysl — od plně vybavené kuchyně po hračky pro děti.</p>
           <p>Lets Go Family Apartment je naše nejoblíbenější jednotka, ale v případě zájmu dokážeme zajistit ubytování i pro větší skupiny ve více apartmánech v okolí. Spolupracujeme s firmami, které u nás ubytovávají své zaměstnance, stážisty nebo zahraniční partnery na delší pobyty.</p>
           <p>Záleží nám na čistotě, rychlé komunikaci a tom, aby se k nám hosté rádi vraceli.</p>
         </>
       )}
       {lang === 'en' && (
         <>
-          <p>We started offering apartments because we enjoy seeing guests feel at home. Instead of impersonal hotel rooms we wanted to offer a space where every detail has a purpose — from a fully equipped kitchen to toys for the kids.</p>
+          <p>We love seeing our guests feel at home. Instead of impersonal hotel rooms we want to offer a space where every detail has a purpose — from a fully equipped kitchen to toys for the kids.</p>
           <p>Lets Go Family Apartment is our flagship unit, but on request we can arrange accommodation for larger groups across multiple apartments in the area. We work with companies that host their employees, interns or international partners for longer stays.</p>
           <p>We care about cleanliness, fast communication and making our guests want to come back.</p>
         </>
       )}
       {lang === 'de' && (
         <>
-          <p>Wir haben begonnen, Apartments anzubieten, weil es uns Freude macht, wenn sich Gäste wie zu Hause fühlen. Statt unpersönlicher Hotelzimmer wollten wir einen Raum bieten, in dem jedes Detail Sinn hat — von der voll ausgestatteten Küche bis zum Spielzeug für die Kinder.</p>
+          <p>Wir freuen uns, wenn sich unsere Gäste bei uns wie zu Hause fühlen. Statt unpersönlicher Hotelzimmer möchten wir einen Raum bieten, in dem jedes Detail Sinn hat — von der voll ausgestatteten Küche bis zum Spielzeug für die Kinder.</p>
           <p>Lets Go Family Apartment ist unsere Lieblingseinheit, aber auf Anfrage können wir Unterkünfte für größere Gruppen in mehreren Apartments in der Umgebung organisieren. Wir arbeiten mit Firmen zusammen, die Mitarbeiter, Praktikanten oder internationale Partner für längere Aufenthalte unterbringen.</p>
           <p>Sauberkeit, schnelle Kommunikation und die Wiederkehr unserer Gäste sind uns wichtig.</p>
         </>
@@ -56,7 +56,7 @@ const t = useTranslations(lang);
       </li>
       <li class="bg-white border border-[var(--color-line)] rounded-xl p-5">
         <strong class="block mb-1">{lang === 'cs' ? 'Platba' : lang === 'en' ? 'Payment' : 'Bezahlung'}</strong>
-        <span class="text-sm text-[var(--color-ink-soft)]">{lang === 'cs' ? 'Bankovní převod, faktura na firmu' : lang === 'en' ? 'Bank transfer, company invoice' : 'Banküberweisung, Firmenrechnung'}</span>
+        <span class="text-sm text-[var(--color-ink-soft)]">{lang === 'cs' ? 'Bankovní převod, faktura s DPH i bez' : lang === 'en' ? 'Bank transfer, invoicing with or without VAT' : 'Banküberweisung, Rechnung mit oder ohne MwSt'}</span>
       </li>
     </ul>
   </div>
