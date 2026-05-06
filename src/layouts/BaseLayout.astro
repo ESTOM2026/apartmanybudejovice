@@ -51,6 +51,44 @@ const fullTitle = `${title} | Apartmány České Budějovice`;
 
     <meta name="twitter:card" content="summary_large_image" />
 
+    <!-- Structured data — LodgingBusiness (Local SEO) -->
+    <script type="application/ld+json" set:html={JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": ["LodgingBusiness", "LocalBusiness"],
+      "name": "Lets Go Family Apartment",
+      "description": "Rodinný apartmán k pronájmu v Českých Budějovicích. 70 m², 2+1, plně vybavená kuchyň, parkování zdarma. Vhodný pro rodiny i firemní dlouhodobé pobyty.",
+      "url": "https://apartmanybudejovice.cz",
+      "telephone": "+420777925594",
+      "email": "info@estom.cz",
+      "image": "https://apartmanybudejovice.cz/og-default.jpg",
+      "priceRange": "od 1 200 Kč/noc",
+      "checkinTime": "T14:00",
+      "checkoutTime": "T10:00",
+      "numberOfRooms": 2,
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "I. Olbrachta 910/34",
+        "addressLocality": "České Budějovice",
+        "postalCode": "370 01",
+        "addressCountry": "CZ"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": 48.9627,
+        "longitude": 14.4528
+      },
+      "amenityFeature": [
+        { "@type": "LocationFeatureSpecification", "name": "Wi-Fi zdarma", "value": true },
+        { "@type": "LocationFeatureSpecification", "name": "Parkování zdarma", "value": true },
+        { "@type": "LocationFeatureSpecification", "name": "Plně vybavená kuchyň", "value": true },
+        { "@type": "LocationFeatureSpecification", "name": "Pračka a sušička", "value": true },
+        { "@type": "LocationFeatureSpecification", "name": "Myčka nádobí", "value": true },
+        { "@type": "LocationFeatureSpecification", "name": "Koupelna s vanou", "value": true },
+        { "@type": "LocationFeatureSpecification", "name": "Dětský koutek", "value": true }
+      ],
+      "inLanguage": ["cs", "en", "de"]
+    })} />
+
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />

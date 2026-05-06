@@ -7,28 +7,24 @@ import Gallery from './Gallery.astro';
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 ---
-<section class="relative pt-8 md:pt-12 pb-8 overflow-hidden bg-white">
+<section class="relative overflow-hidden bg-white">
   <div class="absolute inset-0 -z-10 overflow-hidden pointer-events-none">
     <div class="absolute -top-20 -left-20 w-[28rem] h-[28rem] rounded-full opacity-[0.18] blur-3xl" style="background: var(--color-lego-yellow);"></div>
     <div class="absolute top-0 right-0 w-[18rem] h-[18rem] rounded-full opacity-[0.08] blur-3xl" style="background: var(--color-lego-blue);"></div>
   </div>
-  <div class="container-wide relative">
-    <span class="inline-flex items-center gap-2 text-xs uppercase tracking-[0.2em] mb-4 font-semibold" style="color: var(--color-lego-red);">
-      <span class="inline-block w-2 h-2 rounded-full" style="background: var(--color-lego-yellow);"></span>
-      <span class="inline-block w-2 h-2 rounded-full" style="background: var(--color-lego-red);"></span>
-      <span class="inline-block w-2 h-2 rounded-full" style="background: var(--color-lego-blue);"></span>
-      Lets Go Family Apartment
-    </span>
-    <h1 class="text-4xl md:text-5xl lg:text-6xl font-medium mb-5 max-w-3xl leading-[1.1]">{t('apartment.title')}</h1>
-    <p class="text-lg text-[var(--color-ink-soft)] max-w-2xl">{t('apartment.subtitle')}</p>
-  </div>
-</section>
 
-
-<section class="py-8 md:py-12">
-  <div class="container-wide grid lg:grid-cols-12 gap-10">
+  <div class="container-wide py-12 md:py-20 grid lg:grid-cols-12 gap-10 items-start relative">
+    <!-- Left: eyebrow + title + subtitle + description -->
     <div class="lg:col-span-7">
-      <h2 class="text-2xl md:text-3xl font-medium mb-5">{t('apartment.about.title')}</h2>
+      <span class="inline-flex items-center gap-2 text-sm uppercase tracking-[0.2em] mb-5 font-semibold" style="color: var(--color-lego-red);">
+        <span class="inline-block w-2 h-2 rounded-full" style="background: var(--color-lego-yellow);"></span>
+        <span class="inline-block w-2 h-2 rounded-full" style="background: var(--color-lego-red);"></span>
+        <span class="inline-block w-2 h-2 rounded-full" style="background: var(--color-lego-blue);"></span>
+        Lets Go Family Apartment
+      </span>
+      <h1 class="text-4xl md:text-5xl lg:text-6xl font-medium mb-5 leading-[1.05]">{t('apartment.title')}</h1>
+      <p class="text-lg md:text-xl text-[var(--color-ink-soft)] max-w-2xl mb-8 leading-relaxed">{t('apartment.subtitle')}</p>
+
       <div class="prose-content text-[var(--color-ink-soft)] leading-relaxed space-y-4">
         {lang === 'cs' && (
           <>
@@ -54,8 +50,9 @@ const t = useTranslations(lang);
       </div>
     </div>
 
+    <!-- Right: pricing card — same column position as the hero photo collage -->
     <aside class="lg:col-span-5">
-      <div class="bg-white border border-[var(--color-line)] rounded-2xl p-7 sticky top-24">
+      <div class="bg-white border border-[var(--color-line)] rounded-2xl p-7 sticky top-24 shadow-sm">
         <div class="flex items-baseline gap-2 mb-1">
           <span class="text-sm text-[var(--color-muted)]">{t('apartment.pricing.from')}</span>
         </div>
@@ -74,7 +71,7 @@ const t = useTranslations(lang);
 
         <ul class="mt-6 pt-6 border-t border-[var(--color-line)] space-y-2 text-sm">
           <li class="flex justify-between"><span class="text-[var(--color-muted)]">{lang === 'cs' ? 'Plocha' : lang === 'en' ? 'Size' : 'Fläche'}</span><span class="font-medium">70 m²</span></li>
-          <li class="flex justify-between"><span class="text-[var(--color-muted)]">{lang === 'cs' ? 'Pokoje' : lang === 'en' ? 'Rooms' : 'Zimmer'}</span><span class="font-medium">1 + 1</span></li>
+          <li class="flex justify-between"><span class="text-[var(--color-muted)]">{lang === 'cs' ? 'Pokoje' : lang === 'en' ? 'Rooms' : 'Zimmer'}</span><span class="font-medium">2 + 1</span></li>
           <li class="flex justify-between"><span class="text-[var(--color-muted)]">{lang === 'cs' ? 'Kapacita' : lang === 'en' ? 'Capacity' : 'Kapazität'}</span><span class="font-medium">3–6</span></li>
           <li class="flex justify-between"><span class="text-[var(--color-muted)]">{lang === 'cs' ? 'Parkování' : lang === 'en' ? 'Parking' : 'Parken'}</span><span class="font-medium">{lang === 'cs' ? 'Zdarma' : lang === 'en' ? 'Free' : 'Kostenfrei'}</span></li>
         </ul>

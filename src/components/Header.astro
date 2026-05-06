@@ -27,7 +27,7 @@ const navItems: { key: PageKey; label: string }[] = [
       <span class="text-[var(--color-muted)] hidden sm:inline">· Apartmány Budějovice</span>
     </a>
 
-    <nav class="hidden md:flex items-center gap-7" aria-label="Hlavní navigace">
+    <nav class="hidden md:flex items-center gap-5 ml-auto mr-4" aria-label="Hlavní navigace">
       {navItems.map((item) => (
         <a
           href={getRoute(item.key, lang)}
@@ -43,7 +43,7 @@ const navItems: { key: PageKey; label: string }[] = [
 
     <div class="flex items-center gap-3">
       <LangSwitcher pageKey={pageKey} />
-      <a href={getRoute('contact', lang)} class="btn-primary text-sm hidden sm:inline-flex">
+      <a href={getRoute('contact', lang)} class="btn-primary text-sm hidden sm:inline-flex" style="min-width: 11rem; justify-content: center;">
         {t('cta.inquire')}
       </a>
       <button id="menu-toggle" class="md:hidden p-2 -mr-2" aria-label="Menu" aria-expanded="false">
