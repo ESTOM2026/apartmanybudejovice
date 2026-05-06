@@ -1,0 +1,66 @@
+---
+import '../styles/global.css';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { getLangFromUrl, useTranslations } from '../i18n/utils';
+import { getAlternates, type PageKey } from '../i18n/routes';
+import { languages, type Lang } from '../i18n/ui';
+
+interface Props {
+  pageKey: PageKey;
+  title: string;
+  description: string;
+  ogImage?: string;
+}
+
+const { pageKey, title, description, ogImage = '/og-default.jpg' } = Astro.props;
+const lang: Lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+
+const alternates = getAlternates(pageKey);
+const canonical = new URL(alternates[lang], Astro.site).toString();
+const fullTitle = `${title} | Apartmány České Budějovice`;
+---
+<!doctype html>
+<html lang={lang}>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="generator" content={Astro.generator} />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+    <title>{fullTitle}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+
+    {(Object.keys(languages) as Lang[]).map((l) => (
+      <link
+        rel="alternate"
+        hreflang={l === 'cs' ? 'cs-CZ' : l === 'en' ? 'en' : 'de-DE'}
+        href={new URL(alternates[l], Astro.site).toString()}
+      />
+    ))}
+    <link rel="alternate" hreflang="x-default" href={new URL(alternates.cs, Astro.site).toString()} />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={fullTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:locale" content={lang === 'cs' ? 'cs_CZ' : lang === 'en' ? 'en_US' : 'de_DE'} />
+    <meta property="og:image" content={new URL(ogImage, Astro.site).toString()} />
+
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  </head>
+  <body>
+    <a href="#main" class="sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-2 focus:z-50 focus:bg-white focus:px-4 focus:py-2 focus:rounded">Skip to content</a>
+    <Header pageKey={pageKey} />
+    <main id="main">
+      <slot />
+    </main>
+    <Footer />
+  </body>
+</html>

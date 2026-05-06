@@ -1,0 +1,73 @@
+---
+import { getLangFromUrl, useTranslations } from '../i18n/utils';
+import { getRoute } from '../i18n/routes';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+---
+<section class="relative pt-16 md:pt-24 pb-12 overflow-hidden bg-white">
+  <div class="absolute inset-0 -z-10 overflow-hidden pointer-events-none">
+    <div class="absolute -top-24 left-1/3 w-[26rem] h-[26rem] rounded-full opacity-[0.14] blur-3xl" style="background: var(--color-lego-yellow);"></div>
+    <div class="absolute top-1/2 -right-16 w-[18rem] h-[18rem] rounded-full opacity-[0.10] blur-3xl" style="background: var(--color-lego-red);"></div>
+  </div>
+  <div class="container-narrow text-center relative">
+    <span class="inline-block text-xs uppercase tracking-[0.2em] mb-4 font-semibold" style="color: var(--color-lego-red);">
+      {lang === 'cs' ? 'Náš příběh' : lang === 'en' ? 'Our story' : 'Unsere Geschichte'}
+    </span>
+    <h1 class="text-4xl md:text-5xl lg:text-6xl font-medium mb-6 leading-[1.1]">{t('about.title')}</h1>
+    <p class="text-lg md:text-xl text-[var(--color-ink-soft)] max-w-2xl mx-auto leading-relaxed">{t('about.lead')}</p>
+  </div>
+</section>
+
+<section class="py-16">
+  <div class="container-narrow grid md:grid-cols-2 gap-10 items-start">
+    <div class="space-y-4 text-[var(--color-ink-soft)] leading-relaxed">
+      {lang === 'cs' && (
+        <>
+          <p>Apartmány jsme začali nabízet, protože nás baví, když se hosté cítí jako doma. Místo neosobních hotelových pokojů chceme nabídnout prostor, ve kterém má každý detail svůj smysl — od plně vybavené kuchyně po hračky pro děti.</p>
+          <p>Lets Go Family Apartment je naše nejoblíbenější jednotka, ale v případě zájmu dokážeme zajistit ubytování i pro větší skupiny ve více apartmánech v okolí. Spolupracujeme s firmami, které u nás ubytovávají své zaměstnance, stážisty nebo zahraniční partnery na delší pobyty.</p>
+          <p>Záleží nám na čistotě, rychlé komunikaci a tom, aby se k nám hosté rádi vraceli.</p>
+        </>
+      )}
+      {lang === 'en' && (
+        <>
+          <p>We started offering apartments because we enjoy seeing guests feel at home. Instead of impersonal hotel rooms we wanted to offer a space where every detail has a purpose — from a fully equipped kitchen to toys for the kids.</p>
+          <p>Lets Go Family Apartment is our flagship unit, but on request we can arrange accommodation for larger groups across multiple apartments in the area. We work with companies that host their employees, interns or international partners for longer stays.</p>
+          <p>We care about cleanliness, fast communication and making our guests want to come back.</p>
+        </>
+      )}
+      {lang === 'de' && (
+        <>
+          <p>Wir haben begonnen, Apartments anzubieten, weil es uns Freude macht, wenn sich Gäste wie zu Hause fühlen. Statt unpersönlicher Hotelzimmer wollten wir einen Raum bieten, in dem jedes Detail Sinn hat — von der voll ausgestatteten Küche bis zum Spielzeug für die Kinder.</p>
+          <p>Lets Go Family Apartment ist unsere Lieblingseinheit, aber auf Anfrage können wir Unterkünfte für größere Gruppen in mehreren Apartments in der Umgebung organisieren. Wir arbeiten mit Firmen zusammen, die Mitarbeiter, Praktikanten oder internationale Partner für längere Aufenthalte unterbringen.</p>
+          <p>Sauberkeit, schnelle Kommunikation und die Wiederkehr unserer Gäste sind uns wichtig.</p>
+        </>
+      )}
+    </div>
+
+    <ul class="space-y-5">
+      <li class="bg-white border border-[var(--color-line)] rounded-xl p-5">
+        <strong class="block mb-1">{lang === 'cs' ? 'Jazyky' : lang === 'en' ? 'Languages' : 'Sprachen'}</strong>
+        <span class="text-sm text-[var(--color-ink-soft)]">{t('about.languages')}</span>
+      </li>
+      <li class="bg-white border border-[var(--color-line)] rounded-xl p-5">
+        <strong class="block mb-1">{lang === 'cs' ? 'Reakční doba' : lang === 'en' ? 'Response time' : 'Reaktionszeit'}</strong>
+        <span class="text-sm text-[var(--color-ink-soft)]">{lang === 'cs' ? 'Do 24 hodin, často mnohem dříve' : lang === 'en' ? 'Within 24 hours, often much sooner' : 'Innerhalb von 24 Stunden, oft viel schneller'}</span>
+      </li>
+      <li class="bg-white border border-[var(--color-line)] rounded-xl p-5">
+        <strong class="block mb-1">{lang === 'cs' ? 'Platba' : lang === 'en' ? 'Payment' : 'Bezahlung'}</strong>
+        <span class="text-sm text-[var(--color-ink-soft)]">{lang === 'cs' ? 'Bankovní převod, faktura na firmu' : lang === 'en' ? 'Bank transfer, company invoice' : 'Banküberweisung, Firmenrechnung'}</span>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<section class="py-16 md:py-20 bg-[var(--color-bg)]">
+  <div class="container-narrow text-center">
+    <h2 class="text-3xl md:text-4xl font-medium mb-5">{t('contact.title')}</h2>
+    <p class="text-lg text-[var(--color-ink-soft)] mb-8">{t('contact.lead')}</p>
+    <a href={getRoute('contact', lang)} class="btn-primary">
+      {t('cta.inquire')}
+    </a>
+  </div>
+</section>

@@ -1,0 +1,33 @@
+---
+import { getLangFromUrl } from '../i18n/utils';
+import { getRoute, type PageKey } from '../i18n/routes';
+import { languages, type Lang } from '../i18n/ui';
+
+interface Props {
+  pageKey: PageKey;
+}
+
+const { pageKey } = Astro.props;
+const currentLang = getLangFromUrl(Astro.url);
+const langs = Object.keys(languages) as Lang[];
+---
+<div class="flex items-center gap-1 text-xs uppercase tracking-wider">
+  {langs.map((l, i) => (
+    <>
+      {i > 0 && <span class="text-[var(--color-line)]">·</span>}
+      <a
+        href={getRoute(pageKey, l)}
+        hreflang={l === 'cs' ? 'cs-CZ' : l === 'en' ? 'en' : 'de-DE'}
+        class:list={[
+          'px-1.5 py-1 rounded transition-colors',
+          l === currentLang
+            ? 'text-[var(--color-ink)] font-semibold'
+            : 'text-[var(--color-muted)] hover:text-[var(--color-ink)]'
+        ]}
+        aria-current={l === currentLang ? 'true' : undefined}
+      >
+        {l}
+      </a>
+    </>
+  ))}
+</div>

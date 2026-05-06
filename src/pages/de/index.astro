@@ -1,0 +1,31 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Hero from '../../components/Hero.astro';
+import Features from '../../components/Features.astro';
+import B2BSection from '../../components/B2BSection.astro';
+import { useTranslations } from '../../i18n/utils';
+import { getRoute } from '../../i18n/routes';
+
+const lang = 'de';
+const t = useTranslations(lang);
+---
+<BaseLayout
+  pageKey="home"
+  title="Lets Go Apartment — Familienapartment in Budweis"
+  description="Lets Go Family Apartment in Budweis — 70 m², voll ausgestattete Küche, kostenfreie Parkplätze, ideal für Familien und Firmenaufenthalte. Ab 1.200 CZK/Nacht."
+>
+  <Hero />
+  <Features />
+  <B2BSection />
+
+  <section class="py-20 md:py-24">
+    <div class="container-narrow text-center">
+      <h2 class="text-3xl md:text-4xl font-medium mb-5">{t('contact.title')}</h2>
+      <p class="text-lg text-[var(--color-ink-soft)] max-w-xl mx-auto mb-8">{t('contact.lead')}</p>
+      <a href={getRoute('contact', lang)} class="btn-primary">
+        {t('cta.inquire')}
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </a>
+    </div>
+  </section>
+</BaseLayout>

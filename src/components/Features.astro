@@ -1,0 +1,47 @@
+---
+import { getLangFromUrl, useTranslations } from '../i18n/utils';
+import type { UIKey } from '../i18n/ui';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+
+type Feature = { icon: string; title: UIKey; text: UIKey };
+const features: Feature[] = [
+  { icon: 'kitchen',  title: 'features.kitchen.title',  text: 'features.kitchen.text' },
+  { icon: 'parking',  title: 'features.parking.title',  text: 'features.parking.text' },
+  { icon: 'family',   title: 'features.family.title',   text: 'features.family.text' },
+  { icon: 'location', title: 'features.location.title', text: 'features.location.text' },
+  { icon: 'wifi',     title: 'features.wifi.title',     text: 'features.wifi.text' },
+  { icon: 'longterm', title: 'features.longterm.title', text: 'features.longterm.text' },
+];
+
+const icons: Record<string, string> = {
+  kitchen:  'M12 2v6M5 8h14l-1 13H6L5 8z',
+  parking:  'M5 3h14a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2zm4 4v10h2v-3h2a3 3 0 0 0 0-6H9zm2 2h2a1 1 0 0 1 0 2h-2V9z',
+  family:   'M12 2a4 4 0 1 0 0 8 4 4 0 0 0 0-8zm-7 20v-2a7 7 0 0 1 14 0v2',
+  location: 'M12 2a8 8 0 0 0-8 8c0 5.5 8 12 8 12s8-6.5 8-12a8 8 0 0 0-8-8zm0 11a3 3 0 1 1 0-6 3 3 0 0 1 0 6z',
+  wifi:     'M5 12a10 10 0 0 1 14 0M8.5 15.5a5 5 0 0 1 7 0M12 19h.01',
+  longterm: 'M8 2v4M16 2v4M3 10h18M5 6h14a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2z',
+};
+---
+<section class="py-10 md:py-14">
+  <div class="container-wide">
+    <div class="max-w-2xl mb-14">
+      <h2 class="text-3xl md:text-4xl font-medium">{t('features.title')}</h2>
+    </div>
+
+    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-px bg-[var(--color-line)] border border-[var(--color-line)] rounded-2xl overflow-hidden">
+      {features.map((f) => (
+        <div class="bg-white p-7 md:p-8 hover:bg-[var(--color-bg)] transition-colors">
+          <div class="w-11 h-11 rounded-lg bg-[var(--color-bg)] flex items-center justify-center mb-5">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" class="text-[var(--color-cta)]">
+              <path d={icons[f.icon]} />
+            </svg>
+          </div>
+          <h3 class="text-lg font-display font-medium mb-2">{t(f.title)}</h3>
+          <p class="text-sm text-[var(--color-ink-soft)] leading-relaxed">{t(f.text)}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

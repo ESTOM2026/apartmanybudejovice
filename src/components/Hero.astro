@@ -1,0 +1,110 @@
+---
+import { getLangFromUrl, useTranslations } from '../i18n/utils';
+import { getRoute } from '../i18n/routes';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+---
+<section class="relative overflow-hidden">
+  <div class="absolute inset-0 -z-10 overflow-hidden">
+    <!-- Yellow LEGO base -->
+    <div class="absolute inset-0" style="background: #fffbe6;"></div>
+    <!-- Vivid yellow glow top-left -->
+    <div class="absolute -top-20 -left-20 w-[32rem] h-[32rem] rounded-full opacity-60 blur-3xl" style="background: var(--color-lego-yellow);"></div>
+    <!-- Blue accent right -->
+    <div class="absolute -bottom-20 right-0 w-[22rem] h-[22rem] rounded-full opacity-[0.15] blur-3xl" style="background: var(--color-lego-blue);"></div>
+    <!-- Stud overlay — dark on yellow -->
+    <div class="absolute inset-0" style="background-image: url(&quot;data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='56' height='56' viewBox='0 0 56 56'><circle cx='28' cy='28' r='9' fill='none' stroke='%231a1a1a' stroke-width='1.4' stroke-opacity='0.10'/><circle cx='28' cy='27' r='4.5' fill='none' stroke='%231a1a1a' stroke-width='1' stroke-opacity='0.07'/></svg>&quot;); background-size: 56px 56px;"></div>
+  </div>
+
+  <div class="container-wide py-12 md:py-20 grid lg:grid-cols-12 gap-10 items-center">
+    <div class="lg:col-span-7">
+      <span class="inline-flex items-center gap-2 text-xs uppercase tracking-[0.2em] mb-5 font-semibold" style="color: var(--color-lego-red);">
+        <span class="inline-block w-2 h-2 rounded-full" style="background: var(--color-lego-yellow);"></span>
+        <span class="inline-block w-2 h-2 rounded-full" style="background: var(--color-lego-red);"></span>
+        <span class="inline-block w-2 h-2 rounded-full" style="background: var(--color-lego-blue);"></span>
+        {t('hero.tagline')}
+      </span>
+      <h1 class="text-4xl md:text-5xl lg:text-6xl leading-[1.05] font-medium mb-6">
+        {t('hero.title')}
+      </h1>
+      <p class="text-lg md:text-xl text-[var(--color-ink-soft)] max-w-2xl mb-8 leading-relaxed">
+        {t('hero.subtitle')}
+      </p>
+      <div class="flex flex-wrap gap-3">
+        <a href={getRoute('contact', lang)} class="btn-primary">
+          {t('cta.inquire')}
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </a>
+        <a href={getRoute('apartment', lang)} class="btn-ghost">
+          {t('cta.discover')}
+        </a>
+      </div>
+
+      <dl class="mt-8 grid grid-cols-3 gap-3 max-w-lg">
+        <div class="bg-white rounded-xl px-4 py-3 shadow-sm border border-black/5">
+          <dt class="text-xs uppercase tracking-wider text-[var(--color-muted)] mb-1">m²</dt>
+          <dd class="text-2xl font-display font-semibold">70</dd>
+        </div>
+        <div class="bg-white rounded-xl px-4 py-3 shadow-sm border border-black/5">
+          <dt class="text-xs uppercase tracking-wider text-[var(--color-muted)] mb-1">{lang === 'cs' ? 'Hostů' : lang === 'en' ? 'Guests' : 'Gäste'}</dt>
+          <dd class="text-2xl font-display font-semibold">3–6</dd>
+        </div>
+        <div class="rounded-xl px-4 py-3 shadow-sm border border-black/5" style="background: var(--color-lego-red);">
+          <dt class="text-xs uppercase tracking-wider text-white/70 mb-1">{lang === 'cs' ? 'Od' : lang === 'en' ? 'From' : 'Ab'}</dt>
+          <dd class="text-2xl font-display font-semibold text-white">1 200 Kč</dd>
+        </div>
+      </dl>
+    </div>
+
+    <div class="lg:col-span-5 relative">
+      <!-- Photo collage: 2×2 grid -->
+      <div class="grid grid-cols-2 grid-rows-2 gap-2 rounded-2xl overflow-hidden shadow-2xl shadow-black/10" style="height: 480px;">
+        <div class="relative overflow-hidden">
+          <img
+            src="/images/gallery/01.jpg"
+            alt={lang === 'cs' ? 'Červený gauč v obývacím pokoji' : lang === 'en' ? 'Red sofa in the living room' : 'Rotes Sofa im Wohnzimmer'}
+            class="absolute inset-0 w-full h-full object-cover"
+            loading="eager"
+            fetchpriority="high"
+            decoding="async"
+          />
+        </div>
+        <div class="relative overflow-hidden">
+          <img
+            src="/images/gallery/02.jpg"
+            alt={lang === 'cs' ? 'LEGO vitríny' : lang === 'en' ? 'LEGO display cabinets' : 'LEGO-Vitrinen'}
+            class="absolute inset-0 w-full h-full object-cover"
+            loading="eager"
+            decoding="async"
+          />
+        </div>
+        <div class="relative overflow-hidden">
+          <img
+            src="/images/gallery/13.jpg"
+            alt={lang === 'cs' ? 'Hračky a LEGO kostky' : lang === 'en' ? 'Toys and LEGO bricks' : 'Spielzeug und LEGO-Steine'}
+            class="absolute inset-0 w-full h-full object-cover"
+            loading="lazy"
+            decoding="async"
+          />
+        </div>
+        <div class="relative overflow-hidden">
+          <img
+            src="/images/gallery/14.jpg"
+            alt={lang === 'cs' ? 'Dětské hračky a autíčka' : lang === 'en' ? 'Children toys and cars' : 'Kinderspielzeug und Autos'}
+            class="absolute inset-0 w-full h-full object-cover"
+            loading="lazy"
+            decoding="async"
+          />
+        </div>
+      </div>
+      <div class="absolute -bottom-6 -left-6 bg-white rounded-xl shadow-xl p-4 max-w-[200px] hidden md:block">
+        <div class="flex items-center gap-2 mb-1">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" class="text-[var(--color-accent)]"><path d="M12 2l3 7h7l-5.5 4.5L18 21l-6-4-6 4 1.5-7.5L2 9h7z"/></svg>
+          <span class="font-semibold text-sm">9.6 / 10</span>
+        </div>
+        <p class="text-xs text-[var(--color-ink-soft)]">{lang === 'cs' ? 'Hodnocení od hostů' : lang === 'en' ? 'Guest rating' : 'Gästebewertung'}</p>
+      </div>
+    </div>
+  </div>
+</section>

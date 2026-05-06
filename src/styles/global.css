@@ -1,0 +1,148 @@
+@import "tailwindcss";
+
+@theme {
+  /* Background — clean white per request, with off-white surfaces for cards */
+  --color-bg: #ffffff;
+  --color-surface: #ffffff;
+  --color-surface-soft: #f7f7f3;
+
+  /* Ink */
+  --color-ink: #1a1a1a;
+  --color-ink-soft: #4a4a48;
+  --color-muted: #8a8a85;
+  --color-line: #e7e5dd;
+
+  /* LEGO brand-inspired primary palette */
+  --color-lego-red: #d52a26;        /* Pantone 200C, primary CTA */
+  --color-lego-red-hover: #b91f1c;
+  --color-lego-yellow: #ffcc00;     /* Pantone 116C, accent / highlights */
+  --color-lego-yellow-hover: #e6b800;
+  --color-lego-blue: #006cb3;       /* Pantone 293C, secondary */
+  --color-lego-blue-hover: #00558c;
+  --color-lego-green: #00872b;      /* Pantone 348C, optional success */
+  --color-lego-black: #1a1a1a;
+
+  /* Aliased semantic tokens.
+   * --color-accent is used for eyebrow texts and small label colours on white
+   * backgrounds, so it must keep WCAG AA contrast (red ≈ 5:1, yellow only 1.7:1).
+   * Yellow stays available via --color-lego-yellow for cases on dark backgrounds. */
+  --color-accent: var(--color-lego-red);
+  --color-accent-hover: var(--color-lego-red-hover);
+  --color-cta: var(--color-lego-red);
+  --color-cta-hover: var(--color-lego-red-hover);
+
+  /* Classic palette — kept for the "/pro-firmy" page which deliberately uses a
+   * sober, corporate look (deep moss green + warm honey accent). */
+  --color-classic-bg: #fafaf7;
+  --color-classic-from: #f5f0e6;
+  --color-classic-line: #e7e5dd;
+  --color-classic-accent: #b8895a;
+  --color-classic-accent-hover: #9c7048;
+  --color-classic-cta: #2d4a3e;
+  --color-classic-cta-hover: #1f3329;
+
+  /* Typography */
+  --font-sans: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-display: "Fraunces", "Playfair Display", Georgia, serif;
+
+  /* Containers */
+  --container-narrow: 64rem;
+  --container-wide: 80rem;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    background: var(--color-bg);
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+    font-feature-settings: "ss01", "cv11";
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  body {
+    @apply min-h-screen relative;
+    background-color: var(--color-bg);
+    /* LEGO stud pattern on pure white — subtle, just a hint of playful texture */
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='56' height='56' viewBox='0 0 56 56'><circle cx='28' cy='28' r='8' fill='none' stroke='%23000000' stroke-width='1.2' stroke-opacity='0.07'/><circle cx='28' cy='27' r='4' fill='none' stroke='%23000000' stroke-width='0.9' stroke-opacity='0.05'/></svg>");
+    background-size: 56px 56px;
+    background-position: 0 0;
+  }
+
+  h1, h2, h3, h4 {
+    font-family: var(--font-display);
+    letter-spacing: -0.01em;
+    color: var(--color-ink);
+  }
+
+  ::selection {
+    background: var(--color-lego-yellow);
+    color: var(--color-ink);
+  }
+}
+
+@layer components {
+  /* Primary CTA — LEGO yellow. Bold, playful, unmistakably LEGO. */
+  .btn-primary {
+    @apply inline-flex items-center gap-2 px-6 py-3 rounded-full font-semibold transition-colors;
+    background: var(--color-lego-yellow);
+    color: var(--color-ink);
+  }
+  .btn-primary:hover {
+    background: var(--color-lego-yellow-hover);
+  }
+
+  /* Secondary CTA on dark backgrounds — LEGO yellow. */
+  .btn-yellow {
+    @apply inline-flex items-center gap-2 px-6 py-3 rounded-full font-medium transition-colors;
+    background: var(--color-lego-yellow);
+    color: var(--color-ink);
+  }
+  .btn-yellow:hover {
+    background: var(--color-lego-yellow-hover);
+  }
+
+  /* Ghost / outlined button. */
+  .btn-ghost {
+    @apply inline-flex items-center gap-2 px-6 py-3 rounded-full font-medium border transition-colors;
+    border-color: var(--color-line);
+    color: var(--color-ink);
+    background: white;
+  }
+  .btn-ghost:hover {
+    background: var(--color-surface-soft);
+    border-color: var(--color-ink);
+  }
+
+  /* Eyebrow text — small uppercase label above headings. */
+  .eyebrow {
+    @apply inline-block text-xs uppercase tracking-[0.2em] font-semibold;
+    color: var(--color-lego-blue);
+  }
+  .eyebrow-red    { color: var(--color-lego-red); }
+  .eyebrow-yellow { color: var(--color-lego-yellow-hover); }
+  .eyebrow-blue   { color: var(--color-lego-blue); }
+
+  .container-narrow {
+    @apply mx-auto px-6;
+    max-width: var(--container-narrow);
+  }
+  .container-wide {
+    @apply mx-auto px-6;
+    max-width: var(--container-wide);
+  }
+
+  /* Decorative stud — used for branded section bands. */
+  .stud-band {
+    position: relative;
+  }
+  .stud-band::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='56' height='56' viewBox='0 0 56 56'><circle cx='28' cy='28' r='8' fill='none' stroke='white' stroke-width='1.5' stroke-opacity='0.18'/><circle cx='28' cy='27' r='4' fill='none' stroke='white' stroke-width='1' stroke-opacity='0.12'/></svg>");
+    background-size: 56px 56px;
+  }
+}

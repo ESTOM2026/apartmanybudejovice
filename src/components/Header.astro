@@ -1,0 +1,82 @@
+---
+import { getLangFromUrl, useTranslations } from '../i18n/utils';
+import { getRoute, type PageKey } from '../i18n/routes';
+import LangSwitcher from './LangSwitcher.astro';
+import LegoBrick from './LegoBrick.astro';
+
+interface Props {
+  pageKey: PageKey;
+}
+
+const { pageKey } = Astro.props;
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+
+const navItems: { key: PageKey; label: string }[] = [
+  { key: 'apartment', label: t('nav.apartment') },
+  { key: 'business',  label: t('nav.business') },
+  { key: 'about',     label: t('nav.about') },
+  { key: 'contact',   label: t('nav.contact') },
+];
+---
+<header class="sticky top-0 z-40 backdrop-blur bg-white/90 border-b-4" style="border-bottom-color: var(--color-lego-yellow);">
+  <div class="container-wide flex items-center justify-between h-16">
+    <a href={getRoute('home', lang)} class="flex items-center gap-2.5 font-display text-lg" aria-label="Apartmány Budějovice">
+      <LegoBrick size={32} color="var(--color-lego-red)" />
+      <span class="font-semibold tracking-tight">Lets Go</span>
+      <span class="text-[var(--color-muted)] hidden sm:inline">· Apartmány Budějovice</span>
+    </a>
+
+    <nav class="hidden md:flex items-center gap-7" aria-label="Hlavní navigace">
+      {navItems.map((item) => (
+        <a
+          href={getRoute(item.key, lang)}
+          class:list={[
+            'text-sm transition-colors hover:text-[var(--color-cta)]',
+            pageKey === item.key ? 'text-[var(--color-cta)] font-medium' : 'text-[var(--color-ink-soft)]'
+          ]}
+        >
+          {item.label}
+        </a>
+      ))}
+    </nav>
+
+    <div class="flex items-center gap-3">
+      <LangSwitcher pageKey={pageKey} />
+      <a href={getRoute('contact', lang)} class="btn-primary text-sm hidden sm:inline-flex">
+        {t('cta.inquire')}
+      </a>
+      <button id="menu-toggle" class="md:hidden p-2 -mr-2" aria-label="Menu" aria-expanded="false">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+      </button>
+    </div>
+  </div>
+
+  <div id="mobile-menu" class="md:hidden hidden border-t border-[var(--color-line)] bg-white">
+    <nav class="container-wide py-4 flex flex-col gap-3" aria-label="Mobilní navigace">
+      {navItems.map((item) => (
+        <a
+          href={getRoute(item.key, lang)}
+          class:list={[
+            'py-2 text-base',
+            pageKey === item.key ? 'text-[var(--color-cta)] font-medium' : 'text-[var(--color-ink-soft)]'
+          ]}
+        >
+          {item.label}
+        </a>
+      ))}
+      <a href={getRoute('contact', lang)} class="btn-primary mt-2 justify-center">
+        {t('cta.inquire')}
+      </a>
+    </nav>
+  </div>
+</header>
+
+<script>
+  const toggle = document.getElementById('menu-toggle');
+  const menu = document.getElementById('mobile-menu');
+  toggle?.addEventListener('click', () => {
+    const isOpen = menu?.classList.toggle('hidden') === false;
+    toggle.setAttribute('aria-expanded', String(isOpen));
+  });
+</script>

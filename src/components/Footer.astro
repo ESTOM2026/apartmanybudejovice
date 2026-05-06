@@ -1,0 +1,46 @@
+---
+import { getLangFromUrl, useTranslations } from '../i18n/utils';
+import { getRoute } from '../i18n/routes';
+import LegoBrick from './LegoBrick.astro';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+const year = new Date().getFullYear();
+---
+<footer class="mt-10 border-t border-[var(--color-line)] bg-white">
+  <div class="container-wide py-8 grid gap-8 md:grid-cols-3">
+    <div>
+      <div class="flex items-center gap-2.5 font-display text-lg mb-2">
+        <LegoBrick size={32} color="var(--color-lego-red)" />
+        <span class="font-semibold">Lets Go Apartment</span>
+      </div>
+      <p class="text-sm text-[var(--color-ink-soft)] max-w-xs">{t('footer.tagline')}</p>
+    </div>
+
+    <div>
+      <h3 class="text-sm uppercase tracking-wider text-[var(--color-muted)] mb-3 font-sans font-semibold">{t('footer.links')}</h3>
+      <ul class="space-y-2 text-sm">
+        <li><a href={getRoute('apartment', lang)} class="hover:text-[var(--color-cta)]">{t('nav.apartment')}</a></li>
+        <li><a href={getRoute('business', lang)} class="hover:text-[var(--color-cta)]">{t('nav.business')}</a></li>
+        <li><a href={getRoute('about', lang)} class="hover:text-[var(--color-cta)]">{t('nav.about')}</a></li>
+        <li><a href={getRoute('contact', lang)} class="hover:text-[var(--color-cta)]">{t('nav.contact')}</a></li>
+      </ul>
+    </div>
+
+    <div>
+      <h3 class="text-sm uppercase tracking-wider text-[var(--color-muted)] mb-3 font-sans font-semibold">{t('footer.contact')}</h3>
+      <ul class="space-y-2 text-sm">
+        <li><a href="mailto:info@estom.cz" class="hover:text-[var(--color-cta)]">info@estom.cz</a></li>
+        <li><a href="tel:+420777925594" class="hover:text-[var(--color-cta)]">+420 777 925 594</a></li>
+        <li class="text-[var(--color-muted)]">I. Olbrachta 910/34, České Budějovice</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="border-t border-[var(--color-line)]">
+    <div class="container-wide py-5 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-[var(--color-muted)]">
+      <span>© {year} Apartmány České Budějovice. {t('footer.rights')}</span>
+      <span>{t('about.languages')}</span>
+    </div>
+  </div>
+</footer>

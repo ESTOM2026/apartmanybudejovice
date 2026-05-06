@@ -1,0 +1,48 @@
+---
+import { getLangFromUrl, useTranslations } from '../i18n/utils';
+import type { UIKey } from '../i18n/ui';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+
+type Amenity = { key: UIKey; icon: string };
+const amenities: Amenity[] = [
+  { key: 'amenities.wifi',       icon: 'M5 12a10 10 0 0 1 14 0M8.5 15.5a5 5 0 0 1 7 0M12 19h.01' },
+  { key: 'amenities.parking',    icon: 'M9 7v10h2v-3h2a3.5 3.5 0 0 0 0-7H9zm2 2h2a1.5 1.5 0 0 1 0 3h-2V9z' },
+  { key: 'amenities.kitchen',    icon: 'M5 8h14l-1 13H6L5 8zM12 2v6' },
+  { key: 'amenities.dishwasher', icon: 'M4 4h16v16H4zM4 8h16M8 12h.01M8 16h.01M12 12h4M12 16h4' },
+  { key: 'amenities.fridge',     icon: 'M5 2h14a1 1 0 0 1 1 1v18a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V3a1 1 0 0 1 1-1zM4 9h16M8 5v2M8 13v3' },
+  { key: 'amenities.bathroom',   icon: 'M4 12h16v4a3 3 0 0 1-3 3H7a3 3 0 0 1-3-3v-4zM6 12V6a3 3 0 0 1 6 0' },
+  { key: 'amenities.hairdryer',  icon: 'M3 12a4 4 0 0 1 4-4h6l5-3v14l-5-3H7a4 4 0 0 1-4-4zm9 4v3' },
+  { key: 'amenities.xbox',       icon: 'M12 4a8 8 0 1 0 0 16 8 8 0 0 0 0-16zM6 7c2 1 4 3 6 5M18 7c-2 1-4 3-6 5M6 17c2-1 4-3 6-5' },
+  { key: 'amenities.toys',       icon: 'M12 2a4 4 0 0 1 4 4v2H8V6a4 4 0 0 1 4-4zM6 8h12l-1 12H7L6 8z' },
+  { key: 'amenities.lego',       icon: 'M5 9h14v10H5zM8 9V6h8v3M9 13h.01M12 13h.01M15 13h.01' },
+  { key: 'amenities.garden',     icon: 'M12 2v8M8 6c0-2 2-4 4-4s4 2 4 4M5 22h14M7 22V11M17 22V11M5 11h14' },
+  { key: 'amenities.crib',       icon: 'M4 8v12M20 8v12M4 14h16M6 8h12v4H6zM7 8V5M17 8V5' },
+  { key: 'amenities.pets',       icon: 'M5 11a2 2 0 1 1 0-4 2 2 0 0 1 0 4zm14 0a2 2 0 1 0 0-4 2 2 0 0 0 0 4zM9 7a2 2 0 1 1 0-4 2 2 0 0 1 0 4zm6 0a2 2 0 1 0 0-4 2 2 0 0 0 0 4zM7 18a5 5 0 0 1 10 0v3H7v-3z' },
+  { key: 'amenities.nonsmoking', icon: 'M2 12h20M5 9v6M9 9v6M3 3l18 18' },
+];
+---
+<section class="py-10 md:py-14 relative overflow-hidden" style="background: var(--color-lego-yellow);">
+  <!-- Stud pattern overlay -->
+  <div class="absolute inset-0 pointer-events-none" style="background-image: url(&quot;data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='56' height='56' viewBox='0 0 56 56'><circle cx='28' cy='28' r='9' fill='none' stroke='%231a1a1a' stroke-width='1.5' stroke-opacity='0.12'/><circle cx='28' cy='27' r='4.5' fill='none' stroke='%231a1a1a' stroke-width='1' stroke-opacity='0.08'/></svg>&quot;); background-size: 56px 56px;"></div>
+  <div class="container-wide relative">
+    <div class="max-w-2xl mb-7">
+      <span class="inline-block text-xs uppercase tracking-[0.2em] text-[var(--color-ink)] mb-3 font-semibold opacity-60">
+        {lang === 'cs' ? 'Vše, co potřebujete' : lang === 'en' ? 'Everything you need' : 'Alles, was Sie brauchen'}
+      </span>
+      <h2 class="text-3xl md:text-4xl font-medium text-[var(--color-ink)]">{t('apartment.amenities.title')}</h2>
+    </div>
+
+    <ul class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3">
+      {amenities.map((a) => (
+        <li class="flex items-center gap-3 p-4 rounded-lg bg-white border border-black/10 shadow-sm">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" class="text-[var(--color-lego-red)] shrink-0">
+            <path d={a.icon} />
+          </svg>
+          <span class="text-sm font-medium">{t(a.key)}</span>
+        </li>
+      ))}
+    </ul>
+  </div>
+</section>

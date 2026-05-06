@@ -1,0 +1,150 @@
+---
+import { getLangFromUrl, useTranslations } from '../i18n/utils';
+import { getRoute } from '../i18n/routes';
+import AmenitiesGrid from './AmenitiesGrid.astro';
+import Gallery from './Gallery.astro';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+---
+<section class="relative pt-8 md:pt-12 pb-8 overflow-hidden bg-white">
+  <div class="absolute inset-0 -z-10 overflow-hidden pointer-events-none">
+    <div class="absolute -top-20 -left-20 w-[28rem] h-[28rem] rounded-full opacity-[0.18] blur-3xl" style="background: var(--color-lego-yellow);"></div>
+    <div class="absolute top-0 right-0 w-[18rem] h-[18rem] rounded-full opacity-[0.08] blur-3xl" style="background: var(--color-lego-blue);"></div>
+  </div>
+  <div class="container-wide relative">
+    <span class="inline-flex items-center gap-2 text-xs uppercase tracking-[0.2em] mb-4 font-semibold" style="color: var(--color-lego-red);">
+      <span class="inline-block w-2 h-2 rounded-full" style="background: var(--color-lego-yellow);"></span>
+      <span class="inline-block w-2 h-2 rounded-full" style="background: var(--color-lego-red);"></span>
+      <span class="inline-block w-2 h-2 rounded-full" style="background: var(--color-lego-blue);"></span>
+      Lets Go Family Apartment
+    </span>
+    <h1 class="text-4xl md:text-5xl lg:text-6xl font-medium mb-5 max-w-3xl leading-[1.1]">{t('apartment.title')}</h1>
+    <p class="text-lg text-[var(--color-ink-soft)] max-w-2xl">{t('apartment.subtitle')}</p>
+  </div>
+</section>
+
+
+<section class="py-8 md:py-12">
+  <div class="container-wide grid lg:grid-cols-12 gap-10">
+    <div class="lg:col-span-7">
+      <h2 class="text-2xl md:text-3xl font-medium mb-5">{t('apartment.about.title')}</h2>
+      <div class="prose-content text-[var(--color-ink-soft)] leading-relaxed space-y-4">
+        {lang === 'cs' && (
+          <>
+            <p>Apartmán o rozloze 70 m² nabízí oddělenou ložnici, prostorný obývací pokoj s pohovkou, plně vybavenou kuchyň s myčkou a americkou lednicí a koupelnu se sprchou i vanou, pračkou a sušičkou. Pohodlně se v něm ubytují 3 hosté, na vyžádání až 6.</p>
+            <p>Apartmán je především rodinný — najdete v něm hračky pro děti, herní konzoli Xbox a vystavené sběratelské LEGO modely ve vitrínách. Pro pracovní pobyty nabízíme klid, rychlé Wi‑Fi a komfort domácího prostředí, který v hotelech nezažijete.</p>
+            <p>Záleží nám na tom, abyste se cítili jako doma od první chvíle. Apartmán pravidelně udržujeme a postaráme se o vás osobně.</p>
+          </>
+        )}
+        {lang === 'en' && (
+          <>
+            <p>The 70 m² apartment offers a separate bedroom, a spacious living room with a sofa, a fully equipped kitchen with a dishwasher and American‑style fridge, and a bathroom with shower, bathtub, washing machine and dryer. It comfortably hosts 3 guests, up to 6 on request.</p>
+            <p>The apartment is family‑oriented — you'll find toys for children, an Xbox console and display cabinets with collectible LEGO models. For work stays we offer quiet, fast Wi‑Fi and the comfort of a home that hotels can't match.</p>
+            <p>We care that you feel at home from the first moment. The apartment is regularly maintained and we welcome you personally.</p>
+          </>
+        )}
+        {lang === 'de' && (
+          <>
+            <p>Das 70 m² große Apartment bietet ein separates Schlafzimmer, ein geräumiges Wohnzimmer mit Sofa, eine voll ausgestattete Küche mit Geschirrspüler und amerikanischem Kühlschrank sowie ein Bad mit Dusche, Badewanne, Waschmaschine und Trockner. Bequem für 3 Gäste, auf Anfrage bis zu 6.</p>
+            <p>Das Apartment ist familienorientiert — Sie finden Spielzeug für Kinder, eine Xbox‑Konsole und Vitrinen mit LEGO‑Sammlermodellen. Für Geschäftsaufenthalte bieten wir Ruhe, schnelles WLAN und den Komfort eines Zuhauses, den Hotels nicht bieten können.</p>
+            <p>Uns ist wichtig, dass Sie sich vom ersten Moment an wie zu Hause fühlen. Das Apartment wird regelmäßig gepflegt und wir empfangen Sie persönlich.</p>
+          </>
+        )}
+      </div>
+    </div>
+
+    <aside class="lg:col-span-5">
+      <div class="bg-white border border-[var(--color-line)] rounded-2xl p-7 sticky top-24">
+        <div class="flex items-baseline gap-2 mb-1">
+          <span class="text-sm text-[var(--color-muted)]">{t('apartment.pricing.from')}</span>
+        </div>
+        <div class="flex items-baseline gap-2 mb-1">
+          <span class="text-4xl font-display font-medium">1 200</span>
+          <span class="text-[var(--color-ink-soft)]">{t('apartment.pricing.unit')}</span>
+        </div>
+        <p class="text-sm text-[var(--color-muted)] mb-5">{t('apartment.pricing.note')}</p>
+
+        <a href={getRoute('contact', lang)} class="btn-primary w-full justify-center mb-3">
+          {t('cta.inquire')}
+        </a>
+        <a href="tel:+420777925594" class="btn-ghost w-full justify-center">
+          {t('cta.call')}
+        </a>
+
+        <ul class="mt-6 pt-6 border-t border-[var(--color-line)] space-y-2 text-sm">
+          <li class="flex justify-between"><span class="text-[var(--color-muted)]">{lang === 'cs' ? 'Plocha' : lang === 'en' ? 'Size' : 'Fläche'}</span><span class="font-medium">70 m²</span></li>
+          <li class="flex justify-between"><span class="text-[var(--color-muted)]">{lang === 'cs' ? 'Pokoje' : lang === 'en' ? 'Rooms' : 'Zimmer'}</span><span class="font-medium">1 + 1</span></li>
+          <li class="flex justify-between"><span class="text-[var(--color-muted)]">{lang === 'cs' ? 'Kapacita' : lang === 'en' ? 'Capacity' : 'Kapazität'}</span><span class="font-medium">3–6</span></li>
+          <li class="flex justify-between"><span class="text-[var(--color-muted)]">{lang === 'cs' ? 'Parkování' : lang === 'en' ? 'Parking' : 'Parken'}</span><span class="font-medium">{lang === 'cs' ? 'Zdarma' : lang === 'en' ? 'Free' : 'Kostenfrei'}</span></li>
+        </ul>
+      </div>
+    </aside>
+  </div>
+</section>
+
+<AmenitiesGrid />
+<Gallery />
+
+<section class="py-10 md:py-14">
+  <div class="container-wide grid lg:grid-cols-2 gap-12 items-center">
+    <div>
+      <span class="inline-block text-xs uppercase tracking-[0.2em] text-[var(--color-accent)] mb-3 font-semibold">
+        {lang === 'cs' ? 'Kde nás najdete' : lang === 'en' ? 'Where to find us' : 'Wo Sie uns finden'}
+      </span>
+      <h2 class="text-3xl md:text-4xl font-medium mb-5">{t('apartment.location.title')}</h2>
+      <p class="text-[var(--color-ink-soft)] leading-relaxed mb-6">{t('apartment.location.text')}</p>
+
+      <ul class="space-y-3">
+        <li class="flex items-start gap-3">
+          <span class="w-8 h-8 rounded-full bg-[var(--color-bg)] flex items-center justify-center shrink-0 mt-0.5">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="text-[var(--color-cta)]"><path d="M3 12l3-3 3 3 6-6 6 6"/></svg>
+          </span>
+          <div>
+            <strong class="block text-sm">{lang === 'cs' ? '7 minut autem do centra' : lang === 'en' ? '7 minutes to the city centre' : '7 Minuten ins Zentrum'}</strong>
+            <span class="text-sm text-[var(--color-muted)]">{lang === 'cs' ? 'Historické náměstí Přemysla Otakara II.' : lang === 'en' ? 'Historic Přemysl Otakar II Square' : 'Historischer Přemysl Otakar II.-Platz'}</span>
+          </div>
+        </li>
+        <li class="flex items-start gap-3">
+          <span class="w-8 h-8 rounded-full bg-[var(--color-bg)] flex items-center justify-center shrink-0 mt-0.5">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="text-[var(--color-cta)]"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+          </span>
+          <div>
+            <strong class="block text-sm">{lang === 'cs' ? '200 m k autobusové zastávce' : lang === 'en' ? '200 m to the bus stop' : '200 m zur Bushaltestelle'}</strong>
+            <span class="text-sm text-[var(--color-muted)]">{lang === 'cs' ? 'Pravidelné spojení do centra' : lang === 'en' ? 'Regular service to the centre' : 'Regelmäßige Verbindung ins Zentrum'}</span>
+          </div>
+        </li>
+        <li class="flex items-start gap-3">
+          <span class="w-8 h-8 rounded-full bg-[var(--color-bg)] flex items-center justify-center shrink-0 mt-0.5">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="text-[var(--color-cta)]"><path d="M12 2a8 8 0 0 0-8 8c0 5.5 8 12 8 12s8-6.5 8-12a8 8 0 0 0-8-8zm0 11a3 3 0 1 1 0-6 3 3 0 0 1 0 6z"/></svg>
+          </span>
+          <div>
+            <strong class="block text-sm">{lang === 'cs' ? 'Park s rybníkem za rohem' : lang === 'en' ? 'Park with a pond around the corner' : 'Park mit Teich um die Ecke'}</strong>
+            <span class="text-sm text-[var(--color-muted)]">{lang === 'cs' ? 'Ideální na procházky a běhání' : lang === 'en' ? 'Great for walks and jogging' : 'Ideal für Spaziergänge und Joggen'}</span>
+          </div>
+        </li>
+      </ul>
+    </div>
+
+    <div class="aspect-[4/3] rounded-2xl overflow-hidden bg-[var(--color-line)]">
+      <iframe
+        src="https://maps.google.com/maps?q=I.+Olbrachta+910%2F34%2C+%C4%8Cesk%C3%A9+Bud%C4%9Bjovice&output=embed&hl=cs&z=16&iwloc=B"
+        class="w-full h-full border-0"
+        loading="lazy"
+        title="Mapa apartmánu — I. Olbrachta 910/34, České Budějovice"
+        referrerpolicy="no-referrer-when-downgrade"
+      ></iframe>
+    </div>
+  </div>
+</section>
+
+<section class="stud-band py-10 md:py-14 text-white text-center relative overflow-hidden" style="background: var(--color-lego-red);">
+  <div class="container-narrow relative">
+    <h2 class="text-3xl md:text-4xl font-medium mb-5 text-white">{t('contact.title')}</h2>
+    <p class="text-white/90 text-lg mb-8 max-w-xl mx-auto">{t('contact.lead')}</p>
+    <a href={getRoute('contact', lang)} class="btn-yellow">
+      {t('cta.inquire')}
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+    </a>
+  </div>
+</section>

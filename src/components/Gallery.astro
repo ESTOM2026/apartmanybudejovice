@@ -1,0 +1,177 @@
+---
+import { readdir } from 'node:fs/promises';
+import path from 'node:path';
+import { getLangFromUrl, useTranslations } from '../i18n/utils';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+
+type AltMap = { cs: string; en: string; de: string };
+
+// Per‑file alt text. Map key = filename in /public/images/gallery/.
+// If a file is renamed/added without a matching entry, the generic fallback below is used —
+// the gallery still works, just with a less descriptive alt for that one tile.
+// To delete a photo: just remove its file from /public/images/gallery/. The gallery rebuilds itself.
+const altByFile: Record<string, AltMap> = {
+  '01.jpg': { cs: 'Obývací pokoj — vínová pohovka',          en: 'Living room — burgundy sofa',           de: 'Wohnzimmer — burgunderfarbenes Sofa' },
+  '02.jpg': { cs: 'Obývací pokoj — vitríny LEGO a TV',       en: 'Living room — LEGO display and TV',     de: 'Wohnzimmer — LEGO-Vitrinen und TV' },
+  '03.jpg': { cs: 'Plně vybavená kuchyň',                    en: 'Fully equipped kitchen',                de: 'Voll ausgestattete Küche' },
+  '04.jpg': { cs: 'Kuchyň s jídelním koutem',                en: 'Kitchen with dining area',              de: 'Küche mit Essbereich' },
+  '05.jpg': { cs: 'Kuchyňský dřez a pracovní deska',         en: 'Kitchen sink and worktop',              de: 'Spüle und Arbeitsplatte' },
+  '06.jpg': { cs: 'Jídelní stůl pro čtyři',                  en: 'Dining table for four',                 de: 'Esstisch für vier' },
+  '07.jpg': { cs: 'Ložnice s manželskou postelí',            en: 'Bedroom with double bed',               de: 'Schlafzimmer mit Doppelbett' },
+  '08.jpg': { cs: 'Ložnice s televizí a dětskou postýlkou',  en: 'Bedroom with TV and baby cot',          de: 'Schlafzimmer mit TV und Babybett' },
+  '09.jpg': { cs: 'Ložnice — pohled z postele',              en: 'Bedroom — view from the bed',           de: 'Schlafzimmer — Blick vom Bett' },
+  '10.jpg': { cs: 'Ložnice s komodou a postýlkou',           en: 'Bedroom with dresser and cot',          de: 'Schlafzimmer mit Kommode und Bett' },
+  '11.jpg': { cs: 'Manželská postel — detail',               en: 'Double bed — close-up',                 de: 'Doppelbett — Detail' },
+  '12.jpg': { cs: 'Dětská postýlka',                         en: 'Baby cot',                              de: 'Babybett' },
+  '13.jpg': { cs: 'Knihovna a dětský koutek s LEGO',         en: 'Bookshelf and kids corner with LEGO',   de: 'Bücherregal und Kinderecke mit LEGO' },
+  '14.jpg': { cs: 'Hračky pro děti — autíčka, hrad, stolek', en: 'Children toys — cars, castle, table',   de: 'Kinderspielzeug — Autos, Schloss, Tisch' },
+  '15.jpg': { cs: 'Koupelna — dvě umyvadla a květiny',       en: 'Bathroom — two sinks and flowers',      de: 'Bad — zwei Waschbecken und Blumen' },
+  '16.jpg': { cs: 'Koupelna — dřevěná deska s umyvadly',     en: 'Bathroom — wooden countertop with sinks', de: 'Bad — Holzplatte mit Waschbecken' },
+  '17.jpg': { cs: 'Koupelna s oknem',                        en: 'Bathroom with window',                  de: 'Bad mit Fenster' },
+  '18.jpg': { cs: 'Umyvadla — pohled shora',                 en: 'Sinks — top view',                      de: 'Waschbecken — Draufsicht' },
+  '19.jpg': { cs: 'Detail umyvadla',                         en: 'Sink — close-up',                       de: 'Waschbecken — Detail' },
+  '20.jpg': { cs: 'Sprchový kout s mýdly',                   en: 'Walk-in shower with toiletries',        de: 'Dusche mit Pflegeprodukten' },
+  '21.jpg': { cs: 'Sprchový kout a WC',                      en: 'Walk-in shower and toilet',             de: 'Dusche und WC' },
+  '22.jpg': { cs: 'Rohová vana s oknem',                     en: 'Corner bathtub with window',            de: 'Eckbadewanne mit Fenster' },
+  '23.jpg': { cs: 'Pračka a sušička',                        en: 'Washing machine and dryer',             de: 'Waschmaschine und Trockner' },
+};
+
+const genericAlt: AltMap = {
+  cs: 'Apartmán Lets Go — pohled dovnitř',
+  en: 'Lets Go Apartment — interior',
+  de: 'Apartment Lets Go — Innenansicht',
+};
+
+// Read the gallery folder at build time. Files starting with `_` or `.` are ignored
+// (use that prefix to keep a photo on disk but hide it from the gallery).
+const galleryDir = path.resolve(process.cwd(), 'public/images/gallery');
+let files: string[] = [];
+try {
+  const all = await readdir(galleryDir);
+  files = all
+    .filter((f) => /\.(jpe?g|png|webp|avif)$/i.test(f))
+    .filter((f) => !f.startsWith('_') && !f.startsWith('.'))
+    .sort();
+} catch (err) {
+  console.error('[Gallery] Could not read', galleryDir, err);
+}
+
+const photos = files.map((file) => ({
+  src: `/images/gallery/${file}`,
+  alt: altByFile[file] ?? genericAlt,
+}));
+---
+<section class="py-10 md:py-14 bg-[var(--color-bg)]">
+  <div class="container-wide">
+    <div class="max-w-2xl mb-12">
+      <span class="inline-block text-xs uppercase tracking-[0.2em] text-[var(--color-accent)] mb-3 font-semibold">
+        {lang === 'cs' ? 'Pohled dovnitř' : lang === 'en' ? 'A look inside' : 'Ein Blick hinein'}
+      </span>
+      <h2 class="text-3xl md:text-4xl font-medium">{t('apartment.gallery.title')}</h2>
+    </div>
+
+    {photos.length === 0 ? (
+      <p class="text-[var(--color-muted)]">No photos available.</p>
+    ) : (
+      <ul class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
+        {photos.map((p, i) => (
+          <li>
+            <button
+              type="button"
+              class="lightbox-trigger group block w-full aspect-[4/3] relative overflow-hidden rounded-xl bg-[var(--color-line)] cursor-zoom-in"
+              data-index={i}
+              aria-label={p.alt[lang]}
+            >
+              <img
+                src={p.src}
+                alt={p.alt[lang]}
+                class="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                loading="lazy"
+                decoding="async"
+              />
+              <span class="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors"></span>
+            </button>
+          </li>
+        ))}
+      </ul>
+    )}
+  </div>
+</section>
+
+<!-- Lightbox -->
+<dialog id="lightbox" class="bg-transparent backdrop:bg-black/85 backdrop:backdrop-blur-sm p-0 m-0 max-w-none max-h-none w-full h-full overflow-hidden">
+  <div class="w-full h-full flex flex-col">
+    <div class="flex justify-end p-4">
+      <button id="lb-close" type="button" aria-label="Close" class="text-white/80 hover:text-white p-2">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6L6 18M6 6l12 12"/></svg>
+      </button>
+    </div>
+    <div class="flex-1 flex items-center justify-center px-2 sm:px-12 relative">
+      <button id="lb-prev" type="button" aria-label="Previous" class="absolute left-2 sm:left-6 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-white/10 hover:bg-white/20 backdrop-blur text-white flex items-center justify-center">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg>
+      </button>
+      <img id="lb-img" src="" alt="" class="max-w-full max-h-full object-contain rounded-lg shadow-2xl" />
+      <button id="lb-next" type="button" aria-label="Next" class="absolute right-2 sm:right-6 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-white/10 hover:bg-white/20 backdrop-blur text-white flex items-center justify-center">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 6l6 6-6 6"/></svg>
+      </button>
+    </div>
+    <div class="text-center text-white/70 text-sm pb-4 px-4">
+      <span id="lb-caption"></span>
+      <span id="lb-counter" class="ml-3 text-white/50"></span>
+    </div>
+  </div>
+</dialog>
+
+<script>
+  const dialog = document.getElementById('lightbox') as HTMLDialogElement | null;
+  const img = document.getElementById('lb-img') as HTMLImageElement | null;
+  const caption = document.getElementById('lb-caption');
+  const counter = document.getElementById('lb-counter');
+  const closeBtn = document.getElementById('lb-close');
+  const prevBtn = document.getElementById('lb-prev');
+  const nextBtn = document.getElementById('lb-next');
+  const triggers = Array.from(document.querySelectorAll<HTMLButtonElement>('.lightbox-trigger'));
+
+  let current = 0;
+
+  function open(index: number) {
+    current = index;
+    show();
+    dialog?.showModal();
+    document.body.style.overflow = 'hidden';
+  }
+  function close() {
+    dialog?.close();
+    document.body.style.overflow = '';
+  }
+  function show() {
+    const trigger = triggers[current];
+    if (!trigger || !img) return;
+    const triggerImg = trigger.querySelector('img');
+    if (!triggerImg) return;
+    img.src = triggerImg.src;
+    img.alt = triggerImg.alt;
+    if (caption) caption.textContent = triggerImg.alt;
+    if (counter) counter.textContent = `${current + 1} / ${triggers.length}`;
+  }
+  function next() { current = (current + 1) % triggers.length; show(); }
+  function prev() { current = (current - 1 + triggers.length) % triggers.length; show(); }
+
+  triggers.forEach((t, i) => t.addEventListener('click', () => open(i)));
+  closeBtn?.addEventListener('click', close);
+  nextBtn?.addEventListener('click', next);
+  prevBtn?.addEventListener('click', prev);
+
+  dialog?.addEventListener('click', (e) => {
+    if (e.target === dialog) close();
+  });
+  dialog?.addEventListener('cancel', () => { document.body.style.overflow = ''; });
+
+  document.addEventListener('keydown', (e) => {
+    if (!dialog?.open) return;
+    if (e.key === 'ArrowRight') next();
+    else if (e.key === 'ArrowLeft') prev();
+  });
+</script>

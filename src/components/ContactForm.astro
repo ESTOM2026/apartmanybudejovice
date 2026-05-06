@@ -1,0 +1,64 @@
+---
+import { getLangFromUrl, useTranslations } from '../i18n/utils';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+---
+<form
+  name="inquiry"
+  method="POST"
+  data-netlify="true"
+  netlify-honeypot="bot-field"
+  action={`?lang=${lang}&sent=1`}
+  class="grid gap-5"
+>
+  <input type="hidden" name="form-name" value="inquiry" />
+  <input type="hidden" name="lang" value={lang} />
+  <p class="hidden">
+    <label>Don't fill: <input name="bot-field" /></label>
+  </p>
+
+  <div class="grid sm:grid-cols-2 gap-5">
+    <label class="block">
+      <span class="text-sm text-[var(--color-ink-soft)] mb-1.5 block">{t('contact.form.name')} *</span>
+      <input type="text" name="name" required class="w-full rounded-lg border border-[var(--color-line)] bg-white px-4 py-2.5 focus:outline-none focus:border-[var(--color-cta)]" />
+    </label>
+    <label class="block">
+      <span class="text-sm text-[var(--color-ink-soft)] mb-1.5 block">{t('contact.form.email')} *</span>
+      <input type="email" name="email" required class="w-full rounded-lg border border-[var(--color-line)] bg-white px-4 py-2.5 focus:outline-none focus:border-[var(--color-cta)]" />
+    </label>
+    <label class="block">
+      <span class="text-sm text-[var(--color-ink-soft)] mb-1.5 block">{t('contact.form.phone')}</span>
+      <input type="tel" name="phone" class="w-full rounded-lg border border-[var(--color-line)] bg-white px-4 py-2.5 focus:outline-none focus:border-[var(--color-cta)]" />
+    </label>
+    <label class="block">
+      <span class="text-sm text-[var(--color-ink-soft)] mb-1.5 block">{t('contact.form.company')}</span>
+      <input type="text" name="company" class="w-full rounded-lg border border-[var(--color-line)] bg-white px-4 py-2.5 focus:outline-none focus:border-[var(--color-cta)]" />
+    </label>
+    <label class="block">
+      <span class="text-sm text-[var(--color-ink-soft)] mb-1.5 block">{t('contact.form.dates')}</span>
+      <input type="text" name="dates" placeholder="—" class="w-full rounded-lg border border-[var(--color-line)] bg-white px-4 py-2.5 focus:outline-none focus:border-[var(--color-cta)]" />
+    </label>
+    <label class="block">
+      <span class="text-sm text-[var(--color-ink-soft)] mb-1.5 block">{t('contact.form.guests')}</span>
+      <input type="number" name="guests" min="1" max="20" class="w-full rounded-lg border border-[var(--color-line)] bg-white px-4 py-2.5 focus:outline-none focus:border-[var(--color-cta)]" />
+    </label>
+  </div>
+
+  <label class="block">
+    <span class="text-sm text-[var(--color-ink-soft)] mb-1.5 block">{t('contact.form.message')} *</span>
+    <textarea name="message" required rows="5" placeholder={t('contact.form.message.placeholder')} class="w-full rounded-lg border border-[var(--color-line)] bg-white px-4 py-2.5 focus:outline-none focus:border-[var(--color-cta)] resize-none"></textarea>
+  </label>
+
+  <label class="flex items-start gap-3 text-sm text-[var(--color-ink-soft)] cursor-pointer">
+    <input type="checkbox" name="consent" required class="mt-1 accent-[var(--color-cta)]" />
+    <span>{t('contact.form.consent')}</span>
+  </label>
+
+  <div>
+    <button type="submit" class="btn-primary">
+      {t('contact.form.submit')}
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+    </button>
+  </div>
+</form>

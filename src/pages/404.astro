@@ -1,0 +1,23 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { getRoute } from '../i18n/routes';
+---
+<BaseLayout
+  pageKey="home"
+  title="404 — Stránka nenalezena"
+  description="Stránka, kterou hledáte, neexistuje."
+>
+  <section class="py-24 md:py-32">
+    <div class="container-narrow text-center">
+      <span class="inline-block text-xs uppercase tracking-[0.2em] text-[var(--color-accent)] mb-4 font-semibold">404</span>
+      <h1 class="text-4xl md:text-5xl font-medium mb-5">Stránka nenalezena</h1>
+      <p class="text-lg text-[var(--color-ink-soft)] max-w-xl mx-auto mb-8">
+        Page not found · Seite nicht gefunden
+      </p>
+      <a href={getRoute('home', 'cs')} class="btn-primary">
+        Zpět na úvod
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </a>
+    </div>
+  </section>
+</BaseLayout>

@@ -1,0 +1,88 @@
+---
+import { getLangFromUrl, useTranslations } from '../i18n/utils';
+import { getRoute } from '../i18n/routes';
+import B2BSection from './B2BSection.astro';
+import Features from './Features.astro';
+import ContactForm from './ContactForm.astro';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+---
+{/* Wrapper opaquely covers the body's LEGO stud pattern so the whole page
+    feels like the original calm corporate design. */}
+<div style="background: var(--color-classic-bg); position: relative;">
+<section class="relative pt-12 md:pt-20 pb-16 bg-gradient-to-b from-[var(--color-classic-from)] to-[var(--color-classic-bg)]">
+  <div class="container-wide">
+    <span class="inline-block text-xs uppercase tracking-[0.2em] mb-4 font-semibold" style="color: var(--color-classic-accent);">B2B</span>
+    <h1 class="text-4xl md:text-5xl lg:text-6xl font-medium mb-5 max-w-3xl leading-[1.1]">{t('b2b.title')}</h1>
+    <p class="text-lg md:text-xl text-[var(--color-ink-soft)] max-w-2xl mb-8 leading-relaxed">{t('b2b.lead')}</p>
+    <a href={getRoute('contact', lang)} class="inline-flex items-center gap-2 px-6 py-3 rounded-full font-medium text-white transition-colors" style="background: var(--color-classic-cta);" onmouseover="this.style.background='var(--color-classic-cta-hover)'" onmouseout="this.style.background='var(--color-classic-cta)'">
+      {t('b2b.cta')}
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+    </a>
+  </div>
+</section>
+
+<section class="py-12 md:py-16" style="background: var(--color-classic-bg);">
+  <div class="container-wide">
+    <div class="bg-white border rounded-2xl p-8 md:p-12 grid md:grid-cols-12 gap-8 md:gap-10 items-center shadow-sm" style="border-color: var(--color-classic-line);">
+      <div class="md:col-span-7">
+        <span class="inline-block text-xs uppercase tracking-[0.2em] mb-3 font-semibold" style="color: var(--color-classic-accent);">
+          {t('b2b.price.eyebrow')}
+        </span>
+        <h2 class="text-2xl md:text-3xl font-medium mb-4">{t('b2b.price.heading')}</h2>
+        <p class="text-[var(--color-ink-soft)] leading-relaxed">{t('b2b.price.note')}</p>
+        <a href={getRoute('contact', lang)} class="inline-flex items-center gap-2 px-6 py-3 rounded-full font-medium text-white transition-colors mt-6" style="background: var(--color-classic-cta);" onmouseover="this.style.background='var(--color-classic-cta-hover)'" onmouseout="this.style.background='var(--color-classic-cta)'">
+          {t('b2b.cta')}
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </a>
+      </div>
+
+      <div class="md:col-span-5">
+        <div class="text-white rounded-xl p-7 md:p-8 relative overflow-hidden" style="background: var(--color-classic-cta);">
+          <div class="absolute inset-0 opacity-[0.08]" style="background-image: radial-gradient(circle at 1px 1px, white 1px, transparent 0); background-size: 20px 20px;"></div>
+          <div class="relative">
+            <span class="block text-xs uppercase tracking-[0.2em] mb-2 font-semibold" style="color: var(--color-classic-accent);">
+              {t('b2b.price.label')}
+            </span>
+            <span class="block text-sm text-white/70 mb-1">{t('b2b.price.from')}</span>
+            <div class="flex items-baseline gap-2">
+              <span class="text-5xl md:text-6xl font-display font-medium leading-none">{t('b2b.price.amount')}</span>
+              <span class="text-lg text-white/85">{t('b2b.price.unit')}</span>
+            </div>
+            <ul class="mt-6 pt-5 border-t border-white/15 space-y-2 text-sm text-white/85">
+              <li class="flex items-center gap-2">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" class="shrink-0" style="color: var(--color-classic-accent);"><path d="M5 12l5 5L20 7"/></svg>
+                <span>{lang === 'cs' ? 'Faktura na firmu' : lang === 'en' ? 'Company invoicing' : 'Firmenrechnung'}</span>
+              </li>
+              <li class="flex items-center gap-2">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" class="shrink-0" style="color: var(--color-classic-accent);"><path d="M5 12l5 5L20 7"/></svg>
+                <span>{lang === 'cs' ? 'Parkování zdarma' : lang === 'en' ? 'Free parking' : 'Kostenfreie Parkplätze'}</span>
+              </li>
+              <li class="flex items-center gap-2">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" class="shrink-0" style="color: var(--color-classic-accent);"><path d="M5 12l5 5L20 7"/></svg>
+                <span>{lang === 'cs' ? 'Plně vybavená kuchyň' : lang === 'en' ? 'Fully equipped kitchen' : 'Voll ausgestattete Küche'}</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<B2BSection variant="classic" />
+<Features />
+
+<section class="py-20 md:py-24" style="background: var(--color-classic-bg);">
+  <div class="container-narrow">
+    <div class="text-center mb-10">
+      <h2 class="text-3xl md:text-4xl font-medium mb-4">{t('b2b.cta')}</h2>
+      <p class="text-[var(--color-ink-soft)] max-w-xl mx-auto">{t('contact.lead')}</p>
+    </div>
+    <div class="bg-white border rounded-2xl p-7 md:p-10" style="border-color: var(--color-classic-line);">
+      <ContactForm />
+    </div>
+  </div>
+</section>
+</div>
