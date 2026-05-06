@@ -4,7 +4,7 @@ import ContactForm from './ContactForm.astro';
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
-const sent = Astro.url.searchParams.get('sent') === '1';
+// sent se kontroluje client-side (SSG neumí číst query string při buildu)
 ---
 <section class="relative pt-16 md:pt-24 pb-8 overflow-hidden bg-white">
   <div class="absolute inset-0 -z-10 overflow-hidden pointer-events-none">
@@ -23,19 +23,18 @@ const sent = Astro.url.searchParams.get('sent') === '1';
 <section class="py-12 md:py-16">
   <div class="container-wide grid lg:grid-cols-12 gap-10">
     <div class="lg:col-span-7">
-      {sent ? (
-        <div class="bg-[var(--color-cta)] text-white rounded-2xl p-8 md:p-10">
-          <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" class="mb-4">
-            <circle cx="12" cy="12" r="10"/><path d="M9 12l2 2 4-4"/>
-          </svg>
-          <h2 class="text-2xl font-medium mb-2 text-white">{t('contact.form.success')}</h2>
-          <p class="text-white/80">{lang === 'cs' ? 'Vaše poptávka dorazila. Odpovíme do 24 hodin.' : lang === 'en' ? 'Your inquiry has been received. We will reply within 24 hours.' : 'Ihre Anfrage ist eingegangen. Wir antworten innerhalb von 24 Stunden.'}</p>
-        </div>
-      ) : (
-        <div class="bg-white border border-[var(--color-line)] rounded-2xl p-7 md:p-10">
-          <ContactForm />
-        </div>
-      )}
+      <!-- Potvrzení odeslání — skryté, zobrazí JS po ?sent=1 -->
+      <div id="form-success" class="hidden bg-[var(--color-cta)] text-white rounded-2xl p-8 md:p-10">
+        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" class="mb-4">
+          <circle cx="12" cy="12" r="10"/><path d="M9 12l2 2 4-4"/>
+        </svg>
+        <h2 class="text-2xl font-medium mb-2 text-white">{t('contact.form.success')}</h2>
+        <p class="text-white/80">{lang === 'cs' ? 'Vaše poptávka dorazila. Odpovíme do 24 hodin.' : lang === 'en' ? 'Your inquiry has been received. We will reply within 24 hours.' : 'Ihre Anfrage ist eingegangen. Wir antworten innerhalb von 24 Stunden.'}</p>
+      </div>
+      <!-- Formulář — skryje se po úspěšném odeslání -->
+      <div id="form-wrapper" class="bg-white border border-[var(--color-line)] rounded-2xl p-7 md:p-10">
+        <ContactForm />
+      </div>
     </div>
 
     <aside class="lg:col-span-5 space-y-6">
@@ -69,3 +68,10 @@ const sent = Astro.url.searchParams.get('sent') === '1';
     </aside>
   </div>
 </section>
+
+<script>
+  if (new URLSearchParams(window.location.search).get('sent') === '1') {
+    document.getElementById('form-success')?.classList.remove('hidden');
+    document.getElementById('form-wrapper')?.classList.add('hidden');
+  }
+</script>
