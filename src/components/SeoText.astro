@@ -2,132 +2,161 @@
 import { getLangFromUrl } from '../i18n/utils';
 
 const lang = getLangFromUrl(Astro.url);
+
+const label = lang === 'cs' ? 'Více o apartmánu a lokalitě'
+            : lang === 'en' ? 'More about the apartment and location'
+            : 'Mehr über das Apartment und die Lage';
 ---
-<section class="py-12 md:py-16 bg-[#f7f7f5] border-t border-[var(--color-line)]">
+<section class="border-t border-[var(--color-line)] bg-white">
   <div class="container-narrow">
-    {lang === 'cs' && (
-      <div class="prose prose-neutral max-w-none text-[var(--color-ink-soft)]
-                  prose-headings:text-[var(--color-ink)] prose-headings:font-medium
-                  prose-h2:text-2xl prose-h2:md:text-3xl prose-h2:mb-5 prose-h2:mt-0
-                  prose-h3:text-lg prose-h3:mb-3 prose-h3:mt-8
-                  prose-p:leading-relaxed prose-p:mb-4
-                  prose-strong:text-[var(--color-ink)] prose-strong:font-medium">
-        <h2>Apartmán k pronájmu v Českých Budějovicích — pohodlné ubytování pro rodiny i firmy</h2>
+    <button
+      id="seo-toggle"
+      class="w-full flex items-center justify-between py-5 text-sm text-[var(--color-muted)] hover:text-[var(--color-ink)] transition-colors group"
+      aria-expanded="false"
+      aria-controls="seo-body"
+    >
+      <span>{label}</span>
+      <svg id="seo-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="transition-transform duration-200 shrink-0">
+        <path d="M6 9l6 6 6-6"/>
+      </svg>
+    </button>
 
-        <p>
-          Hledáte pohodlné ubytování v Českých Budějovicích? <strong>Lets Go Family Apartment</strong> nabízí
-          prostorný dvoupokojový apartmán (2&nbsp;+&nbsp;1) o&nbsp;rozloze 70&nbsp;m² v&nbsp;klidné obytné čtvrti
-          I.&nbsp;Olbrachta — jen 7&nbsp;minut autem od historického náměstí. Pronájem je vhodný na víkend
-          i&nbsp;delší pobyt, pro rodiny s&nbsp;dětmi, firemní zaměstnance nebo hosty ze zahraničí.
-        </p>
+    <div id="seo-body" class="hidden pb-10">
+      {lang === 'cs' && (
+        <div class="prose prose-sm prose-neutral max-w-none text-[var(--color-ink-soft)]
+                    prose-headings:text-[var(--color-ink)] prose-headings:font-medium
+                    prose-h2:text-xl prose-h2:mb-4 prose-h2:mt-0
+                    prose-h3:text-base prose-h3:mb-2 prose-h3:mt-6
+                    prose-p:leading-relaxed prose-p:mb-3
+                    prose-strong:text-[var(--color-ink)] prose-strong:font-medium">
+          <h2>Apartmán k pronájmu v Českých Budějovicích — pohodlné ubytování pro rodiny i firmy</h2>
 
-        <h3>Pronájem bytu s kompletním vybavením</h3>
-        <p>
-          Apartmán je plně zařízený a&nbsp;připravený k&nbsp;okamžitému nastěhování. Velká americká lednice,
-          myčka nádobí, pračka se sušičkou, rychlá Wi‑Fi a&nbsp;dvě televize — vše, co potřebujete
-          k&nbsp;pohodlnému pobytu. Navíc herní konzole Xbox, hračky pro děti a&nbsp;unikátní sbírka
-          LEGO modelů, která z&nbsp;apartmánu dělá místo, kde se baví celá rodina. Koupelna je vybavena
-          sprchovým koutem i&nbsp;vanou, součástí je i&nbsp;prostorná chodba a&nbsp;balkon s&nbsp;výhledem
-          do zahrady.
-        </p>
+          <p>
+            Hledáte pohodlné ubytování v Českých Budějovicích? <strong>Lets Go Family Apartment</strong> nabízí
+            prostorný dvoupokojový apartmán (2&nbsp;+&nbsp;1) o&nbsp;rozloze 70&nbsp;m² v&nbsp;klidné obytné čtvrti
+            I.&nbsp;Olbrachta — jen 7&nbsp;minut autem od historického náměstí. Pronájem je vhodný na víkend
+            i&nbsp;delší pobyt, pro rodiny s&nbsp;dětmi, firemní zaměstnance nebo hosty ze zahraničí.
+          </p>
 
-        <h3>Ubytování pro firmy s fakturou na IČO</h3>
-        <p>
-          Zaměstnáváte lidi, kteří potřebují dočasné bydlení v&nbsp;Českých Budějovicích? Nabízíme
-          <strong>firemní ubytování s&nbsp;fakturací na IČO</strong> — ať&nbsp;už jde o&nbsp;stážisty,
-          montéry, IT specialisty nebo zahraniční partnery. Pro větší týmy dokážeme zajistit více
-          apartmánů v&nbsp;lokalitě. Ceny pro firmy začínají od <strong>950&nbsp;Kč za noc</strong>,
-          fakturujeme s&nbsp;DPH i&nbsp;bez. Délka pobytu je flexibilní — od jednoho týdne
-          po&nbsp;několik měsíců.
-        </p>
+          <h3>Pronájem bytu s kompletním vybavením</h3>
+          <p>
+            Apartmán je plně zařízený a&nbsp;připravený k&nbsp;okamžitému nastěhování. Velká americká lednice,
+            myčka nádobí, pračka se sušičkou, rychlá Wi‑Fi a&nbsp;dvě televize — vše, co potřebujete
+            k&nbsp;pohodlnému pobytu. Navíc herní konzole Xbox, hračky pro děti a&nbsp;unikátní sbírka
+            LEGO modelů, která z&nbsp;apartmánu dělá místo, kde se baví celá rodina. Koupelna je vybavena
+            sprchovým koutem i&nbsp;vanou, součástí je i&nbsp;prostorná chodba a&nbsp;balkon s&nbsp;výhledem
+            do zahrady.
+          </p>
 
-        <h3>Lokalita: klidná čtvrť, snadná dostupnost</h3>
-        <p>
-          Apartmán se nachází na adrese I.&nbsp;Olbrachta&nbsp;910/34, České Budějovice. Autobusová
-          zastávka je 100&nbsp;metrů od vchodu, vlakové nádraží ČD a&nbsp;autobusové nádraží jsou
-          2&nbsp;km vzdálené. Za rohem najdete park s&nbsp;rybníkem — ideální pro ranní běh nebo
-          odpolední procházku s&nbsp;dětmi. <strong>Parkování je zdarma</strong> a&nbsp;vždy k&nbsp;dispozici
-          přímo u&nbsp;domu. Pro hosty přijíždějící autem z&nbsp;Prahy, Brna nebo Plzně je poloha
-          apartmánu velmi dobře dostupná díky blízkosti dálnice D3.
-        </p>
+          <h3>Ubytování pro firmy s fakturou na IČO</h3>
+          <p>
+            Zaměstnáváte lidi, kteří potřebují dočasné bydlení v&nbsp;Českých Budějovicích? Nabízíme
+            <strong>firemní ubytování s&nbsp;fakturací na IČO</strong> — ať&nbsp;už jde o&nbsp;stážisty,
+            montéry, IT specialisty nebo zahraniční partnery. Pro větší týmy dokážeme zajistit více
+            apartmánů v&nbsp;lokalitě. Ceny pro firmy začínají od <strong>950&nbsp;Kč za noc</strong>,
+            fakturujeme s&nbsp;DPH i&nbsp;bez. Délka pobytu je flexibilní — od jednoho týdne
+            po&nbsp;několik měsíců.
+          </p>
 
-        <h3>Jak zarezervovat apartmán</h3>
-        <p>
-          Rezervace probíhá přímo — bez&nbsp;prostředníků a&nbsp;provizí. Napište nám termín, počet osob
-          a&nbsp;případné požadavky přes kontaktní formulář nebo zavolejte na
-          <strong>+420&nbsp;777&nbsp;925&nbsp;594</strong>. Odpovíme do 24&nbsp;hodin s&nbsp;individuální
-          cenovou nabídkou. Cena ubytování pro rodiny začíná od <strong>1&nbsp;200&nbsp;Kč za noc</strong>,
-          při delším pobytu nabízíme slevu.
-        </p>
-      </div>
-    )}
+          <h3>Lokalita: klidná čtvrť, snadná dostupnost</h3>
+          <p>
+            Apartmán se nachází na adrese I.&nbsp;Olbrachta&nbsp;910/34, České Budějovice. Autobusová
+            zastávka je 100&nbsp;metrů od vchodu, vlakové nádraží ČD a&nbsp;autobusové nádraží jsou
+            2&nbsp;km vzdálené. Za rohem najdete park s&nbsp;rybníkem — ideální pro ranní běh nebo
+            odpolední procházku s&nbsp;dětmi. <strong>Parkování je zdarma</strong> a&nbsp;vždy k&nbsp;dispozici
+            přímo u&nbsp;domu. Pro hosty přijíždějící autem z&nbsp;Prahy, Brna nebo Plzně je poloha
+            apartmánu velmi dobře dostupná díky blízkosti dálnice D3.
+          </p>
 
-    {lang === 'en' && (
-      <div class="prose prose-neutral max-w-none text-[var(--color-ink-soft)]
-                  prose-headings:text-[var(--color-ink)] prose-headings:font-medium
-                  prose-h2:text-2xl prose-h2:md:text-3xl prose-h2:mb-5 prose-h2:mt-0
-                  prose-h3:text-lg prose-h3:mb-3 prose-h3:mt-8
-                  prose-p:leading-relaxed prose-p:mb-4
-                  prose-strong:text-[var(--color-ink)] prose-strong:font-medium">
-        <h2>Apartment rental in České Budějovice — comfortable stay for families and companies</h2>
+          <h3>Jak zarezervovat apartmán</h3>
+          <p>
+            Rezervace probíhá přímo — bez&nbsp;prostředníků a&nbsp;provizí. Napište nám termín, počet osob
+            a&nbsp;případné požadavky přes kontaktní formulář nebo zavolejte na
+            <strong>+420&nbsp;777&nbsp;925&nbsp;594</strong>. Odpovíme do 24&nbsp;hodin s&nbsp;individuální
+            cenovou nabídkou. Cena ubytování pro rodiny začíná od <strong>1&nbsp;200&nbsp;Kč za noc</strong>,
+            při delším pobytu nabízíme slevu.
+          </p>
+        </div>
+      )}
 
-        <p>
-          Looking for comfortable accommodation in České Budějovice? <strong>Lets Go Family Apartment</strong> offers
-          a spacious two‑room apartment (70&nbsp;m²) in a quiet residential neighbourhood — just 7 minutes
-          by car from the historic main square. Ideal for families with children, business travellers or
-          long‑term stays.
-        </p>
+      {lang === 'en' && (
+        <div class="prose prose-sm prose-neutral max-w-none text-[var(--color-ink-soft)]
+                    prose-headings:text-[var(--color-ink)] prose-headings:font-medium
+                    prose-h2:text-xl prose-h2:mb-4 prose-h2:mt-0
+                    prose-h3:text-base prose-h3:mb-2 prose-h3:mt-6
+                    prose-p:leading-relaxed prose-p:mb-3
+                    prose-strong:text-[var(--color-ink)] prose-strong:font-medium">
+          <h2>Apartment rental in České Budějovice — comfortable stay for families and companies</h2>
 
-        <h3>Fully equipped apartment — move in right away</h3>
-        <p>
-          The apartment is fully furnished and ready for immediate occupancy. American‑style fridge,
-          dishwasher, washer &amp; dryer, fast Wi‑Fi, two TVs, Xbox console, toys for children and a
-          unique LEGO display collection. <strong>Free parking</strong> is always available on‑site.
-          Bus stop 100&nbsp;m away, train station 2&nbsp;km.
-        </p>
+          <p>
+            Looking for comfortable accommodation in České Budějovice? <strong>Lets Go Family Apartment</strong> offers
+            a spacious two‑room apartment (70&nbsp;m²) in a quiet residential neighbourhood — just 7 minutes
+            by car from the historic main square. Ideal for families with children, business travellers or
+            long‑term stays.
+          </p>
 
-        <h3>Corporate accommodation with company invoicing</h3>
-        <p>
-          Need temporary housing for employees, interns or international partners in České Budějovice?
-          We offer <strong>company‑invoiced stays</strong> — weekly, monthly or longer. Prices for
-          companies start from <strong>CZK&nbsp;950 per night</strong>. Multiple apartments available
-          on request. Contact us for a tailored quote within 24&nbsp;hours.
-        </p>
-      </div>
-    )}
+          <h3>Fully equipped apartment — move in right away</h3>
+          <p>
+            The apartment is fully furnished and ready for immediate occupancy. American‑style fridge,
+            dishwasher, washer &amp; dryer, fast Wi‑Fi, two TVs, Xbox console, toys for children and a
+            unique LEGO display collection. <strong>Free parking</strong> is always available on‑site.
+            Bus stop 100&nbsp;m away, train station 2&nbsp;km.
+          </p>
 
-    {lang === 'de' && (
-      <div class="prose prose-neutral max-w-none text-[var(--color-ink-soft)]
-                  prose-headings:text-[var(--color-ink)] prose-headings:font-medium
-                  prose-h2:text-2xl prose-h2:md:text-3xl prose-h2:mb-5 prose-h2:mt-0
-                  prose-h3:text-lg prose-h3:mb-3 prose-h3:mt-8
-                  prose-p:leading-relaxed prose-p:mb-4
-                  prose-strong:text-[var(--color-ink)] prose-strong:font-medium">
-        <h2>Apartment mieten in Budweis — komfortables Wohnen für Familien und Firmen</h2>
+          <h3>Corporate accommodation with company invoicing</h3>
+          <p>
+            Need temporary housing for employees, interns or international partners in České Budějovice?
+            We offer <strong>company‑invoiced stays</strong> — weekly, monthly or longer. Prices for
+            companies start from <strong>CZK&nbsp;950 per night</strong>. Multiple apartments available
+            on request. Contact us for a tailored quote within 24&nbsp;hours.
+          </p>
+        </div>
+      )}
 
-        <p>
-          Suchen Sie eine komfortable Unterkunft in České Budějovice (Budweis)?
-          <strong>Lets Go Family Apartment</strong> bietet ein geräumiges Zweizimmerapartment (70&nbsp;m²)
-          in einer ruhigen Wohngegend — nur 7 Minuten mit dem Auto vom historischen Marktplatz entfernt.
-          Ideal für Familien mit Kindern, Geschäftsreisende oder Langzeitaufenthalte.
-        </p>
+      {lang === 'de' && (
+        <div class="prose prose-sm prose-neutral max-w-none text-[var(--color-ink-soft)]
+                    prose-headings:text-[var(--color-ink)] prose-headings:font-medium
+                    prose-h2:text-xl prose-h2:mb-4 prose-h2:mt-0
+                    prose-h3:text-base prose-h3:mb-2 prose-h3:mt-6
+                    prose-p:leading-relaxed prose-p:mb-3
+                    prose-strong:text-[var(--color-ink)] prose-strong:font-medium">
+          <h2>Apartment mieten in Budweis — komfortables Wohnen für Familien und Firmen</h2>
 
-        <h3>Voll ausgestattetes Apartment — sofort einzugsbereit</h3>
-        <p>
-          Das Apartment ist vollständig möbliert und sofort bezugsfertig. Amerikanischer Kühlschrank,
-          Geschirrspüler, Waschmaschine &amp; Trockner, schnelles WLAN, zwei TVs, Xbox‑Konsole,
-          Kinderspielzeug und eine einzigartige LEGO‑Sammlung. <strong>Kostenfreie Parkplätze</strong>
-          direkt am Haus. Bushaltestelle 100&nbsp;m, Bahnhof 2&nbsp;km.
-        </p>
+          <p>
+            Suchen Sie eine komfortable Unterkunft in České Budějovice (Budweis)?
+            <strong>Lets Go Family Apartment</strong> bietet ein geräumiges Zweizimmerapartment (70&nbsp;m²)
+            in einer ruhigen Wohngegend — nur 7 Minuten mit dem Auto vom historischen Marktplatz entfernt.
+            Ideal für Familien mit Kindern, Geschäftsreisende oder Langzeitaufenthalte.
+          </p>
 
-        <h3>Firmenunterkunft mit Rechnung</h3>
-        <p>
-          Benötigen Sie vorübergehende Unterkünfte für Mitarbeiter, Praktikanten oder internationale
-          Partner in Budweis? Wir bieten <strong>Aufenthalte mit Firmenrechnung</strong> — wöchentlich,
-          monatlich oder länger. Firmenpreise ab <strong>950&nbsp;CZK pro Nacht</strong>.
-          Kontaktieren Sie uns für ein individuelles Angebot innerhalb von 24&nbsp;Stunden.
-        </p>
-      </div>
-    )}
+          <h3>Voll ausgestattetes Apartment — sofort einzugsbereit</h3>
+          <p>
+            Das Apartment ist vollständig möbliert und sofort bezugsfertig. Amerikanischer Kühlschrank,
+            Geschirrspüler, Waschmaschine &amp; Trockner, schnelles WLAN, zwei TVs, Xbox‑Konsole,
+            Kinderspielzeug und eine einzigartige LEGO‑Sammlung. <strong>Kostenfreie Parkplätze</strong>
+            direkt am Haus. Bushaltestelle 100&nbsp;m, Bahnhof 2&nbsp;km.
+          </p>
+
+          <h3>Firmenunterkunft mit Rechnung</h3>
+          <p>
+            Benötigen Sie vorübergehende Unterkünfte für Mitarbeiter, Praktikanten oder internationale
+            Partner in Budweis? Wir bieten <strong>Aufenthalte mit Firmenrechnung</strong> — wöchentlich,
+            monatlich oder länger. Firmenpreise ab <strong>950&nbsp;CZK pro Nacht</strong>.
+            Kontaktieren Sie uns für ein individuelles Angebot innerhalb von 24&nbsp;Stunden.
+          </p>
+        </div>
+      )}
+    </div>
   </div>
 </section>
+
+<script>
+  const btn = document.getElementById('seo-toggle');
+  const body = document.getElementById('seo-body');
+  const icon = document.getElementById('seo-icon');
+  btn?.addEventListener('click', () => {
+    const open = body?.classList.toggle('hidden') === false;
+    btn.setAttribute('aria-expanded', String(open));
+    icon?.style.setProperty('transform', open ? 'rotate(180deg)' : 'rotate(0deg)');
+  });
+</script>
