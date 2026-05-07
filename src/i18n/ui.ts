@@ -21,8 +21,8 @@ export const ui = {
     'cta.contact': 'Napsat nám',
     'cta.call': 'Zavolat',
 
-    'hero.tagline': 'Rodinný apartmán v Českých Budějovicích',
-    'hero.title': 'Rodinný apartmán k pronájmu v Českých Budějovicích',
+    'hero.tagline': 'Rodinný apartmán v Českých Budějovicích',
+    'hero.title': 'Rodinný apartmán k pronájmu v Českých Budějovicích',
     'hero.subtitle': 'Lets Go Family Apartment — 70 m² komfortu pro vaši rodinu, zaměstnance nebo dlouhodobé hosty. Parkování zdarma, plně vybavená kuchyň, klidná lokalita.',
 
     'features.title': 'Proč Lets Go Family Apartment',
@@ -224,7 +224,7 @@ export const ui = {
     'cta.call': 'Anrufen',
 
     'hero.tagline': 'Familienapartment in Budweis',
-    'hero.title': 'Familienapartment zur Miete in Budweis',
+    'hero.title': 'Familienapartment zur Miete in Budweis',
     'hero.subtitle': 'Lets Go Family Apartment — 70 m² Komfort für Ihre Familie, Mitarbeiter oder Langzeitgäste. Kostenfreie Parkplätze, voll ausgestattete Küche, ruhige Lage.',
 
     'features.title': 'Warum Lets Go Family Apartment',
