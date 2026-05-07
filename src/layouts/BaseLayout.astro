@@ -16,6 +16,7 @@ interface Props {
 const { pageKey, title, description, ogImage = '/og-default.jpg' } = Astro.props;
 const lang: Lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
+const isNetlifyPreview = Astro.url.hostname.endsWith('.netlify.app');
 
 const alternates = getAlternates(pageKey);
 const canonical = new URL(alternates[lang], Astro.site).toString();
@@ -32,6 +33,7 @@ const fullTitle = `${title} | Apartmány České Budějovice`;
     <title>{fullTitle}</title>
     <meta name="description" content={description} />
     <link rel="canonical" href={canonical} />
+    {isNetlifyPreview && <meta name="robots" content="noindex, nofollow" />}
 
     {(Object.keys(languages) as Lang[]).map((l) => (
       <link
