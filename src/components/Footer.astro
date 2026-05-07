@@ -38,6 +38,26 @@ const year = new Date().getFullYear();
   </div>
 
   <div class="border-t border-[var(--color-line)]">
+    <div class="container-wide pt-6 pb-2">
+      {lang === 'cs' && (
+        <p class="text-xs text-[var(--color-muted)] leading-relaxed max-w-4xl">
+          <strong class="font-medium">Lets Go Family Apartment</strong> — apartmán k pronájmu v Českých Budějovicích, I. Olbrachta 910/34. Rodinné ubytování 70 m², 2+1, plně vybavená kuchyň, parkování zdarma, Wi‑Fi. Vhodné pro rodiny s dětmi, dlouhodobé pobyty i firemní ubytování zaměstnanců s fakturou na IČO. Ceny od 1 200 Kč/noc, pro firmy od 950 Kč/noc. Rezervace na <a href="tel:+420777925594" class="hover:text-[var(--color-ink)] underline underline-offset-2">+420 777 925 594</a> nebo <a href="mailto:info@estom.cz" class="hover:text-[var(--color-ink)] underline underline-offset-2">info@estom.cz</a>.
+        </p>
+      )}
+      {lang === 'en' && (
+        <p class="text-xs text-[var(--color-muted)] leading-relaxed max-w-4xl">
+          <strong class="font-medium">Lets Go Family Apartment</strong> — apartment for rent in České Budějovice, I. Olbrachta 910/34. 70 m², 2 rooms + kitchen, fully equipped, free parking, Wi‑Fi. Ideal for families, long‑term stays and corporate accommodation with company invoicing. From CZK 1,200/night. Book at <a href="tel:+420777925594" class="hover:text-[var(--color-ink)] underline underline-offset-2">+420 777 925 594</a> or <a href="mailto:info@estom.cz" class="hover:text-[var(--color-ink)] underline underline-offset-2">info@estom.cz</a>.
+        </p>
+      )}
+      {lang === 'de' && (
+        <p class="text-xs text-[var(--color-muted)] leading-relaxed max-w-4xl">
+          <strong class="font-medium">Lets Go Family Apartment</strong> — Apartment zur Miete in Budweis (České Budějovice), I. Olbrachta 910/34. 70 m², 2 Zimmer + Küche, voll ausgestattet, kostenfreie Parkplätze, WLAN. Ideal für Familien, Langzeitaufenthalte und Firmenunterkunft mit Rechnung. Ab 1.200 CZK/Nacht. Kontakt: <a href="tel:+420777925594" class="hover:text-[var(--color-ink)] underline underline-offset-2">+420 777 925 594</a> oder <a href="mailto:info@estom.cz" class="hover:text-[var(--color-ink)] underline underline-offset-2">info@estom.cz</a>.
+        </p>
+      )}
+    </div>
+  </div>
+
+  <div class="border-t border-[var(--color-line)]">
     <div class="container-wide py-5 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-[var(--color-muted)]">
       <span>© {year} Apartmány České Budějovice. {t('footer.rights')}</span>
       <span>{t('about.languages')}</span>

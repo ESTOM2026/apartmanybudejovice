@@ -3,7 +3,6 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import Hero from '../../components/Hero.astro';
 import Features from '../../components/Features.astro';
 import B2BSection from '../../components/B2BSection.astro';
-import SeoText from '../../components/SeoText.astro';
 import { useTranslations } from '../../i18n/utils';
 import { getRoute } from '../../i18n/routes';
 
@@ -18,7 +17,6 @@ const t = useTranslations(lang);
   <Hero />
   <Features />
   <B2BSection />
-  <SeoText />
 
   <section class="py-20 md:py-24">
     <div class="container-narrow text-center">
