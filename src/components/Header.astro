@@ -13,6 +13,7 @@ const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 
 const navItems: { key: PageKey; label: string }[] = [
+  { key: 'home',      label: t('nav.home') },
   { key: 'apartment', label: t('nav.apartment') },
   { key: 'business',  label: t('nav.business') },
   { key: 'about',     label: t('nav.about') },
