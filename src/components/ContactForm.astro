@@ -9,7 +9,7 @@ const t = useTranslations(lang);
   method="POST"
   data-netlify="true"
   netlify-honeypot="bot-field"
-  action={`?lang=${lang}&sent=1`}
+  action={`${lang === 'cs' ? '/kontakt' : lang === 'en' ? '/en/contact' : '/de/kontakt'}?sent=1`}
   class="grid gap-5"
 >
   <input type="hidden" name="form-name" value="inquiry" />
