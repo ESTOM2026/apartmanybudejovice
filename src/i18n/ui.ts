@@ -22,7 +22,7 @@ export const ui = {
     'cta.call': 'Zavolat',
 
     'hero.tagline': 'Rodinný apartmán v Českých Budějovicích',
-    'hero.title': 'Rodinný apartmán k pronájmu v Českých Budějovicích',
+    'hero.title': 'Apartmán k pronájmu v Českých Budějovicích',
     'hero.subtitle': 'Lets Go Family Apartment — 70 m² komfortu pro vaši rodinu, zaměstnance nebo dlouhodobé hosty. Parkování zdarma, plně vybavená kuchyň, klidná lokalita.',
 
     'features.title': 'Proč Lets Go Family Apartment',
