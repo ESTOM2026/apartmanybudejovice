@@ -113,7 +113,7 @@ export const ui = {
   en: {
     'nav.home': 'Home',
     'nav.apartment': 'Lets Go Apartment',
-    'nav.business': 'For companies',
+    'nav.business': 'Apartments for companies',
     'nav.about': 'About',
     'nav.contact': 'Contact',
 
@@ -145,7 +145,7 @@ export const ui = {
     'b2b.point1.title': 'Multiple apartments on request',
     'b2b.point1.text': 'Need to host a larger team? We can arrange several apartments in the area.',
     'b2b.point2.title': 'Company invoicing',
-    'b2b.point2.text': 'Standard invoicing with or without VAT registration, payment terms by agreement.',
+    'b2b.point2.text': 'Standard invoicing with or without VAT registration.',
     'b2b.point3.title': 'Flexible length of stay',
     'b2b.point3.text': 'Weekly, monthly or longer contracts. Pricing adapts to length of stay.',
     'b2b.point4.title': 'Comfort of home',
@@ -157,7 +157,7 @@ export const ui = {
     'b2b.price.from': 'from',
     'b2b.price.amount': '950',
     'b2b.price.unit': 'CZK / night',
-    'b2b.price.note': 'Final rate depends on length of stay and number of apartments. For Lets Go (70 m², sleeps up to 6) and larger units we prepare a tailored offer — invoiced to your company.',
+    'b2b.price.note': 'Final rate depends on length of stay and number of apartments. For Lets Go (70 m², 3 beds) and larger units we prepare a tailored offer — invoiced to your company.',
 
     'apartment.title': 'Lets Go Apartment',
     'apartment.subtitle': 'Family apartment in České Budějovice, 70 m², 1 bedroom + living room',
@@ -214,7 +214,7 @@ export const ui = {
   de: {
     'nav.home': 'Startseite',
     'nav.apartment': 'Apartment Lets Go',
-    'nav.business': 'Für Firmen',
+    'nav.business': 'Apartments für Firmen',
     'nav.about': 'Über uns',
     'nav.contact': 'Kontakt',
 
@@ -246,7 +246,7 @@ export const ui = {
     'b2b.point1.title': 'Mehrere Apartments auf Anfrage',
     'b2b.point1.text': 'Müssen Sie ein größeres Team unterbringen? Wir können mehrere Apartments in der Umgebung organisieren.',
     'b2b.point2.title': 'Firmenrechnung',
-    'b2b.point2.text': 'Standardrechnung mit oder ohne MwSt-Ausweis, Zahlungsbedingungen nach Vereinbarung.',
+    'b2b.point2.text': 'Standardrechnung mit oder ohne MwSt-Ausweis.',
     'b2b.point3.title': 'Flexible Aufenthaltsdauer',
     'b2b.point3.text': 'Wochen‑, Monats‑ oder längere Verträge. Der Preis passt sich der Aufenthaltsdauer an.',
     'b2b.point4.title': 'Komfort wie zu Hause',
@@ -258,7 +258,7 @@ export const ui = {
     'b2b.price.from': 'ab',
     'b2b.price.amount': '950',
     'b2b.price.unit': 'CZK / Nacht',
-    'b2b.price.note': 'Der Endpreis hängt von der Aufenthaltsdauer und der Anzahl der Apartments ab. Für Lets Go (70 m², bis zu 6 Personen) und größere Einheiten erstellen wir ein individuelles Angebot — mit Firmenrechnung.',
+    'b2b.price.note': 'Der Endpreis hängt von der Aufenthaltsdauer und der Anzahl der Apartments ab. Für Lets Go (70 m², 3 Betten) und größere Einheiten erstellen wir ein individuelles Angebot — mit Firmenrechnung.',
 
     'apartment.title': 'Apartment Lets Go',
     'apartment.subtitle': 'Familienapartment in Budweis, 70 m², 1 Schlafzimmer + Wohnzimmer',
