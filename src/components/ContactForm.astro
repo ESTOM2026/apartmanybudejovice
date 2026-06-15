@@ -1,8 +1,14 @@
 ---
 import { getLangFromUrl, useTranslations } from '../i18n/utils';
+import { getRoute } from '../i18n/routes';
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
+const privacyNote = {
+  cs: { prefix: 'Více informací najdete v ', link: 'zásadách ochrany osobních údajů', newTab: '(otevře se v novém okně)' },
+  en: { prefix: 'See our ', link: 'Privacy Policy', newTab: '(opens in a new tab)' },
+  de: { prefix: 'Mehr dazu in der ', link: 'Datenschutzerklärung', newTab: '(öffnet in neuem Tab)' },
+}[lang];
 ---
 <form
   name="inquiry"
@@ -50,10 +56,13 @@ const t = useTranslations(lang);
     <textarea name="message" required rows="5" placeholder={t('contact.form.message.placeholder')} class="w-full rounded-lg border border-[var(--color-line)] bg-white px-4 py-2.5 focus:outline-none focus:border-[var(--color-cta)] resize-none"></textarea>
   </label>
 
-  <label class="flex items-start gap-3 text-sm text-[var(--color-ink-soft)] cursor-pointer">
-    <input type="checkbox" name="consent" required class="mt-1 accent-[var(--color-cta)]" />
-    <span>{t('contact.form.consent')}</span>
-  </label>
+  <div class="text-sm text-[var(--color-ink-soft)]">
+    <label class="flex items-start gap-3 cursor-pointer">
+      <input type="checkbox" name="consent" required class="mt-1 accent-[var(--color-cta)]" />
+      <span>{t('contact.form.consent')}</span>
+    </label>
+    <p class="mt-2 pl-7">{privacyNote.prefix}<a href={getRoute('privacy', lang)} target="_blank" rel="noopener noreferrer" class="underline underline-offset-2 hover:text-[var(--color-cta)]">{privacyNote.link}<span class="sr-only"> {privacyNote.newTab}</span></a>.</p>
+  </div>
 
   <div>
     <button type="submit" class="btn-primary">

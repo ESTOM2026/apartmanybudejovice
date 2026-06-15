@@ -4,6 +4,7 @@ import Hero from '../components/Hero.astro';
 import Features from '../components/Features.astro';
 import B2BSection from '../components/B2BSection.astro';
 import HomeSections from '../components/HomeSections.astro';
+import ReviewsSection from '../components/ReviewsSection.astro';
 import { useTranslations } from '../i18n/utils';
 import { getRoute } from '../i18n/routes';
 
@@ -20,6 +21,8 @@ const t = useTranslations(lang);
   <B2BSection />
 
   <HomeSections />
+
+  <ReviewsSection />
 
   <section class="py-20 md:py-24">
     <div class="container-narrow text-center">

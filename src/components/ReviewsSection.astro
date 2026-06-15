@@ -1,0 +1,79 @@
+---
+import { getLangFromUrl } from '../i18n/utils';
+
+const lang = getLangFromUrl(Astro.url);
+
+// Static social proof from Booking.com. Rating is shown visually only —
+// NOT marked up as schema.org aggregateRating, because Google disallows
+// self-serving / third-party (aggregator) ratings in your own business markup.
+const bookingBase = 'https://www.booking.com/hotel/cz/lets-go-family-apartment-ceske-budejovice';
+
+const t = {
+  cs: {
+    eyebrow: 'Hodnocení hostů',
+    heading: 'Co o nás říkají hosté',
+    lead: 'Skutečná zpětná vazba od hostů, kteří u nás bydleli — ověřená přes Booking.com.',
+    rating: '9,3',
+    word: 'Fantastické',
+    count: 'ze 3 hodnocení na Booking.com',
+    cta: 'Přečíst recenze na Booking.com',
+    newTab: '(otevře se v novém okně)',
+    url: `${bookingBase}.cs.html`,
+  },
+  en: {
+    eyebrow: 'Guest rating',
+    heading: 'What our guests say',
+    lead: 'Real feedback from guests who stayed with us — verified on Booking.com.',
+    rating: '9.3',
+    word: 'Wonderful',
+    count: 'from 3 reviews on Booking.com',
+    cta: 'Read reviews on Booking.com',
+    newTab: '(opens in a new tab)',
+    url: `${bookingBase}.en-gb.html`,
+  },
+  de: {
+    eyebrow: 'Gästebewertung',
+    heading: 'Was unsere Gäste sagen',
+    lead: 'Echtes Feedback von Gästen, die bei uns übernachtet haben — verifiziert über Booking.com.',
+    rating: '9,3',
+    word: 'Fantastisch',
+    count: 'aus 3 Bewertungen auf Booking.com',
+    cta: 'Bewertungen auf Booking.com lesen',
+    newTab: '(öffnet in neuem Tab)',
+    url: `${bookingBase}.de.html`,
+  },
+}[lang];
+---
+<section class="py-12 md:py-16">
+  <div class="container-narrow">
+    <div class="text-center max-w-2xl mx-auto mb-8">
+      <span class="eyebrow eyebrow-blue mb-3">{t.eyebrow}</span>
+      <h2 class="text-3xl md:text-4xl font-medium mb-4">{t.heading}</h2>
+      <p class="text-[var(--color-ink-soft)] leading-relaxed">{t.lead}</p>
+    </div>
+
+    <div class="max-w-md mx-auto bg-white border border-[var(--color-line)] rounded-2xl p-7 md:p-8 shadow-sm flex flex-col items-center gap-5 text-center">
+      <div class="flex items-center gap-4">
+        <div class="rounded-2xl text-white px-5 py-3 leading-none flex items-baseline gap-1" style="background: var(--color-lego-blue);">
+          <span class="text-4xl font-display font-semibold">{t.rating}</span>
+          <span class="text-sm text-white/80">/ 10</span>
+        </div>
+        <div class="text-left">
+          <div class="font-display text-lg font-medium">{t.word}</div>
+          <div class="text-sm text-[var(--color-ink-soft)]">{t.count}</div>
+        </div>
+      </div>
+
+      <a
+        href={t.url}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="btn-ghost"
+      >
+        {t.cta}
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8"/></svg>
+        <span class="sr-only">{t.newTab}</span>
+      </a>
+    </div>
+  </div>
+</section>

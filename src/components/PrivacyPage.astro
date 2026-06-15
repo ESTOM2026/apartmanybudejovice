@@ -1,0 +1,300 @@
+---
+import { getLangFromUrl } from '../i18n/utils';
+
+const lang = getLangFromUrl(Astro.url);
+
+type Section = { heading: string; paragraphs: string[] };
+type Doc = { title: string; sections: Section[] };
+
+const content: Record<typeof lang, Doc> = {
+  cs: {
+    title: 'Zásady ochrany osobních údajů',
+    sections: [
+      {
+        heading: 'Úvod',
+        paragraphs: [
+          'Ochranu vašich osobních údajů bereme vážně. Tyto zásady popisují, jaké osobní údaje shromažďujeme prostřednictvím webu apartmanybudejovice.cz, k jakým účelům je zpracováváme, na jakém právním základě, komu je můžeme předat a jaká máte v souvislosti se zpracováním práva.',
+          'Zpracování osobních údajů probíhá v souladu s Nařízením Evropského parlamentu a Rady (EU) 2016/679 o ochraně fyzických osob v souvislosti se zpracováním osobních údajů a o volném pohybu těchto údajů (obecné nařízení o ochraně osobních údajů, dále jen „GDPR") a s platnými právními předpisy České republiky.',
+        ],
+      },
+      {
+        heading: 'Správce a kontakt',
+        paragraphs: [
+          'Správcem osobních údajů je provozovatel webu apartmanybudejovice.cz vystupující pod značkou Lets Go Family Apartment.',
+          'Správce můžete kontaktovat na adrese I. Olbrachta 910/34, 370 01 České Budějovice, e-mailem na info@estom.cz nebo telefonicky na čísle +420 724 308 779.',
+          'V záležitostech týkajících se zpracování osobních údajů a uplatnění vašich práv se na nás můžete obracet prostřednictvím kteréhokoli z uvedených kontaktů.',
+        ],
+      },
+      {
+        heading: 'Jaké údaje zpracováváme',
+        paragraphs: [
+          'Zpracováváme pouze údaje, které nám sami poskytnete prostřednictvím kontaktního formuláře na webu, a dále technické údaje související s návštěvou webu.',
+          'Prostřednictvím kontaktního formuláře zpracováváme následující údaje: jméno, e-mailovou adresu, telefonní číslo (nepovinné), název firmy (nepovinné), požadovaný termín pobytu, počet osob a text vaší zprávy.',
+          'V souvislosti s provozem webu a měřením návštěvnosti mohou být dále zpracovávány technické údaje, zejména IP adresa, typ a verze prohlížeče, operační systém, navštívené stránky a údaje získané prostřednictvím souborů cookies (viz část Cookies a analytika).',
+        ],
+      },
+      {
+        heading: 'Účel a právní základ',
+        paragraphs: [
+          'Údaje z kontaktního formuláře zpracováváme za účelem vyřízení vaší nezávazné poptávky ubytování, tedy abychom vás mohli kontaktovat, odpovědět na váš dotaz a domluvit podrobnosti případného pobytu.',
+          'Právním základem tohoto zpracování je váš souhlas, který udělujete odesláním formuláře, a dále provedení opatření přijatých před uzavřením smlouvy na vaši žádost podle čl. 6 odst. 1 písm. a) a b) GDPR.',
+          'Technické údaje a údaje o návštěvnosti zpracováváme za účelem zajištění funkčnosti a bezpečnosti webu a pro statistické vyhodnocení jeho používání. Právním základem je náš oprávněný zájem na řádném provozu a zlepšování webu, případně váš souhlas tam, kde je vyžadován.',
+        ],
+      },
+      {
+        heading: 'Cookies a analytika',
+        paragraphs: [
+          'Web používá službu Google Analytics (měřicí ID G-ZDB3T4K96L), která pomocí souborů cookies shromažďuje anonymizované statistické údaje o tom, jak návštěvníci web používají. Tyto údaje nám slouží k pochopení návštěvnosti a ke zlepšování obsahu.',
+          'Upozorňujeme, že web aktuálně nedisponuje lištou pro správu souhlasu s cookies (cookie lištou). Analytické soubory cookies se proto mohou nastavit již při návštěvě webu.',
+          'Používání cookies a měření návštěvnosti můžete kdykoli odmítnout. V nastavení svého prohlížeče můžete soubory cookies blokovat, mazat nebo si vyžádat upozornění před jejich uložením. Pro odhlášení z měření Google Analytics napříč weby můžete nainstalovat oficiální doplněk prohlížeče pro odhlášení (Google Analytics Opt-out Browser Add-on), dostupný na stránkách společnosti Google. Omezení cookies může ovlivnit některé funkce webu.',
+        ],
+      },
+      {
+        heading: 'Příjemci a zpracovatelé',
+        paragraphs: [
+          'Vaše osobní údaje nepředáváme třetím osobám za účelem jejich marketingu. K údajům mohou mít přístup pouze zpracovatelé, kteří pro nás zajišťují provoz webu a souvisejících služeb, a to vždy na základě smlouvy a v nezbytném rozsahu.',
+          'Hosting webu a zpracování odeslaných formulářů zajišťuje společnost Netlify prostřednictvím služby Netlify Forms. Údaje, které vyplníte do kontaktního formuláře, jsou odeslány a uloženy v rámci této služby.',
+          'Pro měření návštěvnosti využíváme službu Google Analytics provozovanou společností Google. Pro zobrazení mapy umístění apartmánu je na webu vložena mapa služby Google Maps, rovněž provozované společností Google; při jejím načtení může dojít k přenosu technických údajů do této služby.',
+          'Web dále obsahuje odkaz na náš externí profil na portálu Booking.com. Po kliknutí na takový odkaz opouštíte náš web a vaše údaje se řídí zásadami ochrany osobních údajů příslušného provozovatele, na které nemáme vliv.',
+        ],
+      },
+      {
+        heading: 'Předání mimo EU',
+        paragraphs: [
+          'Někteří z výše uvedených poskytovatelů služeb (zejména Google a Netlify) jsou společnosti se sídlem mimo Evropskou unii, případně mohou údaje zpracovávat na serverech umístěných ve třetích zemích. V takovém případě může docházet k předání osobních údajů mimo Evropský hospodářský prostor.',
+          'Případné předání do třetích zemí probíhá za podmínek stanovených GDPR, zejména na základě standardních smluvních doložek schválených Evropskou komisí nebo jiných vhodných záruk zajišťujících odpovídající úroveň ochrany vašich osobních údajů.',
+        ],
+      },
+      {
+        heading: 'Doba uložení',
+        paragraphs: [
+          'Údaje z kontaktního formuláře uchováváme pouze po dobu nezbytně nutnou k vyřízení vaší poptávky a po přiměřenou dobu poté, abychom mohli reagovat na navazující komunikaci a doložit řádné vyřízení. Poté jsou údaje vymazány, pokud nás právní předpisy neopravňují nebo nezavazují k jejich delšímu uchování, nebo pokud nevznikne smluvní vztah, který vyžaduje jejich další zpracování.',
+          'Údaje získané prostřednictvím analytických nástrojů jsou uchovávány po dobu odpovídající nastavení služby Google Analytics.',
+          'Souhlas se zpracováním můžete kdykoli odvolat; odvoláním souhlasu není dotčena zákonnost zpracování provedeného před jeho odvoláním.',
+        ],
+      },
+      {
+        heading: 'Vaše práva',
+        paragraphs: [
+          'V souvislosti se zpracováním osobních údajů máte podle GDPR následující práva: právo na přístup k osobním údajům, právo na opravu nepřesných nebo neúplných údajů, právo na výmaz (právo být zapomenut), právo na omezení zpracování, právo vznést námitku proti zpracování, právo na přenositelnost údajů a právo odvolat udělený souhlas.',
+          'Tato práva můžete uplatnit prostřednictvím kontaktů uvedených v části Správce a kontakt. Vaši žádost vyřídíme bez zbytečného odkladu v zákonných lhůtách.',
+          'Pokud se domníváte, že zpracováním vašich osobních údajů dochází k porušení právních předpisů, máte právo podat stížnost u dozorového úřadu, kterým je Úřad pro ochranu osobních údajů, se sídlem Pplk. Sochora 27, 170 00 Praha 7, web www.uoou.cz.',
+        ],
+      },
+      {
+        heading: 'Jak nás kontaktovat',
+        paragraphs: [
+          'S jakýmkoli dotazem týkajícím se ochrany osobních údajů, s žádostí o uplatnění svých práv nebo s odvoláním souhlasu se na nás můžete obrátit e-mailem na info@estom.cz, telefonicky na čísle +420 724 308 779 nebo písemně na adrese I. Olbrachta 910/34, 370 01 České Budějovice.',
+        ],
+      },
+      {
+        heading: 'Účinnost',
+        paragraphs: [
+          'Tyto zásady jsou účinné od jejich zveřejnění. Vyhrazujeme si právo tyto zásady v případě potřeby aktualizovat; aktuální znění je vždy dostupné na tomto webu.',
+        ],
+      },
+    ],
+  },
+  en: {
+    title: 'Privacy Policy',
+    sections: [
+      {
+        heading: 'Introduction',
+        paragraphs: [
+          'We take the protection of your personal data seriously. This policy explains what personal data we collect through the apartmanybudejovice.cz website, the purposes for which we process it, the legal basis for doing so, to whom we may disclose it and what rights you have in connection with the processing.',
+          'Personal data is processed in accordance with Regulation (EU) 2016/679 of the European Parliament and of the Council on the protection of natural persons with regard to the processing of personal data and on the free movement of such data (General Data Protection Regulation, hereinafter the “GDPR”) and with the applicable laws of the Czech Republic.',
+        ],
+      },
+      {
+        heading: 'Controller and contact',
+        paragraphs: [
+          'The data controller is the operator of the apartmanybudejovice.cz website, operating under the brand Lets Go Family Apartment.',
+          'You can contact the controller at the address I. Olbrachta 910/34, 370 01 České Budějovice, Czech Republic, by e-mail at info@estom.cz, or by telephone at +420 724 308 779.',
+          'For any matters relating to the processing of personal data and the exercise of your rights, you may reach us through any of the contact details listed above.',
+        ],
+      },
+      {
+        heading: 'What data we process',
+        paragraphs: [
+          'We process only the data you provide to us yourself through the website contact form, together with technical data related to your visit to the website.',
+          'Through the contact form we process the following data: name, e-mail address, telephone number (optional), company name (optional), requested stay dates, number of persons and the text of your message.',
+          'In connection with the operation of the website and traffic measurement, technical data may also be processed, in particular your IP address, browser type and version, operating system, the pages you visit and data obtained through cookies (see the Cookies and analytics section).',
+        ],
+      },
+      {
+        heading: 'Purpose and legal basis',
+        paragraphs: [
+          'We process the data from the contact form in order to handle your non-binding accommodation enquiry, that is, so that we can contact you, answer your question and arrange the details of a possible stay.',
+          'The legal basis for this processing is your consent, which you give by submitting the form, and the taking of steps at your request prior to entering into a contract, pursuant to Article 6(1)(a) and (b) of the GDPR.',
+          'We process technical and traffic data in order to ensure the functionality and security of the website and for statistical evaluation of its use. The legal basis is our legitimate interest in the proper operation and improvement of the website, or your consent where such consent is required.',
+        ],
+      },
+      {
+        heading: 'Cookies and analytics',
+        paragraphs: [
+          'The website uses Google Analytics (measurement ID G-ZDB3T4K96L), which uses cookies to collect anonymised statistical data about how visitors use the website. This data helps us understand traffic and improve the content.',
+          'Please note that the website currently does not have a cookie consent banner. Analytics cookies may therefore be set as soon as you visit the website.',
+          "You can refuse the use of cookies and traffic measurement at any time. In your browser settings you can block or delete cookies or request a warning before they are stored. To opt out of Google Analytics measurement across websites, you can install the official browser opt-out add-on (Google Analytics Opt-out Browser Add-on), available on Google's website. Restricting cookies may affect some functions of the website.",
+        ],
+      },
+      {
+        heading: 'Recipients and processors',
+        paragraphs: [
+          'We do not pass your personal data to third parties for their marketing purposes. Access to the data is granted only to processors who provide the operation of the website and related services on our behalf, always under a contract and to the extent necessary.',
+          'Website hosting and the processing of submitted forms are provided by Netlify through the Netlify Forms service. The data you enter into the contact form is sent to and stored within this service.',
+          "For traffic measurement we use Google Analytics, operated by Google. To display the apartment's location, a Google Maps map, also operated by Google, is embedded on the website; loading it may result in the transfer of technical data to that service.",
+          'The website also contains a link to our external profile on Booking.com. By clicking such a link you leave our website and your data is governed by the privacy policy of the respective operator, over which we have no control.',
+        ],
+      },
+      {
+        heading: 'Transfer outside the EU',
+        paragraphs: [
+          'Some of the service providers mentioned above (in particular Google and Netlify) are companies established outside the European Union, or may process data on servers located in third countries. In such cases personal data may be transferred outside the European Economic Area.',
+          'Any transfer to third countries takes place under the conditions laid down by the GDPR, in particular on the basis of standard contractual clauses approved by the European Commission or other appropriate safeguards ensuring an adequate level of protection of your personal data.',
+        ],
+      },
+      {
+        heading: 'Retention period',
+        paragraphs: [
+          'We keep the data from the contact form only for the period strictly necessary to handle your enquiry and for a reasonable period thereafter, so that we can respond to follow-up communication and document the proper handling of the request. After that the data is deleted, unless legal regulations entitle or oblige us to retain it for longer, or unless a contractual relationship arises that requires further processing.',
+          'Data obtained through analytics tools is retained for a period corresponding to the Google Analytics settings.',
+          'You may withdraw your consent to processing at any time; the withdrawal of consent does not affect the lawfulness of processing carried out before the withdrawal.',
+        ],
+      },
+      {
+        heading: 'Your rights',
+        paragraphs: [
+          'In connection with the processing of personal data you have the following rights under the GDPR: the right of access to your personal data, the right to rectification of inaccurate or incomplete data, the right to erasure (the right to be forgotten), the right to restriction of processing, the right to object to processing, the right to data portability and the right to withdraw a consent that has been given.',
+          'You may exercise these rights through the contact details listed in the Controller and contact section. We will handle your request without undue delay within the statutory time limits.',
+          'If you believe that the processing of your personal data infringes legal regulations, you have the right to lodge a complaint with the supervisory authority, which is the Office for Personal Data Protection (Úřad pro ochranu osobních údajů), based at Pplk. Sochora 27, 170 00 Prague 7, Czech Republic, website www.uoou.cz.',
+        ],
+      },
+      {
+        heading: 'How to contact us',
+        paragraphs: [
+          'For any question regarding the protection of personal data, to request the exercise of your rights, or to withdraw your consent, you can reach us by e-mail at info@estom.cz, by telephone at +420 724 308 779, or in writing at the address I. Olbrachta 910/34, 370 01 České Budějovice, Czech Republic.',
+        ],
+      },
+      {
+        heading: 'Effective date',
+        paragraphs: [
+          'This policy is effective from the date of its publication. We reserve the right to update this policy where necessary; the current version is always available on this website.',
+        ],
+      },
+    ],
+  },
+  de: {
+    title: 'Datenschutzerklärung',
+    sections: [
+      {
+        heading: 'Einleitung',
+        paragraphs: [
+          'Wir nehmen den Schutz Ihrer personenbezogenen Daten ernst. Diese Datenschutzerklärung beschreibt, welche personenbezogenen Daten wir über die Website apartmanybudejovice.cz erheben, zu welchen Zwecken und auf welcher Rechtsgrundlage wir sie verarbeiten, an wen wir sie weitergeben können und welche Rechte Ihnen im Zusammenhang mit der Verarbeitung zustehen.',
+          'Die Verarbeitung personenbezogener Daten erfolgt im Einklang mit der Verordnung (EU) 2016/679 des Europäischen Parlaments und des Rates zum Schutz natürlicher Personen bei der Verarbeitung personenbezogener Daten und zum freien Datenverkehr (Datenschutz-Grundverordnung, nachfolgend „DSGVO") sowie mit den geltenden Rechtsvorschriften der Tschechischen Republik.',
+        ],
+      },
+      {
+        heading: 'Verantwortlicher und Kontakt',
+        paragraphs: [
+          'Verantwortlicher für die Verarbeitung der personenbezogenen Daten ist der Betreiber der Website apartmanybudejovice.cz, der unter der Marke Lets Go Family Apartment auftritt.',
+          'Sie können den Verantwortlichen unter der Anschrift I. Olbrachta 910/34, 370 01 České Budějovice, Tschechische Republik, per E-Mail an info@estom.cz oder telefonisch unter +420 724 308 779 erreichen.',
+          'In allen Angelegenheiten, die die Verarbeitung personenbezogener Daten und die Ausübung Ihrer Rechte betreffen, können Sie sich über jeden der oben genannten Kontaktwege an uns wenden.',
+        ],
+      },
+      {
+        heading: 'Welche Daten wir verarbeiten',
+        paragraphs: [
+          'Wir verarbeiten nur die Daten, die Sie uns selbst über das Kontaktformular der Website zur Verfügung stellen, sowie technische Daten im Zusammenhang mit Ihrem Besuch der Website.',
+          'Über das Kontaktformular verarbeiten wir folgende Daten: Name, E-Mail-Adresse, Telefonnummer (freiwillig), Firmenname (freiwillig), gewünschter Aufenthaltszeitraum, Personenzahl und den Text Ihrer Nachricht.',
+          'Im Zusammenhang mit dem Betrieb der Website und der Reichweitenmessung können außerdem technische Daten verarbeitet werden, insbesondere Ihre IP-Adresse, Browsertyp und -version, Betriebssystem, die von Ihnen besuchten Seiten sowie Daten, die über Cookies erhoben werden (siehe Abschnitt Cookies und Analyse).',
+        ],
+      },
+      {
+        heading: 'Zweck und Rechtsgrundlage',
+        paragraphs: [
+          'Die Daten aus dem Kontaktformular verarbeiten wir, um Ihre unverbindliche Unterkunftsanfrage zu bearbeiten, das heißt, um Sie kontaktieren, Ihre Anfrage beantworten und die Einzelheiten eines möglichen Aufenthalts vereinbaren zu können.',
+          'Rechtsgrundlage dieser Verarbeitung sind Ihre Einwilligung, die Sie mit dem Absenden des Formulars erteilen, sowie die Durchführung vorvertraglicher Maßnahmen auf Ihre Anfrage gemäß Art. 6 Abs. 1 lit. a) und b) DSGVO.',
+          'Technische Daten und Daten zur Reichweite verarbeiten wir, um die Funktionsfähigkeit und Sicherheit der Website zu gewährleisten und ihre Nutzung statistisch auszuwerten. Rechtsgrundlage ist unser berechtigtes Interesse am ordnungsgemäßen Betrieb und an der Verbesserung der Website beziehungsweise Ihre Einwilligung, soweit diese erforderlich ist.',
+        ],
+      },
+      {
+        heading: 'Cookies und Analyse',
+        paragraphs: [
+          'Die Website nutzt Google Analytics (Mess-ID G-ZDB3T4K96L), das mithilfe von Cookies anonymisierte statistische Daten darüber erhebt, wie Besucher die Website nutzen. Diese Daten helfen uns, die Besucherzahlen zu verstehen und die Inhalte zu verbessern.',
+          'Wir weisen darauf hin, dass die Website derzeit über kein Banner zur Einwilligung in Cookies (Cookie-Banner) verfügt. Analyse-Cookies können daher bereits beim Besuch der Website gesetzt werden.',
+          'Sie können die Nutzung von Cookies und die Reichweitenmessung jederzeit ablehnen. In den Einstellungen Ihres Browsers können Sie Cookies blockieren oder löschen oder eine Warnung vor dem Speichern anfordern. Um die Erfassung durch Google Analytics websiteübergreifend zu deaktivieren, können Sie das offizielle Browser-Add-on zur Deaktivierung (Google Analytics Opt-out Browser-Add-on) installieren, das auf der Website von Google verfügbar ist. Die Einschränkung von Cookies kann einige Funktionen der Website beeinträchtigen.',
+        ],
+      },
+      {
+        heading: 'Empfänger und Auftragsverarbeiter',
+        paragraphs: [
+          'Wir geben Ihre personenbezogenen Daten nicht zu Marketingzwecken an Dritte weiter. Zugriff auf die Daten erhalten nur Auftragsverarbeiter, die für uns den Betrieb der Website und damit verbundener Dienste sicherstellen, und zwar stets auf vertraglicher Grundlage und im erforderlichen Umfang.',
+          'Das Hosting der Website und die Verarbeitung der abgesendeten Formulare erfolgen durch das Unternehmen Netlify über den Dienst Netlify Forms. Die Daten, die Sie in das Kontaktformular eingeben, werden im Rahmen dieses Dienstes übermittelt und gespeichert.',
+          'Für die Reichweitenmessung nutzen wir den Dienst Google Analytics des Unternehmens Google. Zur Anzeige des Standorts des Apartments ist auf der Website eine Karte des Dienstes Google Maps eingebunden, der ebenfalls von Google betrieben wird; beim Laden der Karte können technische Daten an diesen Dienst übertragen werden.',
+          'Die Website enthält außerdem einen Link zu unserem externen Profil auf dem Portal Booking.com. Mit dem Klick auf einen solchen Link verlassen Sie unsere Website, und Ihre Daten unterliegen der Datenschutzerklärung des jeweiligen Betreibers, auf die wir keinen Einfluss haben.',
+        ],
+      },
+      {
+        heading: 'Übermittlung außerhalb der EU',
+        paragraphs: [
+          'Einige der oben genannten Dienstleister (insbesondere Google und Netlify) sind Unternehmen mit Sitz außerhalb der Europäischen Union oder verarbeiten Daten möglicherweise auf Servern in Drittländern. In solchen Fällen kann es zu einer Übermittlung personenbezogener Daten außerhalb des Europäischen Wirtschaftsraums kommen.',
+          'Eine etwaige Übermittlung in Drittländer erfolgt unter den in der DSGVO festgelegten Bedingungen, insbesondere auf der Grundlage der von der Europäischen Kommission genehmigten Standardvertragsklauseln oder anderer geeigneter Garantien, die ein angemessenes Schutzniveau Ihrer personenbezogenen Daten gewährleisten.',
+        ],
+      },
+      {
+        heading: 'Speicherdauer',
+        paragraphs: [
+          'Die Daten aus dem Kontaktformular bewahren wir nur so lange auf, wie es zur Bearbeitung Ihrer Anfrage unbedingt erforderlich ist, sowie für einen angemessenen Zeitraum danach, damit wir auf eine anschließende Kommunikation reagieren und die ordnungsgemäße Bearbeitung nachweisen können. Anschließend werden die Daten gelöscht, sofern uns Rechtsvorschriften nicht zu einer längeren Aufbewahrung berechtigen oder verpflichten oder sofern nicht ein Vertragsverhältnis entsteht, das eine weitere Verarbeitung erfordert.',
+          'Die über Analysewerkzeuge erhobenen Daten werden für einen Zeitraum gespeichert, der den Einstellungen von Google Analytics entspricht.',
+          'Sie können Ihre Einwilligung in die Verarbeitung jederzeit widerrufen; durch den Widerruf wird die Rechtmäßigkeit der bis zum Widerruf erfolgten Verarbeitung nicht berührt.',
+        ],
+      },
+      {
+        heading: 'Ihre Rechte',
+        paragraphs: [
+          'Im Zusammenhang mit der Verarbeitung personenbezogener Daten stehen Ihnen nach der DSGVO folgende Rechte zu: das Recht auf Auskunft über Ihre personenbezogenen Daten, das Recht auf Berichtigung unrichtiger oder unvollständiger Daten, das Recht auf Löschung (Recht auf Vergessenwerden), das Recht auf Einschränkung der Verarbeitung, das Recht auf Widerspruch gegen die Verarbeitung, das Recht auf Datenübertragbarkeit sowie das Recht, eine erteilte Einwilligung zu widerrufen.',
+          'Diese Rechte können Sie über die im Abschnitt Verantwortlicher und Kontakt genannten Kontaktdaten ausüben. Wir bearbeiten Ihre Anfrage ohne unangemessene Verzögerung innerhalb der gesetzlichen Fristen.',
+          'Wenn Sie der Ansicht sind, dass die Verarbeitung Ihrer personenbezogenen Daten gegen Rechtsvorschriften verstößt, haben Sie das Recht, eine Beschwerde bei der Aufsichtsbehörde einzureichen. Zuständige Aufsichtsbehörde ist das Amt für den Schutz personenbezogener Daten (Úřad pro ochranu osobních údajů) mit Sitz in Pplk. Sochora 27, 170 00 Prag 7, Tschechische Republik, Website www.uoou.cz.',
+        ],
+      },
+      {
+        heading: 'Wie Sie uns kontaktieren',
+        paragraphs: [
+          'Bei jeder Frage zum Schutz personenbezogener Daten, zur Geltendmachung Ihrer Rechte oder zum Widerruf Ihrer Einwilligung erreichen Sie uns per E-Mail an info@estom.cz, telefonisch unter +420 724 308 779 oder schriftlich unter der Anschrift I. Olbrachta 910/34, 370 01 České Budějovice, Tschechische Republik.',
+        ],
+      },
+      {
+        heading: 'Wirksamkeit',
+        paragraphs: [
+          'Diese Datenschutzerklärung ist ab ihrer Veröffentlichung wirksam. Wir behalten uns das Recht vor, diese Erklärung bei Bedarf zu aktualisieren; die jeweils aktuelle Fassung ist stets auf dieser Website verfügbar.',
+        ],
+      },
+    ],
+  },
+};
+
+const doc = content[lang];
+---
+<section class="relative pt-16 md:pt-20 pb-8 overflow-hidden bg-white">
+  <div class="absolute inset-0 -z-10 overflow-hidden pointer-events-none">
+    <div class="absolute -top-24 -left-16 w-[24rem] h-[24rem] rounded-full opacity-[0.10] blur-3xl" style="background: var(--color-lego-blue);"></div>
+  </div>
+  <div class="container-narrow relative">
+    <h1 class="text-3xl md:text-4xl lg:text-5xl font-medium leading-[1.1]">{doc.title}</h1>
+  </div>
+</section>
+
+<section class="pb-16 md:pb-20">
+  <div class="container-narrow">
+    <div class="max-w-none space-y-8">
+      {doc.sections.map((s) => (
+        <div>
+          <h2 class="text-xl font-medium text-[var(--color-ink)] mb-3">{s.heading}</h2>
+          <div class="space-y-3">
+            {s.paragraphs.map((p) => <p class="leading-relaxed text-[var(--color-ink-soft)]">{p}</p>)}
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

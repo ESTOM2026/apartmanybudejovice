@@ -117,7 +117,7 @@ export const ui = {
     'nav.about': 'About',
     'nav.contact': 'Contact',
 
-    'cta.inquire': 'Request stay',
+    'cta.inquire': 'Request a stay',
     'cta.discover': 'Explore apartment',
     'cta.contact': 'Get in touch',
     'cta.call': 'Call us',
@@ -161,7 +161,7 @@ export const ui = {
 
     'apartment.title': 'Lets Go Apartment',
     'apartment.subtitle': 'Family apartment in České Budějovice, 70 m², 1 bedroom + living room',
-    'apartment.about.title': 'What awaits you',
+    'apartment.about.title': 'What to expect',
     'apartment.amenities.title': 'Amenities',
     'apartment.location.title': 'Location',
     'apartment.location.text': 'The apartment is located in a quiet residential area of České Budějovice. The historic city centre is a 7‑minute drive away, the nearest bus stop is 100 m from the building, and the train and bus stations are 2 km away. A park with a pond is just around the corner — perfect for relaxation or a walk with the kids.',
@@ -202,7 +202,7 @@ export const ui = {
     'contact.form.guests': 'Number of guests',
     'contact.form.message': 'Message',
     'contact.form.message.placeholder': 'Please describe your stay — how many nights, whether you need a baby cot, pet, etc.',
-    'contact.form.consent': 'I agree with the processing of my personal data for the purpose of handling this inquiry.',
+    'contact.form.consent': 'I agree to the processing of my personal data for the purpose of handling this inquiry.',
     'contact.form.submit': 'Send inquiry',
     'contact.form.success': 'Thank you, we will get back to you shortly.',
 
@@ -246,7 +246,7 @@ export const ui = {
     'b2b.point1.title': 'Mehrere Apartments auf Anfrage',
     'b2b.point1.text': 'Müssen Sie ein größeres Team unterbringen? Wir können mehrere Apartments in der Umgebung organisieren.',
     'b2b.point2.title': 'Firmenrechnung',
-    'b2b.point2.text': 'Standardrechnung mit oder ohne MwSt-Ausweis.',
+    'b2b.point2.text': 'Standardrechnung mit oder ohne MwSt.-Ausweis.',
     'b2b.point3.title': 'Flexible Aufenthaltsdauer',
     'b2b.point3.text': 'Wochen‑, Monats‑ oder längere Verträge. Der Preis passt sich der Aufenthaltsdauer an.',
     'b2b.point4.title': 'Komfort wie zu Hause',
@@ -310,7 +310,7 @@ export const ui = {
     'footer.tagline': 'Familienapartment in Budweis',
     'footer.rights': 'Alle Rechte vorbehalten.',
     'footer.contact': 'Kontakt',
-    'footer.links': 'Schnelllinks',
+    'footer.links': 'Schnellzugriff',
   },
 } as const satisfies Record<Lang, Record<string, string>>;
 

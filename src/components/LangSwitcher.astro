@@ -20,14 +20,16 @@ const langs = Object.keys(languages) as Lang[];
         href={getRoute(pageKey, l)}
         hreflang={l === 'cs' ? 'cs-CZ' : l === 'en' ? 'en' : 'de-DE'}
         class:list={[
-          'transition-opacity',
-          l === currentLang ? 'opacity-100' : 'opacity-30 hover:opacity-60'
+          'block rounded-full transition-all',
+          l === currentLang
+            ? 'opacity-100 ring-2 ring-offset-1 ring-[var(--color-lego-yellow)]'
+            : 'opacity-55 hover:opacity-100'
         ]}
         aria-current={l === currentLang ? 'true' : undefined}
         title={label}
       >
         <img
-          src={`https://hatscripts.github.io/circle-flags/flags/${code}.svg`}
+          src={`/images/flags/${code}.svg`}
           width="24"
           height="24"
           alt={label}

@@ -16,7 +16,7 @@ const t = useTranslations(lang);
     <span class="inline-block text-sm uppercase tracking-[0.2em] mb-2 font-semibold" style="color: var(--color-classic-accent);">B2B</span>
     <h1 class="text-4xl md:text-5xl lg:text-6xl font-medium mb-3 leading-[1.05]">{t('b2b.title')}</h1>
     <p class="text-lg md:text-xl text-[var(--color-ink-soft)] max-w-2xl mb-5 leading-relaxed">{t('b2b.lead')}</p>
-    <a href={getRoute('contact', lang)} class="inline-flex items-center gap-2 px-6 py-3 rounded-full font-medium text-white transition-colors" style="background: var(--color-classic-cta);" onmouseover="this.style.background='var(--color-classic-cta-hover)'" onmouseout="this.style.background='var(--color-classic-cta)'">
+    <a href={getRoute('contact', lang)} class="btn-classic">
       {t('b2b.cta')}
       <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
     </a>
@@ -32,7 +32,7 @@ const t = useTranslations(lang);
         </span>
         <h2 class="text-2xl md:text-3xl font-medium mb-3">{t('b2b.price.heading')}</h2>
         <p class="text-[var(--color-ink-soft)] leading-relaxed">{t('b2b.price.note')}</p>
-        <a href={getRoute('contact', lang)} class="inline-flex items-center gap-2 px-6 py-3 rounded-full font-medium text-white transition-colors mt-4" style="background: var(--color-classic-cta);" onmouseover="this.style.background='var(--color-classic-cta-hover)'" onmouseout="this.style.background='var(--color-classic-cta)'">
+        <a href={getRoute('contact', lang)} class="btn-classic mt-4">
           {t('b2b.cta')}
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
         </a>

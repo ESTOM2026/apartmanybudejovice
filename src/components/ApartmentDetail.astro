@@ -3,6 +3,7 @@ import { getLangFromUrl, useTranslations } from '../i18n/utils';
 import { getRoute } from '../i18n/routes';
 import AmenitiesGrid from './AmenitiesGrid.astro';
 import Gallery from './Gallery.astro';
+import FaqSection from './FaqSection.astro';
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
@@ -134,6 +135,8 @@ const t = useTranslations(lang);
     </div>
   </div>
 </section>
+
+<FaqSection />
 
 <section class="stud-band py-10 md:py-14 text-white text-center relative overflow-hidden" style="background: var(--color-lego-red);">
   <div class="container-narrow relative">

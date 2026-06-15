@@ -54,13 +54,17 @@ V každé komponentě najdete bloky `{lang === 'cs' && ...}`, `{lang === 'en' &&
 
 ### Telefon a e‑mail
 
-Měňte na **dvou místech** (footer a kontaktní stránka):
+Aktuální kontakt: **info@estom.cz** a **+420 724 308 779**.
+
+Pokud se změní, hledejte staré hodnoty **globálně** (Ctrl+Shift+F) a přepište všechny výskyty. Objevují se v:
 
 - `src/components/Footer.astro`
 - `src/components/ContactPage.astro`
 - `src/components/ApartmentDetail.astro` (volání u boxu s cenou)
-
-Hledejte `info@apartmanybudejovice.cz` a `+420000000000`.
+- `src/layouts/BaseLayout.astro` (strukturovaná data pro Google)
+- `src/components/PrivacyPage.astro` (zásady ochrany údajů)
+- `src/components/FaqSection.astro` (FAQ)
+- `src/pages/kontakt.astro` (popisek pro Google)
 
 ### Cena
 
@@ -86,7 +90,9 @@ Pro jednoduchost je cena **1 200 Kč** napsaná přímo:
 Galerie řadí podle názvu souboru. Stačí přejmenovat — třeba `15.jpg` na `02.jpg` (pokud `02.jpg` neobsazený, nebo si nejdřív zkomplikujete přejmenováním všech).
 
 #### Vyměnit hero fotku
-Stačí přepsat soubor `public/images/hero.jpg` novým snímkem (svislý formát, ideálně 1200×1500 px). Alt text se mění v `src/components/Hero.astro`.
+Hero (úvodní velký blok) je **koláž 4 fotek z galerie** — konkrétně `01`, `02`, `13` a `14`. Chcete jiné? Otevřete `src/components/Hero.astro` a změňte čísla souborů (a u nich alt texty).
+
+> Poznámka: soubory `public/images/hero.jpg`, `hero.webp` a `public/collage-1600x1200a/b.jpg` jsou pozůstatek staršího návrhu a web je **nepoužívá** — lze je smazat.
 
 #### Doporučené formáty
 - Hero: poměr stran 4:5 (svislé), alespoň 1200 px na delší straně
@@ -101,7 +107,8 @@ Stačí přepsat soubor `public/images/hero.jpg` novým snímkem (svislý formá
 apartmanybudejovice/
 ├── public/                  # statické soubory (fotky, favicon, robots.txt)
 │   ├── favicon.svg
-│   ├── images/              # zde nahrávejte fotky apartmánu
+│   ├── images/              # fotky apartmánu (+ images/flags/ = vlaječky jazyků)
+│   ├── fonts/               # self-hostované fonty (Inter, Fraunces)
 │   └── robots.txt
 ├── src/
 │   ├── components/          # opakovaně použitelné sekce
@@ -115,6 +122,9 @@ apartmanybudejovice/
 │   │   ├── BusinessPage.astro       # celá stránka pro firmy
 │   │   ├── AboutPage.astro          # celá stránka o nás
 │   │   ├── ContactPage.astro        # celá stránka kontakt
+│   │   ├── PrivacyPage.astro        # celá stránka zásady ochrany údajů
+│   │   ├── ReviewsSection.astro     # hodnocení z Booking.com (na úvodu)
+│   │   ├── FaqSection.astro         # FAQ + FAQ schema (na stránce apartmánu)
 │   │   ├── Header.astro
 │   │   ├── Footer.astro
 │   │   └── LangSwitcher.astro
@@ -130,6 +140,7 @@ apartmanybudejovice/
 │   │   ├── pro-firmy.astro
 │   │   ├── o-nas.astro
 │   │   ├── kontakt.astro
+│   │   ├── zasady-ochrany-osobnich-udaju.astro
 │   │   ├── 404.astro
 │   │   ├── en/              # anglické stránky
 │   │   └── de/              # německé stránky
@@ -179,7 +190,8 @@ V Netlify dashboardu **Forms → inquiry → Settings & usage → Form notificat
 - **TypeScript (strict)** — kontrola typů ve stage build
 - **@astrojs/sitemap** — generuje `sitemap-index.xml` se třemi jazyky a hreflangy
 - **Netlify Forms** — backend pro kontaktní formulář
-- **OpenStreetMap embed** — mapa bez Google API klíče
+- **Self-hostované fonty** (Inter, Fraunces) — bez požadavku na Google Fonts
+- **Google Maps embed** — vložená mapa přes `output=embed` (bez API klíče)
 
 ---
 
@@ -204,15 +216,23 @@ Tuto rozšiřitelnou cestu zatím nepoužíváme, abychom to zbytečně nekompli
 
 ---
 
-## 📝 Co dodělat před nasazením do produkce
+## 📝 Stav před produkcí
 
-- [ ] **Doplnit reálné fotky** do `public/images/` (viz sekce „Fotky")
-- [ ] **Doplnit telefon** (zatím placeholder `+420000000000`) — hledat globálně
-- [ ] **Ověřit překlady** EN a DE — nyní strojové, doporučuji projet rodilým mluvčím
-- [ ] **Vytvořit `og-default.jpg`** (1200×630 px) a vložit do `public/` — pro náhledy na sociálních sítích
-- [ ] **Nastavit GDPR cookie banner** — pokud nepůjde o pouhé statické cookies (zatím web žádné neukládá)
-- [ ] **Připojit Plausible / Google Analytics** (volitelné)
-- [ ] **Doplnit IČO/DIČ** do patičky (povinné pro fakturaci)
+Hotovo:
+
+- [x] **Reálné fotky** v galerii (`public/images/gallery/`)
+- [x] **Telefon a e‑mail** doplněny (info@estom.cz, +420 724 308 779)
+- [x] **`og-default.jpg`** pro náhledy na sociálních sítích
+- [x] **Google Analytics** připojeno (G‑ZDB3T4K96L)
+- [x] **Zásady ochrany osobních údajů** (3 jazyky) + odkaz v patičce a u formuláře
+- [x] **Korektura EN/DE** — proběhla; pro jistotu lze projet rodilým mluvčím
+- [x] **Sekce recenzí** (hodnocení 9,3/10 z Booking.com) a **FAQ** (vč. FAQ schema pro Google)
+
+Vědomá rozhodnutí / k případnému zvážení:
+
+- **IČO/DIČ** se na webu záměrně neuvádí (fakturace probíhá přes více subjektů).
+- **Cookie lišta** není nasazená — Google Analytics tak běží bez předchozího souhlasu. Zásady ochrany údajů to pravdivě popisují. Pro plný soulad s GDPR by bylo potřeba doplnit cookie lištu (GA spustit až po souhlasu) — viz sekce „Cookies a analytika" v zásadách.
+- **Osiřelé obrázky** `public/images/hero.jpg`, `hero.webp`, `public/collage-1600x1200a/b.jpg` lze smazat (web je nepoužívá).
 
 ---
 

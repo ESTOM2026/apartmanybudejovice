@@ -1,0 +1,104 @@
+---
+import { getLangFromUrl } from '../i18n/utils';
+
+const lang = getLangFromUrl(Astro.url);
+
+type Item = { q: string; a: string };
+type Block = { eyebrow: string; heading: string; items: Item[] };
+
+const data: Record<typeof lang, Block> = {
+  cs: {
+    eyebrow: 'Časté dotazy',
+    heading: 'Často kladené otázky',
+    items: [
+      { q: 'Kolik osob se do apartmánu vejde?', a: 'Apartmán o rozloze 70 m² (2+1 s oddělenou ložnicí a obývacím pokojem) je standardně pro 3 osoby, na vyžádání ubytujeme až 6 osob.' },
+      { q: 'V kolik je check-in a check-out?', a: 'Nastěhovat se můžete od 14:00 a vystěhovat je třeba do 10:00.' },
+      { q: 'Je u apartmánu parkování zdarma?', a: 'Ano, parkování je zdarma přímo u domu, vždy dostupné a bez nutnosti rezervace.' },
+      { q: 'Můžeme si vzít s sebou psa nebo jiné zvíře?', a: 'Mazlíčci jsou možní po předchozí domluvě. Stačí nám napsat předem.' },
+      { q: 'Dá se v apartmánu kouřit?', a: 'Ne, jde o nekuřácký apartmán.' },
+      { q: 'Jak je apartmán vybavený?', a: 'Najdete tu plně vybavenou kuchyň (americká lednice, myčka, sporák), pračku a sušičku, rychlou Wi-Fi zdarma, 2 televize, herní konzoli Xbox a hračky pro děti. Na vyžádání připravíme dětskou postýlku.' },
+      { q: 'Je apartmán vhodný pro rodiny s dětmi?', a: 'Ano. K dispozici jsou hračky pro děti, herní konzole Xbox a na vyžádání dětská postýlka. Za rohem je navíc park s rybníkem.' },
+      { q: 'Jak daleko je apartmán od centra Českých Budějovic?', a: 'Apartmán je v klidné obytné čtvrti, do historického centra je to 7 minut autem. Autobusová zastávka je 100 m, vlakové i autobusové nádraží 2 km a blízko je dálnice D3.' },
+      { q: 'Kolik stojí ubytování za noc?', a: 'Pro rodiny začínají ceny na 1 200 Kč za noc, pro firmy na 950 Kč za noc.' },
+      { q: 'Jak si apartmán zarezervovat a jak se platí?', a: 'Rezervujte napřímo, bez provizí a poplatků portálů jako Booking nebo Airbnb, odpovídáme do 24 hodin. Platí se bankovním převodem, firmám vystavíme fakturu s DPH i bez. Kontakt: info@estom.cz, +420 724 308 779.' },
+      { q: 'Ubytujete firmě zaměstnance na delší dobu?', a: 'Ano, zajišťujeme ubytování zaměstnanců, stážistů i montérů na týdny i měsíce s fakturací na firmu. Na vyžádání nabídneme více apartmánů.' },
+    ],
+  },
+  en: {
+    eyebrow: 'FAQ',
+    heading: 'Frequently asked questions',
+    items: [
+      { q: 'How many people can stay in the apartment?', a: 'The 70 m² apartment (one bedroom plus a separate living room) sleeps 3 guests as standard, and up to 6 on request.' },
+      { q: 'What are the check-in and check-out times?', a: 'Check-in is from 2:00 p.m. and check-out is by 10:00 a.m.' },
+      { q: 'Is there free parking at the apartment?', a: 'Yes, parking is free right by the house, always available and with no reservation needed.' },
+      { q: 'Can we bring a dog or other pet?', a: 'Pets are welcome by prior arrangement. Just let us know in advance.' },
+      { q: 'Is smoking allowed in the apartment?', a: 'No, this is a non-smoking apartment.' },
+      { q: 'What amenities does the apartment have?', a: 'It has a fully equipped kitchen (American-style fridge, dishwasher, stove), a washer and dryer, fast free Wi-Fi, 2 TVs, an Xbox game console and toys for children. A baby cot is available on request.' },
+      { q: 'Is the apartment suitable for families with children?', a: 'Yes. There are toys for kids, an Xbox game console and a baby cot on request. There is also a park with a pond just around the corner.' },
+      { q: 'How far is the apartment from the centre of České Budějovice?', a: 'The apartment is in a quiet residential area, just 7 minutes by car from the historic centre. A bus stop is 100 m away, the train and bus stations are 2 km away, and the D3 motorway is close by.' },
+      { q: 'How much does a night cost?', a: 'Prices start at CZK 1,200 per night for families and CZK 950 per night for companies.' },
+      { q: 'How do I book and how do I pay?', a: 'Book directly with no commission and no Booking or Airbnb fees, and we reply within 24 hours. Payment is by bank transfer, and we can issue companies an invoice with or without VAT. Contact: info@estom.cz, +420 724 308 779.' },
+      { q: 'Can you accommodate company employees for a longer stay?', a: 'Yes, we provide accommodation for employees, interns and contractors for weeks or months, with invoicing to the company. More apartments are available on request.' },
+    ],
+  },
+  de: {
+    eyebrow: 'Häufige Fragen',
+    heading: 'Häufig gestellte Fragen',
+    items: [
+      { q: 'Für wie viele Personen ist das Apartment geeignet?', a: 'Das 70 m² große Apartment (mit separatem Schlafzimmer und Wohnzimmer) ist standardmäßig für 3 Personen, auf Anfrage bis zu 6 Personen.' },
+      { q: 'Wann sind Check-in und Check-out?', a: 'Check-in ist ab 14:00 Uhr und Check-out bis 10:00 Uhr.' },
+      { q: 'Gibt es kostenlose Parkplätze am Apartment?', a: 'Ja, das Parken ist direkt am Haus kostenlos, immer verfügbar und ohne Reservierung.' },
+      { q: 'Dürfen wir einen Hund oder ein anderes Haustier mitbringen?', a: 'Haustiere sind nach vorheriger Absprache erlaubt. Geben Sie uns einfach im Voraus Bescheid.' },
+      { q: 'Ist Rauchen im Apartment erlaubt?', a: 'Nein, es handelt sich um ein Nichtraucher-Apartment.' },
+      { q: 'Wie ist das Apartment ausgestattet?', a: 'Es gibt eine voll ausgestattete Küche (amerikanischer Kühlschrank, Geschirrspüler, Herd), Waschmaschine und Trockner, schnelles kostenloses WLAN, 2 Fernseher, eine Xbox-Spielkonsole und Spielzeug für Kinder. Ein Babybett ist auf Anfrage verfügbar.' },
+      { q: 'Ist das Apartment für Familien mit Kindern geeignet?', a: 'Ja. Es gibt Spielzeug für Kinder, eine Xbox-Spielkonsole und auf Anfrage ein Babybett. Außerdem liegt gleich um die Ecke ein Park mit Teich.' },
+      { q: 'Wie weit ist das Apartment vom Zentrum von Budweis entfernt?', a: 'Das Apartment liegt in einem ruhigen Wohnviertel, nur 7 Minuten mit dem Auto vom historischen Zentrum entfernt. Eine Bushaltestelle ist 100 m, Bahnhof und Busbahnhof sind 2 km entfernt, und die Autobahn D3 ist ganz in der Nähe.' },
+      { q: 'Wie viel kostet eine Übernachtung?', a: 'Die Preise beginnen bei 1.200 CZK pro Nacht für Familien und bei 950 CZK pro Nacht für Firmen.' },
+      { q: 'Wie buche ich und wie wird bezahlt?', a: 'Buchen Sie direkt ohne Provision und ohne Booking- oder Airbnb-Gebühren, wir antworten innerhalb von 24 Stunden. Die Zahlung erfolgt per Banküberweisung, für Firmen stellen wir eine Rechnung mit oder ohne MwSt. aus. Kontakt: info@estom.cz, +420 724 308 779.' },
+      { q: 'Bieten Sie Unterkunft für Firmenmitarbeiter über einen längeren Zeitraum an?', a: 'Ja, wir bieten Unterkunft für Mitarbeiter, Praktikanten und Monteure für Wochen oder Monate mit Rechnungsstellung an die Firma. Weitere Apartments sind auf Anfrage verfügbar.' },
+    ],
+  },
+};
+
+const block = data[lang];
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: block.items.map((it) => ({
+    '@type': 'Question',
+    name: it.q,
+    acceptedAnswer: { '@type': 'Answer', text: it.a },
+  })),
+};
+---
+<section class="py-12 md:py-16 bg-[var(--color-bg)]">
+  <div class="container-narrow">
+    <div class="max-w-2xl mb-7 md:mb-9">
+      <span class="eyebrow eyebrow-red mb-3">{block.eyebrow}</span>
+      <h2 class="text-3xl md:text-4xl font-medium">{block.heading}</h2>
+    </div>
+
+    <div class="border-t border-[var(--color-line)]">
+      {block.items.map((it) => (
+        <details class="faq-item border-b border-[var(--color-line)]">
+          <summary class="flex items-center justify-between gap-4 py-5 cursor-pointer select-none font-display text-lg font-medium text-[var(--color-ink)] hover:text-[var(--color-cta)] transition-colors">
+            <span>{it.q}</span>
+            <svg class="faq-chevron shrink-0 transition-transform duration-200 text-[var(--color-muted)]" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+              <path d="M6 9l6 6 6-6"/>
+            </svg>
+          </summary>
+          <div class="pb-5 -mt-1 text-[var(--color-ink-soft)] leading-relaxed max-w-2xl">{it.a}</div>
+        </details>
+      ))}
+    </div>
+  </div>
+</section>
+
+<script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+
+<style>
+  .faq-item > summary { list-style: none; }
+  .faq-item > summary::-webkit-details-marker { display: none; }
+  .faq-item[open] .faq-chevron { transform: rotate(180deg); }
+</style>

@@ -1,5 +1,6 @@
 ---
 import { getLangFromUrl } from '../i18n/utils';
+import { getRoute } from '../i18n/routes';
 
 const lang = getLangFromUrl(Astro.url);
 
@@ -22,7 +23,6 @@ const t = {
     legoF2Title: 'LEGO na přání',
     legoF2Text: 'Hledáte konkrétní sadu? Můžeme ji pro vás sehnat.',
     legoCta: 'Zeptat se na LEGO',
-    contactRoute: '/kontakt',
   },
   en: {
     altLabel: 'Affordable accommodation in České Budějovice',
@@ -42,7 +42,6 @@ const t = {
     legoF2Title: 'LEGO on request',
     legoF2Text: 'Looking for a specific set? We can source it for you.',
     legoCta: 'Ask about LEGO',
-    contactRoute: '/en/contact',
   },
   de: {
     altLabel: 'Günstige Unterkunft in Budweis',
@@ -62,7 +61,6 @@ const t = {
     legoF2Title: 'LEGO auf Wunsch',
     legoF2Text: 'Suchen Sie ein bestimmtes Set? Wir besorgen es gerne für Sie.',
     legoCta: 'Nach LEGO fragen',
-    contactRoute: '/de/kontakt',
   },
 }[lang];
 ---
@@ -140,7 +138,7 @@ const t = {
             </div>
           </div>
         </div>
-        <a href={t.contactRoute} class="btn-primary">
+        <a href={getRoute('contact', lang)} class="btn-primary">
           {t.legoCta}
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
         </a>

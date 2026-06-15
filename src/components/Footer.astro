@@ -6,6 +6,7 @@ import LegoBrick from './LegoBrick.astro';
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 const year = new Date().getFullYear();
+const privacyLabel = lang === 'cs' ? 'Zásady ochrany osobních údajů' : lang === 'en' ? 'Privacy Policy' : 'Datenschutz';
 ---
 <footer class="mt-10 border-t border-[var(--color-line)] bg-white">
   <div class="container-wide py-8 grid gap-8 md:grid-cols-3">
@@ -96,7 +97,10 @@ const year = new Date().getFullYear();
   <div class="border-t border-[var(--color-line)]">
     <div class="container-wide py-5 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-[var(--color-muted)]">
       <span>© {year} Apartmány České Budějovice. {t('footer.rights')}</span>
-      <span>{t('about.languages')}</span>
+      <div class="flex items-center gap-4">
+        <a href={getRoute('privacy', lang)} class="hover:text-[var(--color-cta)]">{privacyLabel}</a>
+        <span>{t('about.languages')}</span>
+      </div>
     </div>
   </div>
 </footer>
