@@ -1,12 +1,11 @@
 ---
 import { getLangFromUrl } from '../i18n/utils';
+import { bookingUrl } from '../i18n/booking';
 
 const lang = getLangFromUrl(Astro.url);
 
-// Static social proof from Booking.com. Rating is shown visually only —
-// NOT marked up as schema.org aggregateRating, because Google disallows
-// self-serving / third-party (aggregator) ratings in your own business markup.
-const bookingBase = 'https://www.booking.com/hotel/cz/lets-go-family-apartment-ceske-budejovice';
+// Static social proof from Booking.com — shown visually only (intentionally NOT
+// schema.org aggregateRating; Google disallows third-party/aggregator ratings).
 
 const t = {
   cs: {
@@ -15,10 +14,10 @@ const t = {
     lead: 'Skutečná zpětná vazba od hostů, kteří u nás bydleli — ověřená přes Booking.com.',
     rating: '9,3',
     word: 'Fantastické',
-    count: 'ze 3 hodnocení na Booking.com',
+    count: 'na Booking.com',
     cta: 'Přečíst recenze na Booking.com',
     newTab: '(otevře se v novém okně)',
-    url: `${bookingBase}.cs.html`,
+    url: bookingUrl('cs'),
   },
   en: {
     eyebrow: 'Guest rating',
@@ -26,10 +25,10 @@ const t = {
     lead: 'Real feedback from guests who stayed with us — verified on Booking.com.',
     rating: '9.3',
     word: 'Wonderful',
-    count: 'from 3 reviews on Booking.com',
+    count: 'on Booking.com',
     cta: 'Read reviews on Booking.com',
     newTab: '(opens in a new tab)',
-    url: `${bookingBase}.en-gb.html`,
+    url: bookingUrl('en'),
   },
   de: {
     eyebrow: 'Gästebewertung',
@@ -37,10 +36,10 @@ const t = {
     lead: 'Echtes Feedback von Gästen, die bei uns übernachtet haben — verifiziert über Booking.com.',
     rating: '9,3',
     word: 'Fantastisch',
-    count: 'aus 3 Bewertungen auf Booking.com',
+    count: 'auf Booking.com',
     cta: 'Bewertungen auf Booking.com lesen',
     newTab: '(öffnet in neuem Tab)',
-    url: `${bookingBase}.de.html`,
+    url: bookingUrl('de'),
   },
 }[lang];
 ---

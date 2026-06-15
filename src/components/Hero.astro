@@ -1,9 +1,18 @@
 ---
 import { getLangFromUrl, useTranslations } from '../i18n/utils';
 import { getRoute } from '../i18n/routes';
+import { booking, bookingUrl } from '../i18n/booking';
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
+
+const ratingScore = booking.score[lang];
+const ratingUrl = bookingUrl(lang);
+const ratingMeta = {
+  cs: { aria: `Hodnocení ${ratingScore} z 10 na Booking.com (otevře se v novém okně)` },
+  en: { aria: `Rated ${ratingScore} out of 10 on Booking.com (opens in a new tab)` },
+  de: { aria: `Bewertung ${ratingScore} von 10 auf Booking.com (öffnet in neuem Tab)` },
+}[lang];
 ---
 <section class="relative overflow-hidden">
   <div class="absolute inset-0 -z-10 overflow-hidden">
@@ -110,6 +119,24 @@ const t = useTranslations(lang);
           </picture>
         </div>
       </div>
+
+      <!-- Floating rating badge — Booking.com social proof -->
+      <a
+        href={ratingUrl}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="absolute -bottom-4 left-3 sm:left-4 z-10 inline-flex items-center gap-2.5 bg-white rounded-xl shadow-lg shadow-black/15 ring-1 ring-black/5 px-3.5 py-2 hover:shadow-xl transition-shadow"
+        aria-label={ratingMeta.aria}
+      >
+        <span class="relative inline-block text-[15px] leading-none tracking-[0.12em] whitespace-nowrap" aria-hidden="true">
+          <span class="text-[var(--color-line)]">★★★★★</span>
+          <span class="absolute top-0 left-0 h-full overflow-hidden text-[var(--color-lego-yellow)]" style={`width:${booking.starPercent}%`}>★★★★★</span>
+        </span>
+        <span class="flex flex-col leading-tight">
+          <span class="font-display font-semibold text-[var(--color-ink)] leading-none">{ratingScore}<span class="text-[11px] text-[var(--color-muted)] font-normal"> / 10</span></span>
+          <span class="text-[10px] text-[var(--color-muted)]">Booking.com</span>
+        </span>
+      </a>
     </div>
   </div>
 </section>
