@@ -10,7 +10,8 @@
     "build": "astro build",
     "preview": "astro preview",
     "astro": "astro",
-    "optimize-images": "node scripts/optimize-images.mjs"
+    "optimize-images": "node scripts/optimize-images.mjs",
+    "convert-webp": "node scripts/convert-to-webp.mjs"
   },
   "dependencies": {
     "@astrojs/sitemap": "^3.7.2",

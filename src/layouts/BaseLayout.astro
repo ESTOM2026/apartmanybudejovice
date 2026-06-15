@@ -11,16 +11,17 @@ interface Props {
   title: string;
   description: string;
   ogImage?: string;
+  noindex?: boolean;
 }
 
-const { pageKey, title, description, ogImage = '/og-default.jpg' } = Astro.props;
+const { pageKey, title, description, ogImage = '/og-default.jpg', noindex = false } = Astro.props;
 const lang: Lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 const isNetlifyPreview = Astro.url.hostname.endsWith('.netlify.app');
 
 const alternates = getAlternates(pageKey);
 const canonical = new URL(alternates[lang], Astro.site).toString();
-const fullTitle = `${title} | Apartmány České Budějovice`;
+const fullTitle = title;
 ---
 <!doctype html>
 <html lang={lang}>
@@ -33,16 +34,16 @@ const fullTitle = `${title} | Apartmány České Budějovice`;
     <title>{fullTitle}</title>
     <meta name="description" content={description} />
     <link rel="canonical" href={canonical} />
-    {isNetlifyPreview && <meta name="robots" content="noindex, nofollow" />}
+    {(isNetlifyPreview || noindex) && <meta name="robots" content="noindex, nofollow" />}
 
-    {(Object.keys(languages) as Lang[]).map((l) => (
+    {!noindex && (Object.keys(languages) as Lang[]).map((l) => (
       <link
         rel="alternate"
         hreflang={l === 'cs' ? 'cs-CZ' : l === 'en' ? 'en' : 'de-DE'}
         href={new URL(alternates[l], Astro.site).toString()}
       />
     ))}
-    <link rel="alternate" hreflang="x-default" href={new URL(alternates.cs, Astro.site).toString()} />
+    {!noindex && <link rel="alternate" hreflang="x-default" href={new URL(alternates.cs, Astro.site).toString()} />}
 
     <meta property="og:type" content="website" />
     <meta property="og:title" content={fullTitle} />
@@ -60,12 +61,12 @@ const fullTitle = `${title} | Apartmány České Budějovice`;
       "name": "Lets Go Family Apartment",
       "description": "Rodinný apartmán k pronájmu v Českých Budějovicích. 70 m², 2+1, plně vybavená kuchyň, parkování zdarma. Vhodný pro rodiny i firemní dlouhodobé pobyty.",
       "url": "https://apartmanybudejovice.cz",
-      "telephone": "+420777925594",
+      "telephone": "+420724308779",
       "email": "info@estom.cz",
       "image": "https://apartmanybudejovice.cz/og-default.jpg",
-      "priceRange": "od 1 200 Kč/noc",
-      "checkinTime": "T14:00",
-      "checkoutTime": "T10:00",
+      "priceRange": "1200-3000 CZK",
+      "checkinTime": "14:00",
+      "checkoutTime": "10:00",
       "numberOfRooms": 2,
       "address": {
         "@type": "PostalAddress",

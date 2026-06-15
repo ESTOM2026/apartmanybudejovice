@@ -5,7 +5,7 @@ import tailwindcss from '@tailwindcss/vite';
 
 export default defineConfig({
   site: 'https://apartmanybudejovice.cz',
-  trailingSlash: 'never',
+  trailingSlash: 'always',
   i18n: {
     defaultLocale: 'cs',
     locales: ['cs', 'en', 'de'],

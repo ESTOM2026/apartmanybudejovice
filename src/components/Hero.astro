@@ -61,41 +61,53 @@ const t = useTranslations(lang);
       <!-- Photo collage: 2×2 grid -->
       <div class="grid grid-cols-2 grid-rows-2 gap-2 rounded-2xl overflow-hidden shadow-2xl shadow-black/10 h-[260px] sm:h-[340px] lg:h-[480px]">
         <div class="relative overflow-hidden">
-          <img
-            src="/images/gallery/01.jpg"
-            alt={lang === 'cs' ? 'Červený gauč v obývacím pokoji' : lang === 'en' ? 'Red sofa in the living room' : 'Rotes Sofa im Wohnzimmer'}
-            class="absolute inset-0 w-full h-full object-cover"
-            loading="eager"
-            fetchpriority="high"
-            decoding="async"
-          />
+          <picture>
+            <source srcset="/images/gallery/01.webp" type="image/webp" />
+            <img
+              src="/images/gallery/01.jpg"
+              alt={lang === 'cs' ? 'Červený gauč v obývacím pokoji' : lang === 'en' ? 'Red sofa in the living room' : 'Rotes Sofa im Wohnzimmer'}
+              class="absolute inset-0 w-full h-full object-cover"
+              loading="eager"
+              fetchpriority="high"
+              decoding="async"
+            />
+          </picture>
         </div>
         <div class="relative overflow-hidden">
-          <img
-            src="/images/gallery/02.jpg"
-            alt={lang === 'cs' ? 'LEGO vitríny' : lang === 'en' ? 'LEGO display cabinets' : 'LEGO-Vitrinen'}
-            class="absolute inset-0 w-full h-full object-cover"
-            loading="eager"
-            decoding="async"
-          />
+          <picture>
+            <source srcset="/images/gallery/02.webp" type="image/webp" />
+            <img
+              src="/images/gallery/02.jpg"
+              alt={lang === 'cs' ? 'LEGO vitríny' : lang === 'en' ? 'LEGO display cabinets' : 'LEGO-Vitrinen'}
+              class="absolute inset-0 w-full h-full object-cover"
+              loading="eager"
+              decoding="async"
+            />
+          </picture>
         </div>
         <div class="relative overflow-hidden">
-          <img
-            src="/images/gallery/13.jpg"
-            alt={lang === 'cs' ? 'Hračky a LEGO kostky' : lang === 'en' ? 'Toys and LEGO bricks' : 'Spielzeug und LEGO-Steine'}
-            class="absolute inset-0 w-full h-full object-cover"
-            loading="lazy"
-            decoding="async"
-          />
+          <picture>
+            <source srcset="/images/gallery/13.webp" type="image/webp" />
+            <img
+              src="/images/gallery/13.jpg"
+              alt={lang === 'cs' ? 'Hračky a LEGO kostky' : lang === 'en' ? 'Toys and LEGO bricks' : 'Spielzeug und LEGO-Steine'}
+              class="absolute inset-0 w-full h-full object-cover"
+              loading="lazy"
+              decoding="async"
+            />
+          </picture>
         </div>
         <div class="relative overflow-hidden">
-          <img
-            src="/images/gallery/14.jpg"
-            alt={lang === 'cs' ? 'Dětské hračky a autíčka' : lang === 'en' ? 'Children toys and cars' : 'Kinderspielzeug und Autos'}
-            class="absolute inset-0 w-full h-full object-cover"
-            loading="lazy"
-            decoding="async"
-          />
+          <picture>
+            <source srcset="/images/gallery/14.webp" type="image/webp" />
+            <img
+              src="/images/gallery/14.jpg"
+              alt={lang === 'cs' ? 'Dětské hračky a autíčka' : lang === 'en' ? 'Children toys and cars' : 'Kinderspielzeug und Autos'}
+              class="absolute inset-0 w-full h-full object-cover"
+              loading="lazy"
+              decoding="async"
+            />
+          </picture>
         </div>
       </div>
     </div>
