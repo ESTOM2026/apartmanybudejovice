@@ -9,65 +9,123 @@ const privacyNote = {
   en: { prefix: 'See our ', link: 'Privacy Policy', newTab: '(opens in a new tab)' },
   de: { prefix: 'Mehr dazu in der ', link: 'Datenschutzerklärung', newTab: '(öffnet in neuem Tab)' },
 }[lang];
+const successLead = lang === 'cs'
+  ? 'Vaše poptávka dorazila. Odpovíme do 24 hodin.'
+  : lang === 'en'
+  ? 'Your inquiry has been received. We will reply within 24 hours.'
+  : 'Ihre Anfrage ist eingegangen. Wir antworten innerhalb von 24 Stunden.';
+const errorText = lang === 'cs'
+  ? 'Odeslání se nezdařilo. Zkuste to prosím znovu, nebo nám napište na info@estom.cz.'
+  : lang === 'en'
+  ? 'Sending failed. Please try again, or e-mail us at info@estom.cz.'
+  : 'Senden fehlgeschlagen. Bitte versuchen Sie es erneut oder schreiben Sie an info@estom.cz.';
 ---
-<form
-  name="inquiry"
-  method="POST"
-  data-netlify="true"
-  netlify-honeypot="bot-field"
-  action={`${lang === 'cs' ? '/kontakt/' : lang === 'en' ? '/en/contact/' : '/de/kontakt/'}?sent=1`}
-  class="grid gap-5"
->
-  <input type="hidden" name="form-name" value="inquiry" />
-  <input type="hidden" name="lang" value={lang} />
-  <p class="hidden">
-    <label>Don't fill: <input name="bot-field" /></label>
-  </p>
-
-  <div class="grid sm:grid-cols-2 gap-5">
-    <label class="block">
-      <span class="text-sm text-[var(--color-ink-soft)] mb-1.5 block">{t('contact.form.name')} *</span>
-      <input type="text" name="name" required class="w-full rounded-lg border border-[var(--color-line)] bg-white px-4 py-2.5 focus:outline-none focus:border-[var(--color-cta)]" />
-    </label>
-    <label class="block">
-      <span class="text-sm text-[var(--color-ink-soft)] mb-1.5 block">{t('contact.form.email')} *</span>
-      <input type="email" name="email" required class="w-full rounded-lg border border-[var(--color-line)] bg-white px-4 py-2.5 focus:outline-none focus:border-[var(--color-cta)]" />
-    </label>
-    <label class="block">
-      <span class="text-sm text-[var(--color-ink-soft)] mb-1.5 block">{t('contact.form.phone')}</span>
-      <input type="tel" name="phone" class="w-full rounded-lg border border-[var(--color-line)] bg-white px-4 py-2.5 focus:outline-none focus:border-[var(--color-cta)]" />
-    </label>
-    <label class="block">
-      <span class="text-sm text-[var(--color-ink-soft)] mb-1.5 block">{t('contact.form.company')}</span>
-      <input type="text" name="company" class="w-full rounded-lg border border-[var(--color-line)] bg-white px-4 py-2.5 focus:outline-none focus:border-[var(--color-cta)]" />
-    </label>
-    <label class="block">
-      <span class="text-sm text-[var(--color-ink-soft)] mb-1.5 block">{t('contact.form.dates')}</span>
-      <input type="text" name="dates" placeholder="—" class="w-full rounded-lg border border-[var(--color-line)] bg-white px-4 py-2.5 focus:outline-none focus:border-[var(--color-cta)]" />
-    </label>
-    <label class="block">
-      <span class="text-sm text-[var(--color-ink-soft)] mb-1.5 block">{t('contact.form.guests')}</span>
-      <input type="number" name="guests" min="1" max="20" class="w-full rounded-lg border border-[var(--color-line)] bg-white px-4 py-2.5 focus:outline-none focus:border-[var(--color-cta)]" />
-    </label>
+<div id="inquiry">
+  <!-- Success — revealed by JS after a successful (AJAX) submit; no page redirect,
+       so the confirmation always matches the current language. -->
+  <div id="inquiry-success" class="hidden bg-[var(--color-cta)] text-white rounded-2xl p-6 md:p-8" role="status" aria-live="polite">
+    <svg width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" class="mb-3">
+      <circle cx="12" cy="12" r="10"/><path d="M9 12l2 2 4-4"/>
+    </svg>
+    <h2 class="text-2xl font-medium mb-2 text-white">{t('contact.form.success')}</h2>
+    <p class="text-white/85">{successLead}</p>
   </div>
 
-  <label class="block">
-    <span class="text-sm text-[var(--color-ink-soft)] mb-1.5 block">{t('contact.form.message')} *</span>
-    <textarea name="message" required rows="5" placeholder={t('contact.form.message.placeholder')} class="w-full rounded-lg border border-[var(--color-line)] bg-white px-4 py-2.5 focus:outline-none focus:border-[var(--color-cta)] resize-none"></textarea>
-  </label>
+  <form
+    id="inquiry-form"
+    name="inquiry"
+    method="POST"
+    data-netlify="true"
+    netlify-honeypot="bot-field"
+    action={`${lang === 'cs' ? '/kontakt/' : lang === 'en' ? '/en/contact/' : '/de/kontakt/'}?sent=1`}
+    class="grid gap-5"
+  >
+    <input type="hidden" name="form-name" value="inquiry" />
+    <input type="hidden" name="lang" value={lang} />
+    <p class="hidden">
+      <label>Don't fill: <input name="bot-field" /></label>
+    </p>
 
-  <div class="text-sm text-[var(--color-ink-soft)]">
-    <label class="flex items-start gap-3 cursor-pointer">
-      <input type="checkbox" name="consent" required class="mt-1 accent-[var(--color-cta)]" />
-      <span>{t('contact.form.consent')}</span>
+    <div class="grid sm:grid-cols-2 gap-5">
+      <label class="block">
+        <span class="text-sm text-[var(--color-ink-soft)] mb-1.5 block">{t('contact.form.name')} *</span>
+        <input type="text" name="name" required class="w-full rounded-lg border border-[var(--color-line)] bg-white px-4 py-2.5 focus:outline-none focus:border-[var(--color-cta)]" />
+      </label>
+      <label class="block">
+        <span class="text-sm text-[var(--color-ink-soft)] mb-1.5 block">{t('contact.form.email')} *</span>
+        <input type="email" name="email" required class="w-full rounded-lg border border-[var(--color-line)] bg-white px-4 py-2.5 focus:outline-none focus:border-[var(--color-cta)]" />
+      </label>
+      <label class="block">
+        <span class="text-sm text-[var(--color-ink-soft)] mb-1.5 block">{t('contact.form.phone')}</span>
+        <input type="tel" name="phone" class="w-full rounded-lg border border-[var(--color-line)] bg-white px-4 py-2.5 focus:outline-none focus:border-[var(--color-cta)]" />
+      </label>
+      <label class="block">
+        <span class="text-sm text-[var(--color-ink-soft)] mb-1.5 block">{t('contact.form.company')}</span>
+        <input type="text" name="company" class="w-full rounded-lg border border-[var(--color-line)] bg-white px-4 py-2.5 focus:outline-none focus:border-[var(--color-cta)]" />
+      </label>
+      <label class="block">
+        <span class="text-sm text-[var(--color-ink-soft)] mb-1.5 block">{t('contact.form.dates')}</span>
+        <input type="text" name="dates" placeholder="—" class="w-full rounded-lg border border-[var(--color-line)] bg-white px-4 py-2.5 focus:outline-none focus:border-[var(--color-cta)]" />
+      </label>
+      <label class="block">
+        <span class="text-sm text-[var(--color-ink-soft)] mb-1.5 block">{t('contact.form.guests')}</span>
+        <input type="number" name="guests" min="1" max="20" class="w-full rounded-lg border border-[var(--color-line)] bg-white px-4 py-2.5 focus:outline-none focus:border-[var(--color-cta)]" />
+      </label>
+    </div>
+
+    <label class="block">
+      <span class="text-sm text-[var(--color-ink-soft)] mb-1.5 block">{t('contact.form.message')} *</span>
+      <textarea name="message" required rows="5" placeholder={t('contact.form.message.placeholder')} class="w-full rounded-lg border border-[var(--color-line)] bg-white px-4 py-2.5 focus:outline-none focus:border-[var(--color-cta)] resize-none"></textarea>
     </label>
-    <p class="mt-2 pl-7">{privacyNote.prefix}<a href={getRoute('privacy', lang)} target="_blank" rel="noopener noreferrer" class="underline underline-offset-2 hover:text-[var(--color-cta)]">{privacyNote.link}<span class="sr-only"> {privacyNote.newTab}</span></a>.</p>
-  </div>
 
-  <div>
-    <button type="submit" class="btn-primary">
-      {t('contact.form.submit')}
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-    </button>
-  </div>
-</form>
+    <div class="text-sm text-[var(--color-ink-soft)]">
+      <label class="flex items-start gap-3 cursor-pointer">
+        <input type="checkbox" name="consent" required class="mt-1 accent-[var(--color-cta)]" />
+        <span>{t('contact.form.consent')}</span>
+      </label>
+      <p class="mt-2 pl-7">{privacyNote.prefix}<a href={getRoute('privacy', lang)} target="_blank" rel="noopener noreferrer" class="underline underline-offset-2 hover:text-[var(--color-cta)]">{privacyNote.link}<span class="sr-only"> {privacyNote.newTab}</span></a>.</p>
+    </div>
+
+    <div>
+      <button type="submit" class="btn-primary">
+        {t('contact.form.submit')}
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </button>
+      <p id="inquiry-error" class="hidden mt-3 text-sm text-[var(--color-cta)]" role="alert">{errorText}</p>
+    </div>
+  </form>
+</div>
+
+<script>
+  const form = document.getElementById('inquiry-form') as HTMLFormElement | null;
+  const success = document.getElementById('inquiry-success');
+  const errorBox = document.getElementById('inquiry-error');
+
+  form?.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const btn = form.querySelector('button[type="submit"]') as HTMLButtonElement | null;
+    errorBox?.classList.add('hidden');
+    if (btn) { btn.disabled = true; btn.classList.add('opacity-60', 'pointer-events-none'); }
+
+    // FormData → x-www-form-urlencoded (Netlify Forms AJAX submission).
+    const fd = new FormData(form);
+    const body = new URLSearchParams();
+    fd.forEach((v, k) => body.append(k, typeof v === 'string' ? v : ''));
+
+    try {
+      const res = await fetch('/', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: body.toString(),
+      });
+      if (!res.ok) throw new Error(String(res.status));
+      form.classList.add('hidden');
+      success?.classList.remove('hidden');
+      success?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    } catch (err) {
+      // Show a localized error and let the user retry (no wrong-language redirect).
+      if (btn) { btn.disabled = false; btn.classList.remove('opacity-60', 'pointer-events-none'); }
+      errorBox?.classList.remove('hidden');
+    }
+  });
+</script>
