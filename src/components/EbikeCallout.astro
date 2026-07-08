@@ -1,0 +1,35 @@
+---
+import { getLangFromUrl } from '../i18n/utils';
+
+const lang = getLangFromUrl(Astro.url);
+
+const t = {
+  cs: {
+    lead: 'Bonus pro hosty: nově 2 elektrokola zdarma',
+    body: 'Půjčujeme po předchozí domluvě a dle aktuální dostupnosti – napište nám termín předem a rádi je zajistíme. Stačí uvést zájem v poptávce pobytu.',
+  },
+  en: {
+    lead: 'Guest bonus: 2 e‑bikes now free',
+    body: "Lending is by prior arrangement and subject to availability – let us know your dates in advance and we'll be glad to arrange them. Just mention it in your booking enquiry.",
+  },
+  de: {
+    lead: 'Bonus für Gäste: neu 2 E‑Bikes kostenlos',
+    body: 'Verleih nach vorheriger Absprache und je nach Verfügbarkeit – teilen Sie uns Ihre Termine vorab mit und wir stellen sie gerne bereit. Erwähnen Sie es einfach in Ihrer Anfrage.',
+  },
+}[lang];
+---
+<section class="py-6 md:py-8">
+  <div class="container-wide">
+    <div class="flex items-start gap-4 md:gap-6 rounded-2xl p-5 md:p-6 border" style="background: #fffbe6; border-color: var(--color-lego-yellow);">
+      <div class="shrink-0 w-12 h-12 md:w-14 md:h-14 rounded-xl flex items-center justify-center" style="background: var(--color-lego-yellow);">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--color-ink)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M6.5 18a3.5 3.5 0 1 1 0-7 3.5 3.5 0 0 1 0 7zM17.5 18a3.5 3.5 0 1 1 0-7 3.5 3.5 0 0 1 0 7zM6.5 14.5l3.5-6.5h4.5l3.5 6.5M10 8h4.5l1.5-2.5H18"/>
+        </svg>
+      </div>
+      <div>
+        <p class="font-display font-semibold text-lg md:text-xl leading-tight mb-1">{t.lead}</p>
+        <p class="text-sm text-[var(--color-ink-soft)] leading-relaxed max-w-3xl">{t.body}</p>
+      </div>
+    </div>
+  </div>
+</section>

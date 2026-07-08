@@ -86,6 +86,7 @@ export const ui = {
     'amenities.tv': '2× TV',
     'amenities.pets': 'Domácí mazlíčci po domluvě',
     'amenities.nonsmoking': 'Nekuřácký apartmán',
+    'amenities.ebike': '2 elektrokola (na vyžádání)',
 
     'about.title': 'O nás – rodinné ubytování v Českých Budějovicích',
     'about.lead': 'Apartmány a byty k pronájmu provozujeme jako rodinný projekt. Nabízíme levné ubytování v Českých Budějovicích – krátkodobé i dlouhodobé pobyty, alternativu penzionu pro rodiny i firmy. Záleží nám na čistotě, pohodlí a tom, aby se hosté cítili jako doma.',
@@ -187,6 +188,7 @@ export const ui = {
     'amenities.tv': '2× TV',
     'amenities.pets': 'Pets by arrangement',
     'amenities.nonsmoking': 'Non‑smoking',
+    'amenities.ebike': '2 e‑bikes (on request)',
 
     'about.title': 'About us',
     'about.lead': 'We run our apartments as a family project. We care about cleanliness, comfort and making our guests feel at home from the very first moment.',
@@ -288,6 +290,7 @@ export const ui = {
     'amenities.tv': '2× TV',
     'amenities.pets': 'Haustiere nach Absprache',
     'amenities.nonsmoking': 'Nichtraucher',
+    'amenities.ebike': '2 E‑Bikes (auf Anfrage)',
 
     'about.title': 'Über uns',
     'about.lead': 'Wir betreiben unsere Apartments als Familienprojekt. Sauberkeit, Komfort und das Wohlfühl‑Gefühl unserer Gäste vom ersten Moment an liegen uns am Herzen.',
