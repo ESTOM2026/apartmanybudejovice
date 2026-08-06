@@ -100,7 +100,7 @@ const creditPrefix = lang === 'cs' ? 'Web vytvořila agentura' : lang === 'en' ?
       <span>© {year} Apartmány České Budějovice. {t('footer.rights')}</span>
       <div class="flex flex-wrap items-center justify-center gap-x-4 gap-y-1">
         <a href={getRoute('privacy', lang)} class="hover:text-[var(--color-cta)]">{privacyLabel}</a>
-        <span>{creditPrefix} <a href="https://webzavasicenu.cz" target="_blank" rel="noopener" class="hover:text-[var(--color-cta)] underline underline-offset-2">webzavasicenu.cz</a></span>
+        <span class="inline-flex items-center gap-1.5">{creditPrefix} <a href="https://webzavasicenu.cz" target="_blank" rel="noopener" class="inline-flex items-center gap-1 hover:text-[var(--color-cta)]"><img src="/webzavasicenu-logo.svg" width="14" height="14" alt="" aria-hidden="true" class="rounded-[3px]" /><span class="underline underline-offset-2">webzavasicenu.cz</span></a></span>
         <span>{t('about.languages')}</span>
       </div>
     </div>
