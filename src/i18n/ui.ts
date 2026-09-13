@@ -22,8 +22,8 @@ export const ui = {
     'cta.call': 'Zavolat',
 
     'hero.tagline': 'Rodinný apartmán v Českých Budějovicích',
-    'hero.title': 'Apartmán k pronájmu v Českých Budějovicích',
-    'hero.subtitle': 'Lets Go Family Apartment — levné ubytování v Českých Budějovicích, 70 m² komfortu pro rodiny i firmy. Byt 2+1 k pronájmu na krátkodobé i dlouhodobé pobyty, alternativa penzionu. Parkování zdarma, plně vybavená kuchyň.',
+    'hero.title': 'Apartmán k pronájmu v Českých Budějovicích',
+    'hero.subtitle': 'Lets Go Family Apartment — levné ubytování v Českých Budějovicích, 70 m² komfortu pro rodiny i firmy. Byt 2+1 k pronájmu na krátkodobé i dlouhodobé pobyty, alternativa penzionu. Parkování zdarma, plně vybavená kuchyň.',
 
     'features.title': 'Proč zvolit naše ubytování v Českých Budějovicích',
     'features.kitchen.title': 'Plně vybavená kuchyň',
@@ -56,10 +56,10 @@ export const ui = {
     'b2b.price.from': 'již od',
     'b2b.price.amount': '950',
     'b2b.price.unit': 'Kč / noc',
-    'b2b.price.note': 'Konečná cena se odvíjí od délky pobytu a počtu apartmánů. Pro Lets Go (70 m², 3 lůžka) a větší jednotky zpracujeme nabídku na míru — fakturujeme na firmu.',
+    'b2b.price.note': 'Konečná cena se odvíjí od délky pobytu a počtu apartmánů. Pro Lets Go (70 m², 3 lůžka) a větší jednotky zpracujeme nabídku na míru — fakturujeme na firmu.',
 
     'apartment.title': 'Apartmán Lets Go – byt k pronájmu v Českých Budějovicích',
-    'apartment.subtitle': 'Rodinný apartmán a byt 2+1 v Českých Budějovicích, 70 m², 1 ložnice + obývací pokoj. Levné ubytování pro krátkodobé i dlouhodobé pobyty.',
+    'apartment.subtitle': 'Rodinný apartmán a byt 2+1 v Českých Budějovicích, 70 m², 1 ložnice + obývací pokoj. Levné ubytování pro krátkodobé i dlouhodobé pobyty.',
     'apartment.about.title': 'Co vás čeká',
     'apartment.amenities.title': 'Vybavení',
     'apartment.location.title': 'Lokalita',
@@ -124,7 +124,7 @@ export const ui = {
 
     'hero.tagline': 'Family apartment in České Budějovice',
     'hero.title': 'Family apartment for rent in České Budějovice',
-    'hero.subtitle': 'Lets Go Family Apartment — 70 m² of comfort for your family, employees or long‑term guests. Free parking, fully equipped kitchen, quiet neighbourhood.',
+    'hero.subtitle': 'Lets Go Family Apartment — 70 m² of comfort for your family, employees or long‑term guests. Free parking, fully equipped kitchen, quiet neighbourhood.',
 
     'features.title': 'Why Lets Go Family Apartment',
     'features.kitchen.title': 'Fully equipped kitchen',
@@ -157,10 +157,10 @@ export const ui = {
     'b2b.price.from': 'from',
     'b2b.price.amount': '950',
     'b2b.price.unit': 'CZK / night',
-    'b2b.price.note': 'Final rate depends on length of stay and number of apartments. For Lets Go (70 m², 3 beds) and larger units we prepare a tailored offer — invoiced to your company.',
+    'b2b.price.note': 'Final rate depends on length of stay and number of apartments. For Lets Go (70 m², 3 beds) and larger units we prepare a tailored offer — invoiced to your company.',
 
     'apartment.title': 'Lets Go Apartment',
-    'apartment.subtitle': 'Family apartment in České Budějovice, 70 m², 1 bedroom + living room',
+    'apartment.subtitle': 'Family apartment in České Budějovice, 70 m², 1 bedroom + living room',
     'apartment.about.title': 'What to expect',
     'apartment.amenities.title': 'Amenities',
     'apartment.location.title': 'Location',
@@ -225,7 +225,7 @@ export const ui = {
 
     'hero.tagline': 'Familienapartment in Budweis',
     'hero.title': 'Familienapartment zur Miete in Budweis',
-    'hero.subtitle': 'Lets Go Family Apartment — 70 m² Komfort für Ihre Familie, Mitarbeiter oder Langzeitgäste. Kostenfreie Parkplätze, voll ausgestattete Küche, ruhige Lage.',
+    'hero.subtitle': 'Lets Go Family Apartment — 70 m² Komfort für Ihre Familie, Mitarbeiter oder Langzeitgäste. Kostenfreie Parkplätze, voll ausgestattete Küche, ruhige Lage.',
 
     'features.title': 'Warum Lets Go Family Apartment',
     'features.kitchen.title': 'Voll ausgestattete Küche',
@@ -258,10 +258,10 @@ export const ui = {
     'b2b.price.from': 'ab',
     'b2b.price.amount': '950',
     'b2b.price.unit': 'CZK / Nacht',
-    'b2b.price.note': 'Der Endpreis hängt von der Aufenthaltsdauer und der Anzahl der Apartments ab. Für Lets Go (70 m², 3 Betten) und größere Einheiten erstellen wir ein individuelles Angebot — mit Firmenrechnung.',
+    'b2b.price.note': 'Der Endpreis hängt von der Aufenthaltsdauer und der Anzahl der Apartments ab. Für Lets Go (70 m², 3 Betten) und größere Einheiten erstellen wir ein individuelles Angebot — mit Firmenrechnung.',
 
     'apartment.title': 'Apartment Lets Go',
-    'apartment.subtitle': 'Familienapartment in Budweis, 70 m², 1 Schlafzimmer + Wohnzimmer',
+    'apartment.subtitle': 'Familienapartment in Budweis, 70 m², 1 Schlafzimmer + Wohnzimmer',
     'apartment.about.title': 'Was Sie erwartet',
     'apartment.amenities.title': 'Ausstattung',
     'apartment.location.title': 'Lage',
