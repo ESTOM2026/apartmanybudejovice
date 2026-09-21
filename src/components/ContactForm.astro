@@ -56,8 +56,8 @@ const errorText = lang === 'cs'
         <input type="email" name="email" required class="w-full rounded-lg border border-[var(--color-line)] bg-white px-4 py-2.5 focus:outline-none focus:border-[var(--color-cta)]" />
       </label>
       <label class="block">
-        <span class="text-sm text-[var(--color-ink-soft)] mb-1.5 block">{t('contact.form.phone')}</span>
-        <input type="tel" name="phone" class="w-full rounded-lg border border-[var(--color-line)] bg-white px-4 py-2.5 focus:outline-none focus:border-[var(--color-cta)]" />
+        <span class="text-sm text-[var(--color-ink-soft)] mb-1.5 block">{t('contact.form.phone')} *</span>
+        <input type="tel" name="phone" required class="w-full rounded-lg border border-[var(--color-line)] bg-white px-4 py-2.5 focus:outline-none focus:border-[var(--color-cta)]" />
       </label>
       <label class="block">
         <span class="text-sm text-[var(--color-ink-soft)] mb-1.5 block">{t('contact.form.company')}</span>
