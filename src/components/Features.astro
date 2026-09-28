@@ -2,8 +2,38 @@
 import { getLangFromUrl, useTranslations } from '../i18n/utils';
 import type { UIKey } from '../i18n/ui';
 
+interface Props {
+  /**
+   * 'business' — used on /pro-firmy/: company guests may stay in another unit,
+   * so no Lets Go‑only equipment (American fridge, dryer).
+   */
+  variant?: 'default' | 'business';
+}
+
+const { variant = 'default' } = Astro.props;
 const lang = getLangFromUrl(Astro.url);
-const t = useTranslations(lang);
+const tr = useTranslations(lang);
+
+const businessOverrides: Partial<Record<UIKey, string>> = {
+  cs: {
+    'features.kitchen.text': 'Lednice, sporák, nádobí a vše potřebné, aby si host mohl vařit sám a nebyl odkázaný na restaurace.',
+    'features.wifi.title': 'Pračka a vlastní koupelna',
+    'features.wifi.text': 'Na delším pobytu k nezaplacení. K tomu Wi‑Fi zdarma, dost rychlé i na práci a videohovory.',
+  },
+  en: {
+    'features.kitchen.text': 'Fridge, cooker, cookware and everything your guest needs to cook for themselves instead of eating out.',
+    'features.wifi.title': 'Washing machine and private bathroom',
+    'features.wifi.text': 'Priceless on a longer stay. Plus free Wi‑Fi, fast enough for work and video calls.',
+  },
+  de: {
+    'features.kitchen.text': 'Kühlschrank, Herd, Geschirr und alles, damit Ihr Gast selbst kochen kann und nicht auf Restaurants angewiesen ist.',
+    'features.wifi.title': 'Waschmaschine und eigenes Bad',
+    'features.wifi.text': 'Unbezahlbar bei längeren Aufenthalten. Dazu kostenloses WLAN, schnell genug für Arbeit und Videoanrufe.',
+  },
+}[lang];
+
+const t = (key: UIKey): string =>
+  (variant === 'business' ? businessOverrides[key] : undefined) ?? tr(key);
 
 type Feature = { icon: string; title: UIKey; text: UIKey };
 const features: Feature[] = [
