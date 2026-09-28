@@ -41,7 +41,7 @@ export const ui = {
     'features.longterm.text': 'Na týdny i měsíce — pro zaměstnance, studenty a stážisty. U delších pobytů připravíme cenu na míru.',
 
     'b2b.title': 'Firemní ubytování v Českých Budějovicích na týdny i měsíce',
-    'b2b.lead': 'Ubytujte zaměstnance, specialisty nebo stážisty v plně vybaveném apartmánu s vlastní kuchyní, pračkou se sušičkou, Wi‑Fi a parkováním zdarma. Fakturujeme na firmu a cenu přizpůsobíme délce pobytu.',
+    'b2b.lead': 'Ubytujte zaměstnance, specialisty nebo stážisty v plně vybaveném apartmánu s vlastní kuchyní, pračkou, Wi‑Fi a parkováním zdarma. Fakturujeme na firmu a cenu přizpůsobíme délce pobytu.',
     'b2b.point1.title': 'Více apartmánů na vyžádání',
     'b2b.point1.text': 'Pokud potřebujete ubytovat větší tým, dokážeme zajistit více apartmánů v lokalitě.',
     'b2b.point2.title': 'Faktura na firmu',
@@ -49,7 +49,7 @@ export const ui = {
     'b2b.point3.title': 'Flexibilní délka pobytu',
     'b2b.point3.text': 'Týdenní, měsíční i delší kontrakty. Cena se přizpůsobí délce pobytu.',
     'b2b.point4.title': 'Komfort domova',
-    'b2b.point4.text': 'Vlastní kuchyň, pračka se sušičkou a klidná čtvrť. Host není odkázaný na restaurace ani hotelovou prádelnu.',
+    'b2b.point4.text': 'Vlastní kuchyň, pračka a klidná čtvrť. Host není odkázaný na restaurace ani hotelovou prádelnu.',
     'b2b.cta': 'Nezávazná poptávka pro firmu',
     'b2b.price.eyebrow': 'Cenová nabídka pro firmy',
     'b2b.price.heading': 'Dvoupokojový apartmán již od 950 Kč za noc',
@@ -153,7 +153,7 @@ export const ui = {
     'features.longterm.text': 'For weeks or months — employees, students and interns. Longer stays get a tailored price.',
 
     'b2b.title': 'Corporate accommodation in České Budějovice for weeks or months',
-    'b2b.lead': 'House employees, specialists or interns in a fully equipped apartment with its own kitchen, washer & dryer, Wi‑Fi and free parking. We invoice your company and adjust the price to the length of stay.',
+    'b2b.lead': 'House employees, specialists or interns in a fully equipped apartment with its own kitchen, washing machine, Wi‑Fi and free parking. We invoice your company and adjust the price to the length of stay.',
     'b2b.point1.title': 'Multiple apartments on request',
     'b2b.point1.text': 'Need to host a larger team? We can arrange several apartments in the area.',
     'b2b.point2.title': 'Company invoicing',
