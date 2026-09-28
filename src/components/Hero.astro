@@ -135,16 +135,17 @@ const ratingMeta = {
         href={ratingUrl}
         target="_blank"
         rel="noopener noreferrer"
-        class="absolute -bottom-4 left-3 sm:left-4 z-10 inline-flex items-center gap-2.5 bg-white rounded-xl shadow-lg shadow-black/15 ring-1 ring-black/5 px-3.5 py-2 hover:shadow-xl transition-shadow"
+        class="absolute -bottom-4 left-3 sm:left-4 z-10 inline-flex items-center gap-2.5 rounded-xl shadow-lg shadow-black/20 ring-1 ring-black/10 px-3.5 py-2 hover:shadow-xl transition-shadow"
+        style="background: var(--color-lego-blue);"
         aria-label={ratingMeta.aria}
       >
         <span class="relative inline-block text-[15px] leading-none tracking-[0.12em] whitespace-nowrap" aria-hidden="true">
-          <span class="text-[var(--color-line)]">★★★★★</span>
+          <span class="text-white/30">★★★★★</span>
           <span class="absolute top-0 left-0 h-full overflow-hidden text-[var(--color-lego-yellow)]" style={`width:${booking.starPercent}%`}>★★★★★</span>
         </span>
         <span class="flex flex-col leading-tight">
-          <span class="font-display font-semibold text-[var(--color-ink)] leading-none">{ratingScore}<span class="text-[11px] text-[var(--color-muted)] font-normal"> / 10</span></span>
-          <span class="text-[10px] text-[var(--color-muted)]">Booking.com</span>
+          <span class="font-display font-semibold text-white leading-none">{ratingScore}<span class="text-[11px] text-white/75 font-normal"> / 10</span></span>
+          <span class="text-[10px] text-white/75">Booking.com</span>
         </span>
       </a>
     </div>
