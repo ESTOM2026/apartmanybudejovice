@@ -6,6 +6,7 @@ import EbikeCallout from '../../components/EbikeCallout.astro';
 import B2BSection from '../../components/B2BSection.astro';
 import HomeSections from '../../components/HomeSections.astro';
 import ReviewsSection from '../../components/ReviewsSection.astro';
+import AlsoOnSection from '../../components/AlsoOnSection.astro';
 import { useTranslations } from '../../i18n/utils';
 import { getRoute } from '../../i18n/routes';
 
@@ -14,8 +15,8 @@ const t = useTranslations(lang);
 ---
 <BaseLayout
   pageKey="home"
-  title="Apartment rental České Budějovice – from CZK 1,200/night"
-  description="Family apartment for rent in České Budějovice – 70 m² (2+1), full kitchen, free parking. Ideal for families and corporate stays. From CZK 1,200/night."
+  title="Family apartment České Budějovice with free parking | Lets Go"
+  description="Spacious 70 m² family apartment in České Budějovice: full kitchen, washer & dryer, kids equipment and free parking. Check dates and price directly."
 >
   <Hero />
   <Features />
@@ -36,4 +37,6 @@ const t = useTranslations(lang);
       </a>
     </div>
   </section>
+
+  <AlsoOnSection />
 </BaseLayout>

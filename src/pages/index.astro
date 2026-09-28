@@ -6,6 +6,7 @@ import EbikeCallout from '../components/EbikeCallout.astro';
 import B2BSection from '../components/B2BSection.astro';
 import HomeSections from '../components/HomeSections.astro';
 import ReviewsSection from '../components/ReviewsSection.astro';
+import AlsoOnSection from '../components/AlsoOnSection.astro';
 import { useTranslations } from '../i18n/utils';
 import { getRoute } from '../i18n/routes';
 
@@ -14,8 +15,8 @@ const t = useTranslations(lang);
 ---
 <BaseLayout
   pageKey="home"
-  title="Ubytování České Budějovice – apartmán od 1 200 Kč/noc"
-  description="Levné ubytování v Českých Budějovicích – rodinný apartmán 2+1, 70 m², plně vybavená kuchyň, parkování zdarma. Krátkodobě i dlouhodobě, od 1 200 Kč/noc."
+  title="Apartmán České Budějovice s parkováním zdarma | Lets Go"
+  description="Prostorný rodinný apartmán v Českých Budějovicích: 70 m², vybavená kuchyň, pračka se sušičkou, vybavení pro děti a parkování zdarma. Ověřte termín a cenu."
 >
   <Hero />
   <Features />
@@ -36,4 +37,6 @@ const t = useTranslations(lang);
       </a>
     </div>
   </section>
+
+  <AlsoOnSection />
 </BaseLayout>

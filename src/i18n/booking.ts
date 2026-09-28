@@ -14,10 +14,13 @@ export function bookingUrl(lang: Lang): string {
 }
 
 export const booking = {
-  ratingValue: 9.3,
+  ratingValue: 9.4,
   max: 10,
   /** Decimal formatted per locale (comma for cs/de, dot for en). */
-  score: { cs: '9,3', en: '9.3', de: '9,3' } as Record<Lang, string>,
-  /** How much of a 5-star bar to fill (9.3 / 10 = 93%). */
-  starPercent: 93,
+  score: { cs: '9,4', en: '9.4', de: '9,4' } as Record<Lang, string>,
+  /** How much of a 5-star bar to fill (9.4 / 10 = 94%). */
+  starPercent: 94,
 };
+
+/** Our Airbnb listing (one URL for all languages — Airbnb localizes itself). */
+export const airbnbUrl = 'https://www.airbnb.com/rooms/1679522173464051531';

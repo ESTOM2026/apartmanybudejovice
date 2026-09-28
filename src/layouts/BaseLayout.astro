@@ -2,6 +2,7 @@
 import '../styles/global.css';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
+import CookieBanner from '../components/CookieBanner.astro';
 import { getLangFromUrl, useTranslations } from '../i18n/utils';
 import { getAlternates, type PageKey } from '../i18n/routes';
 import { languages, type Lang } from '../i18n/ui';
@@ -77,13 +78,13 @@ const fullTitle = title;
         "@type": "PostalAddress",
         "streetAddress": "I. Olbrachta 910/34",
         "addressLocality": "České Budějovice",
-        "postalCode": "370 01",
+        "postalCode": "370 06",
         "addressCountry": "CZ"
       },
       "geo": {
         "@type": "GeoCoordinates",
-        "latitude": 48.9627,
-        "longitude": 14.4528
+        "latitude": 48.97396,
+        "longitude": 14.50629
       },
       "amenityFeature": [
         { "@type": "LocationFeatureSpecification", "name": "Wi-Fi zdarma", "value": true },
@@ -96,13 +97,36 @@ const fullTitle = title;
       ]
     })} />
 
-    <!-- Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZDB3T4K96L"></script>
-    <script>
+    <!-- Google Analytics — loaded only after cookie consent (CookieBanner).
+         Until then gtag() is a no-op, so nothing is queued or sent. -->
+    <script is:inline>
       window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'G-ZDB3T4K96L');
+      var gaOn = false;
+      function gtag(){ if (gaOn) dataLayer.push(arguments); }
+      window.enableAnalytics = function () {
+        if (gaOn) return;
+        gaOn = true;
+        var s = document.createElement('script');
+        s.async = true;
+        s.src = 'https://www.googletagmanager.com/gtag/js?id=G-ZDB3T4K96L';
+        document.head.appendChild(s);
+        gtag('js', new Date());
+        gtag('config', 'G-ZDB3T4K96L');
+      };
+      try { if (localStorage.getItem('cookie-consent') === 'granted') window.enableAnalytics(); } catch (e) {}
+
+      // Outbound / contact clicks → GA4 events (form events live in ContactForm).
+      document.addEventListener('click', function (e) {
+        var a = e.target && e.target.closest ? e.target.closest('a[href]') : null;
+        if (!a) return;
+        var href = a.getAttribute('href') || '';
+        var name =
+          href.indexOf('tel:') === 0 ? 'phone_click' :
+          href.indexOf('mailto:') === 0 ? 'email_click' :
+          href.indexOf('booking.com') !== -1 ? 'booking_com_click' :
+          href.indexOf('airbnb.') !== -1 ? 'airbnb_click' : null;
+        if (name) gtag('event', name, { link_url: href, page_path: location.pathname });
+      });
     </script>
 
     <!-- Self-hosted fonts (defined in global.css). Preload the base latin files used above the fold. -->
@@ -116,5 +140,6 @@ const fullTitle = title;
       <slot />
     </main>
     <Footer />
+    <CookieBanner />
   </body>
 </html>

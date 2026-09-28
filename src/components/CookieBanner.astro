@@ -1,0 +1,94 @@
+---
+import { getLangFromUrl } from '../i18n/utils';
+import { getRoute } from '../i18n/routes';
+
+const lang = getLangFromUrl(Astro.url);
+
+// Consent banner for Google Analytics. GA is only loaded after "Accept"
+// (see the inline script in BaseLayout); "Reject" is as prominent as "Accept",
+// as the Czech DPA (ÚOOÚ) requires. Reopened via [data-cookie-settings].
+const t = {
+  cs: {
+    text: 'Rádi bychom měřili návštěvnost webu pomocí Google Analytics, abychom ho mohli zlepšovat. Analytické cookies použijeme jen s vaším souhlasem.',
+    more: 'Více informací',
+    accept: 'Přijmout',
+    reject: 'Odmítnout',
+  },
+  en: {
+    text: 'We would like to measure traffic with Google Analytics to improve this website. We only use analytics cookies with your consent.',
+    more: 'More information',
+    accept: 'Accept',
+    reject: 'Reject',
+  },
+  de: {
+    text: 'Wir möchten die Besucherzahlen mit Google Analytics messen, um die Website zu verbessern. Analyse-Cookies setzen wir nur mit Ihrer Einwilligung.',
+    more: 'Mehr Informationen',
+    accept: 'Akzeptieren',
+    reject: 'Ablehnen',
+  },
+}[lang];
+---
+<div id="cookie-banner" class="hidden fixed inset-x-0 bottom-0 z-50 p-3 sm:p-4" role="dialog" aria-live="polite" aria-label="Cookies">
+  <div class="container-wide">
+    <div class="bg-white border border-[var(--color-line)] rounded-2xl shadow-2xl shadow-black/15 p-5 md:p-6 flex flex-col md:flex-row md:items-center gap-4 md:gap-6">
+      <p class="text-sm text-[var(--color-ink-soft)] leading-relaxed flex-1">
+        {t.text}
+        <a href={getRoute('privacy', lang)} class="underline underline-offset-2 hover:text-[var(--color-cta)]">{t.more}</a>
+      </p>
+      <div class="flex gap-3 shrink-0">
+        <button type="button" data-consent="denied" class="btn-ghost text-sm flex-1 md:flex-none justify-center">{t.reject}</button>
+        <button type="button" data-consent="granted" class="btn-ghost text-sm flex-1 md:flex-none justify-center">{t.accept}</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  const KEY = 'cookie-consent';
+  const banner = document.getElementById('cookie-banner');
+
+  function read(): string | null {
+    try { return localStorage.getItem(KEY); } catch { return null; }
+  }
+  function save(v: string) {
+    try { localStorage.setItem(KEY, v); } catch { /* private mode — ask again next time */ }
+  }
+  function dropGaCookies() {
+    document.cookie.split(';').map((c) => c.split('=')[0].trim())
+      .filter((n) => n === '_ga' || n.startsWith('_ga_'))
+      .forEach((n) => {
+        const host = location.hostname;
+        const domains = ['', host, '.' + host, '.' + host.split('.').slice(-2).join('.')];
+        domains.forEach((d) => {
+          document.cookie = `${n}=; Max-Age=0; path=/` + (d ? `; domain=${d}` : '');
+        });
+      });
+  }
+
+  if (!read()) banner?.classList.remove('hidden');
+  // Clean up _ga cookies left over from before the banner existed.
+  if (read() !== 'granted') dropGaCookies();
+
+  banner?.querySelectorAll<HTMLButtonElement>('[data-consent]').forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const choice = btn.dataset.consent as 'granted' | 'denied';
+      const before = read();
+      save(choice);
+      banner.classList.add('hidden');
+      if (choice === 'granted') {
+        (window as any).enableAnalytics?.();
+      } else if (before === 'granted') {
+        // Withdrawn consent: remove GA cookies and reload so GA stops running.
+        dropGaCookies();
+        location.reload();
+      }
+    });
+  });
+
+  document.querySelectorAll('[data-cookie-settings]').forEach((el) => {
+    el.addEventListener('click', (e) => {
+      e.preventDefault();
+      banner?.classList.remove('hidden');
+    });
+  });
+</script>

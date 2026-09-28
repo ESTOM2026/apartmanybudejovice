@@ -1,9 +1,26 @@
 ---
 import { getLangFromUrl, useTranslations } from '../i18n/utils';
 import { getRoute } from '../i18n/routes';
+import type { UIKey } from '../i18n/ui';
 
+type StayType = 'dovolena' | 'firemni' | 'studijni' | 'dlouhodoby';
+
+interface Props {
+  /** Pre-selected "type of stay" — e.g. 'firemni' on /pro-firmy/. */
+  stayType?: StayType;
+}
+
+const { stayType = 'dovolena' } = Astro.props;
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
+
+// Option values stay Czech in every language — they end up in the owner's inbox.
+const stayTypes: { value: StayType; label: UIKey }[] = [
+  { value: 'dovolena',   label: 'contact.form.type.leisure' },
+  { value: 'firemni',    label: 'contact.form.type.business' },
+  { value: 'studijni',   label: 'contact.form.type.study' },
+  { value: 'dlouhodoby', label: 'contact.form.type.longterm' },
+];
 const privacyNote = {
   cs: { prefix: 'Více informací najdete v ', link: 'zásadách ochrany osobních údajů', newTab: '(otevře se v novém okně)' },
   en: { prefix: 'See our ', link: 'Privacy Policy', newTab: '(opens in a new tab)' },
@@ -42,6 +59,7 @@ const errorText = lang === 'cs'
   >
     <input type="hidden" name="form-name" value="inquiry" />
     <input type="hidden" name="lang" value={lang} />
+    <input type="hidden" name="page" value={Astro.url.pathname} />
     <p class="hidden">
       <label>Don't fill: <input name="bot-field" /></label>
     </p>
@@ -64,18 +82,41 @@ const errorText = lang === 'cs'
         <input type="text" name="company" class="w-full rounded-lg border border-[var(--color-line)] bg-white px-4 py-2.5 focus:outline-none focus:border-[var(--color-cta)]" />
       </label>
       <label class="block">
-        <span class="text-sm text-[var(--color-ink-soft)] mb-1.5 block">{t('contact.form.dates')}</span>
-        <input type="text" name="dates" placeholder="—" class="w-full rounded-lg border border-[var(--color-line)] bg-white px-4 py-2.5 focus:outline-none focus:border-[var(--color-cta)]" />
+        <span class="text-sm text-[var(--color-ink-soft)] mb-1.5 block">{t('contact.form.arrival')}</span>
+        <input type="date" name="arrival" class="w-full rounded-lg border border-[var(--color-line)] bg-white px-4 py-2.5 focus:outline-none focus:border-[var(--color-cta)]" />
       </label>
       <label class="block">
-        <span class="text-sm text-[var(--color-ink-soft)] mb-1.5 block">{t('contact.form.guests')}</span>
-        <input type="number" name="guests" min="1" max="20" class="w-full rounded-lg border border-[var(--color-line)] bg-white px-4 py-2.5 focus:outline-none focus:border-[var(--color-cta)]" />
+        <span class="text-sm text-[var(--color-ink-soft)] mb-1.5 block">{t('contact.form.departure')}</span>
+        <input type="date" name="departure" class="w-full rounded-lg border border-[var(--color-line)] bg-white px-4 py-2.5 focus:outline-none focus:border-[var(--color-cta)]" />
+      </label>
+      <label class="block">
+        <span class="text-sm text-[var(--color-ink-soft)] mb-1.5 block">{t('contact.form.adults')}</span>
+        <input type="number" name="adults" min="1" max="20" value="2" class="w-full rounded-lg border border-[var(--color-line)] bg-white px-4 py-2.5 focus:outline-none focus:border-[var(--color-cta)]" />
+      </label>
+      <label class="block">
+        <span class="text-sm text-[var(--color-ink-soft)] mb-1.5 block">{t('contact.form.children')}</span>
+        <input type="number" name="children" min="0" max="10" value="0" class="w-full rounded-lg border border-[var(--color-line)] bg-white px-4 py-2.5 focus:outline-none focus:border-[var(--color-cta)]" />
+      </label>
+      <label class="block">
+        <span class="text-sm text-[var(--color-ink-soft)] mb-1.5 block">{t('contact.form.type')}</span>
+        <select name="stay_type" class="w-full rounded-lg border border-[var(--color-line)] bg-white px-4 py-2.5 focus:outline-none focus:border-[var(--color-cta)]">
+          {stayTypes.map((st) => (
+            <option value={st.value} selected={st.value === stayType}>{t(st.label)}</option>
+          ))}
+        </select>
+      </label>
+      <label class="block">
+        <span class="text-sm text-[var(--color-ink-soft)] mb-1.5 block">{t('contact.form.pet')}</span>
+        <select name="pet" class="w-full rounded-lg border border-[var(--color-line)] bg-white px-4 py-2.5 focus:outline-none focus:border-[var(--color-cta)]">
+          <option value="ne">{t('contact.form.pet.no')}</option>
+          <option value="ano">{t('contact.form.pet.yes')}</option>
+        </select>
       </label>
     </div>
 
     <label class="block">
-      <span class="text-sm text-[var(--color-ink-soft)] mb-1.5 block">{t('contact.form.message')} *</span>
-      <textarea name="message" required rows="5" placeholder={t('contact.form.message.placeholder')} class="w-full rounded-lg border border-[var(--color-line)] bg-white px-4 py-2.5 focus:outline-none focus:border-[var(--color-cta)] resize-none"></textarea>
+      <span class="text-sm text-[var(--color-ink-soft)] mb-1.5 block">{t('contact.form.message')}</span>
+      <textarea name="message" rows="4" placeholder={t('contact.form.message.placeholder')} class="w-full rounded-lg border border-[var(--color-line)] bg-white px-4 py-2.5 focus:outline-none focus:border-[var(--color-cta)] resize-none"></textarea>
     </label>
 
     <div class="text-sm text-[var(--color-ink-soft)]">
@@ -100,6 +141,26 @@ const errorText = lang === 'cs'
   const form = document.getElementById('inquiry-form') as HTMLFormElement | null;
   const success = document.getElementById('inquiry-success');
   const errorBox = document.getElementById('inquiry-error');
+  const arrival = form?.querySelector<HTMLInputElement>('input[name="arrival"]');
+  const departure = form?.querySelector<HTMLInputElement>('input[name="departure"]');
+
+  // No past dates; departure at least one night after arrival.
+  const iso = (d: Date) => d.toISOString().slice(0, 10);
+  const today = iso(new Date());
+  if (arrival) arrival.min = today;
+  if (departure) departure.min = today;
+  arrival?.addEventListener('change', () => {
+    if (!arrival.value || !departure) return;
+    const next = new Date(arrival.value);
+    next.setDate(next.getDate() + 1);
+    departure.min = iso(next);
+    if (departure.value && departure.value < departure.min) departure.value = '';
+  });
+
+  // First interaction with the form → GA4 event (once).
+  form?.addEventListener('focusin', () => {
+    (window as any).gtag?.('event', 'booking_form_start');
+  }, { once: true });
 
   form?.addEventListener('submit', async (e) => {
     e.preventDefault();
@@ -119,6 +180,7 @@ const errorText = lang === 'cs'
         body: body.toString(),
       });
       if (!res.ok) throw new Error(String(res.status));
+      (window as any).gtag?.('event', 'generate_lead', { stay_type: fd.get('stay_type') });
       form.classList.add('hidden');
       success?.classList.remove('hidden');
       success?.scrollIntoView({ behavior: 'smooth', block: 'center' });

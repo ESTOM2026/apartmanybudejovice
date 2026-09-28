@@ -6,15 +6,6 @@ const lang = getLangFromUrl(Astro.url);
 
 const t = {
   cs: {
-    altLabel: 'Levné ubytování v Českých Budějovicích',
-    altTitle: 'Apartmán jako alternativa penzionu, hotelu nebo bytu k pronájmu',
-    altLead: 'Hledáte <strong>levné ubytování v Českých Budějovicích</strong>? Apartmán Lets Go nabízí komfort vlastního bytu za cenu penzionu — ideální volba pro rodiny, firmy, stážisty i hosty na <strong>dlouhodobý pronájem</strong>.',
-    altCard1Title: 'Apartmán místo penzionu',
-    altCard1Text: 'Soukromí celého bytu, vlastní kuchyň a koupelna. Žádné sdílené prostory ani snídaňové časy jako v <strong>penzionu v Budějovicích</strong>.',
-    altCard2Title: 'Levnější než hotel',
-    altCard2Text: 'Za cenu jednoho hotelového pokoje dostanete kompletní <strong>byt 2+1 k pronájmu</strong> pro 3–6 hostů. Výhoda pro rodiny i firmy.',
-    altCard3Title: 'Krátkodobý i dlouhodobý pronájem',
-    altCard3Text: 'Víkend, týden, měsíc nebo i déle. <strong>Dlouhodobé ubytování v Českých Budějovicích</strong> za zvýhodněnou cenu — ideální pro stážisty a zaměstnance.',
     legoLabel: 'Pro milovníky LEGA',
     legoTitle: 'LEGO koutek<br/>k prohlížení i ke koupi',
     legoLead: 'V apartmánu najdete část naší LEGO sbírky — exponáty průběžně obměňujeme. Příjemný bonus pro milovníky stavebnice.',
@@ -25,15 +16,6 @@ const t = {
     legoCta: 'Zeptat se na LEGO',
   },
   en: {
-    altLabel: 'Affordable accommodation in České Budějovice',
-    altTitle: 'Apartment as an alternative to a guesthouse, hotel or rental flat',
-    altLead: 'Looking for <strong>affordable accommodation in České Budějovice</strong>? Lets Go Apartment offers the comfort of a private flat for the price of a guesthouse — ideal for families, companies, interns and <strong>long-term guests</strong>.',
-    altCard1Title: 'Apartment instead of a guesthouse',
-    altCard1Text: 'Privacy of the whole flat, your own kitchen and bathroom. No shared spaces or breakfast schedules like a <strong>guesthouse in Budějovice</strong>.',
-    altCard2Title: 'Cheaper than a hotel',
-    altCard2Text: 'For the price of a single hotel room you get a full <strong>2+1 flat for rent</strong> for 3–6 guests. Great for families and businesses.',
-    altCard3Title: 'Short and long-term stays',
-    altCard3Text: 'A weekend, a week, a month or longer. <strong>Long-term accommodation in České Budějovice</strong> at a discounted rate — ideal for interns and employees.',
     legoLabel: 'For LEGO lovers',
     legoTitle: 'LEGO corner<br/>to view and to buy',
     legoLead: 'In the apartment you will find part of our LEGO collection — exhibits rotate over time. A nice bonus for fans of the bricks.',
@@ -44,15 +26,6 @@ const t = {
     legoCta: 'Ask about LEGO',
   },
   de: {
-    altLabel: 'Günstige Unterkunft in Budweis',
-    altTitle: 'Apartment als Alternative zu Pension, Hotel oder Mietwohnung',
-    altLead: 'Suchen Sie <strong>günstige Unterkunft in Budweis</strong>? Lets Go Apartment bietet den Komfort einer eigenen Wohnung zum Pensionspreis — ideal für Familien, Firmen, Praktikanten und Gäste auf <strong>Langzeitaufenthalt</strong>.',
-    altCard1Title: 'Apartment statt Pension',
-    altCard1Text: 'Privatsphäre einer ganzen Wohnung, eigene Küche und Bad. Keine Gemeinschaftsräume oder Frühstückszeiten wie in einer <strong>Pension in Budweis</strong>.',
-    altCard2Title: 'Günstiger als ein Hotel',
-    altCard2Text: 'Zum Preis eines Hotelzimmers erhalten Sie eine komplette <strong>2-Zimmer-Wohnung zur Miete</strong> für 3–6 Gäste. Vorteil für Familien und Firmen.',
-    altCard3Title: 'Kurz- und Langzeitmiete',
-    altCard3Text: 'Wochenende, Woche, Monat oder länger. <strong>Langzeitunterkunft in Budweis</strong> zum Vorzugspreis — ideal für Praktikanten und Mitarbeiter.',
     legoLabel: 'Für LEGO-Liebhaber',
     legoTitle: 'LEGO-Ecke<br/>zum Ansehen und Kaufen',
     legoLead: 'Im Apartment finden Sie einen Teil unserer LEGO-Sammlung — Exponate wechseln gelegentlich. Ein schöner Bonus für Fans der Bausteine.',
@@ -64,46 +37,6 @@ const t = {
   },
 }[lang];
 ---
-<section class="py-16 md:py-20 bg-[#fffbe6]">
-  <div class="container-wide">
-    <div class="max-w-3xl mx-auto text-center mb-12">
-      <span class="inline-block text-xs uppercase tracking-[0.2em] mb-4 font-semibold" style="color: var(--color-lego-blue);">
-        {t.altLabel}
-      </span>
-      <h2 class="text-3xl md:text-4xl font-medium mb-5 leading-tight">
-        {t.altTitle}
-      </h2>
-      <p class="text-lg text-[var(--color-ink-soft)] leading-relaxed" set:html={t.altLead}></p>
-    </div>
-
-    <div class="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto">
-      <div class="bg-white rounded-2xl p-7 border border-[var(--color-line)]">
-        <div class="w-12 h-12 rounded-xl flex items-center justify-center mb-4" style="background: var(--color-lego-yellow);">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
-        </div>
-        <h3 class="text-xl font-display font-medium mb-2">{t.altCard1Title}</h3>
-        <p class="text-sm text-[var(--color-ink-soft)] leading-relaxed" set:html={t.altCard1Text}></p>
-      </div>
-
-      <div class="bg-white rounded-2xl p-7 border border-[var(--color-line)]">
-        <div class="w-12 h-12 rounded-xl flex items-center justify-center mb-4" style="background: var(--color-lego-red);">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
-        </div>
-        <h3 class="text-xl font-display font-medium mb-2">{t.altCard2Title}</h3>
-        <p class="text-sm text-[var(--color-ink-soft)] leading-relaxed" set:html={t.altCard2Text}></p>
-      </div>
-
-      <div class="bg-white rounded-2xl p-7 border border-[var(--color-line)]">
-        <div class="w-12 h-12 rounded-xl flex items-center justify-center mb-4" style="background: var(--color-lego-blue);">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
-        </div>
-        <h3 class="text-xl font-display font-medium mb-2">{t.altCard3Title}</h3>
-        <p class="text-sm text-[var(--color-ink-soft)] leading-relaxed" set:html={t.altCard3Text}></p>
-      </div>
-    </div>
-  </div>
-</section>
-
 <section class="py-16 md:py-20 relative overflow-hidden" style="background: linear-gradient(135deg, #fff 0%, #fffbe6 50%, #fff 100%);">
   <div class="absolute inset-0 opacity-[0.04] pointer-events-none" style="background-image: url(&quot;data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='80' height='80' viewBox='0 0 80 80'><circle cx='20' cy='20' r='10' fill='%23000'/><circle cx='60' cy='20' r='10' fill='%23000'/><circle cx='20' cy='60' r='10' fill='%23000'/><circle cx='60' cy='60' r='10' fill='%23000'/></svg>&quot;); background-size: 80px 80px;"></div>
 

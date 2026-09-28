@@ -53,7 +53,7 @@ const ratingMeta = {
         </a>
       </div>
 
-      <dl class="mt-8 grid grid-cols-3 gap-3 max-w-lg">
+      <dl class="mt-8 grid grid-cols-2 sm:grid-cols-4 gap-3 max-w-2xl">
         <div class="bg-white rounded-xl px-4 py-3 shadow-sm border border-black/5">
           <dt class="text-xs uppercase tracking-wider text-[var(--color-muted)] mb-1">m²</dt>
           <dd class="text-2xl font-display font-semibold">70</dd>
@@ -62,11 +62,18 @@ const ratingMeta = {
           <dt class="text-xs uppercase tracking-wider text-[var(--color-muted)] mb-1">{lang === 'cs' ? 'Hostů' : lang === 'en' ? 'Guests' : 'Gäste'}</dt>
           <dd class="text-2xl font-display font-semibold">3–6</dd>
         </div>
+        <div class="bg-white rounded-xl px-4 py-3 shadow-sm border border-black/5">
+          <dt class="text-xs uppercase tracking-wider text-[var(--color-muted)] mb-1">{lang === 'cs' ? 'Parkování' : lang === 'en' ? 'Parking' : 'Parken'}</dt>
+          <dd class="text-2xl font-display font-semibold">{lang === 'cs' ? 'Zdarma' : lang === 'en' ? 'Free' : 'Gratis'}</dd>
+        </div>
         <div class="rounded-xl px-4 py-3 shadow-sm border border-black/5" style="background: var(--color-lego-red);">
           <dt class="text-xs uppercase tracking-wider text-white/70 mb-1">{lang === 'cs' ? 'Od' : lang === 'en' ? 'From' : 'Ab'}</dt>
           <dd class="text-2xl font-display font-semibold text-white">1 200 Kč</dd>
         </div>
       </dl>
+      <p class="mt-3 text-sm text-[var(--color-muted)]">
+        {lang === 'cs' ? 'Cena za noc podle termínu, délky pobytu a počtu hostů.' : lang === 'en' ? 'Price per night depends on dates, length of stay and number of guests.' : 'Preis pro Nacht je nach Termin, Aufenthaltsdauer und Gästezahl.'}
+      </p>
     </div>
 
     <div class="lg:col-span-5 relative">

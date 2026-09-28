@@ -1,0 +1,196 @@
+---
+import { getLangFromUrl } from '../i18n/utils';
+import { getRoute } from '../i18n/routes';
+import ContactForm from './ContactForm.astro';
+
+const lang = getLangFromUrl(Astro.url);
+
+type Card = { h: string; p: string; link?: { key: 'business' | 'apartment'; label: string } };
+
+const c = {
+  cs: {
+    eyebrow: 'Na týdny i měsíce',
+    h1: 'Dlouhodobé ubytování v Českých Budějovicích s vlastním zázemím',
+    lead: 'Potřebujete v Budějovicích bydlet několik týdnů nebo měsíců, ale nechcete zařizovat klasický nájem? Lets Go Family Apartment je vybavený byt 70 m², do kterého přijedete s kufrem a můžete normálně bydlet.',
+    cta: 'Poptat dlouhodobý pobyt',
+    homeH: 'Přijedete a můžete normálně bydlet',
+    homeP: 'Nemusíte kupovat nábytek, řešit internet ani vybavení domácnosti. Všechno potřebné pro běžný život je v apartmánu připravené.',
+    included: [
+      'Vlastní kuchyň — myčka, americká lednice, sporák, nádobí',
+      'Pračka a sušička přímo v bytě',
+      'Wi‑Fi zdarma, dost rychlé na studium i home office',
+      'Samostatná ložnice a obývací pokoj s pracovním místem',
+      'Koupelna s vanou i sprchovým koutem',
+      'Parkování zdarma přímo u domu',
+    ],
+    whoH: 'Pro koho je apartmán na delší pobyt',
+    cards: [
+      { h: 'Studenti a zahraniční stážisté', p: 'Na semestr nebo stáž je vlastní kuchyň, pračka a klid na učení víc než pokoj na koleji či v hotelu. Máme zkušenost se zahraničními studenty — například z Číny —, kteří přijíždějí studovat na Jihočeskou univerzitu (JČU) a VŠTE. Přijíždíte na letní semestr 2027? Poptávky přijímáme už teď.' },
+      { h: 'Zaměstnanci a specialisté', p: 'Pro pracovní pobyty, projekty a nástupy do nové práce. Fakturujeme na firmu s DPH i bez a cenu přizpůsobíme délce pobytu.', link: { key: 'business', label: 'Firemní ubytování →' } },
+      { h: 'Relokace a přechodné bydlení', p: 'Stěhujete se do Budějovic, čekáte na nový byt nebo rekonstrukci? Apartmán překlene přechodné období bez smlouvy na rok a bez stěhování nábytku.' },
+    ] as Card[],
+    priceH: 'Cena podle délky pobytu',
+    priceP: 'Krátkodobé pobyty v Lets Go začínají na 1 200 Kč za noc. U pobytů na týdny a měsíce připravujeme individuální nabídku podle termínu, délky pobytu a počtu osob — napište nám a pošleme konkrétní cenu.',
+    priceFrom: 'krátkodobé pobyty od',
+    priceAmount: '1 200',
+    priceUnit: 'Kč / noc',
+    formH: 'Poptat dlouhodobý pobyt',
+    formP: 'Napište předpokládaný příjezd, odjezd a počet osob. Do 24 hodin pošleme konkrétní nabídku.',
+    photos: ['Plně vybavená kuchyň', 'Ložnice s manželskou postelí', 'Pračka a sušička'],
+  },
+  en: {
+    eyebrow: 'For weeks or months',
+    h1: 'Long-term accommodation in České Budějovice with a real home base',
+    lead: 'Need to live in České Budějovice for several weeks or months without signing a regular lease? Lets Go Family Apartment is a fully furnished 70 m² flat — arrive with your suitcase and simply live.',
+    cta: 'Request a long stay',
+    homeH: 'Arrive and simply live',
+    homeP: 'No furniture to buy, no internet contract, no household basics to sort out. Everything you need for everyday life is already there.',
+    included: [
+      'Own kitchen — dishwasher, American fridge, stove, cookware',
+      'Washer and dryer inside the flat',
+      'Free Wi‑Fi, fast enough for studying and remote work',
+      'Separate bedroom and a living room with a place to work',
+      'Bathroom with both bathtub and shower',
+      'Free parking right at the house',
+    ],
+    whoH: 'Who the apartment suits for a longer stay',
+    cards: [
+      { h: 'Students and international interns', p: 'For a semester or an internship, an own kitchen, a washer and a quiet place to study beat a dorm or hotel room. We have experience hosting international students — for example from China — coming to study at the University of South Bohemia in České Budějovice and the Institute of Technology and Business (VŠTE). Arriving for the 2027 summer semester? We are taking enquiries now.' },
+      { h: 'Employees and specialists', p: 'For work assignments, projects and new jobs. We invoice companies with or without VAT and adjust the price to the length of stay.', link: { key: 'business', label: 'Corporate accommodation →' } },
+      { h: 'Relocation and temporary housing', p: 'Moving to České Budějovice, waiting for a new flat or a renovation? The apartment bridges the gap without a one-year lease or moving furniture.' },
+    ] as Card[],
+    priceH: 'Price by length of stay',
+    priceP: 'Short stays at Lets Go start at CZK 1,200 per night. For stays of weeks or months we prepare a tailored offer based on dates, length of stay and number of guests — send us your details and we will quote an exact price.',
+    priceFrom: 'short stays from',
+    priceAmount: '1,200',
+    priceUnit: 'CZK / night',
+    formH: 'Request a long stay',
+    formP: 'Send us your expected arrival, departure and number of guests. We will reply with a concrete offer within 24 hours.',
+    photos: ['Fully equipped kitchen', 'Bedroom with double bed', 'Washer and dryer'],
+  },
+  de: {
+    eyebrow: 'Für Wochen oder Monate',
+    h1: 'Langzeitunterkunft in Budweis mit eigenem Zuhause',
+    lead: 'Sie müssen einige Wochen oder Monate in Budweis (České Budějovice) wohnen, ohne einen regulären Mietvertrag abzuschließen? Lets Go Family Apartment ist eine voll möblierte 70‑m²‑Wohnung — mit dem Koffer anreisen und einfach wohnen.',
+    cta: 'Langzeitaufenthalt anfragen',
+    homeH: 'Anreisen und einfach wohnen',
+    homeP: 'Keine Möbel kaufen, kein Internetvertrag, keine Grundausstattung besorgen. Alles für den Alltag ist bereits da.',
+    included: [
+      'Eigene Küche — Geschirrspüler, amerikanischer Kühlschrank, Herd, Geschirr',
+      'Waschmaschine und Trockner in der Wohnung',
+      'Kostenloses WLAN, schnell genug für Studium und Homeoffice',
+      'Separates Schlafzimmer und Wohnzimmer mit Arbeitsplatz',
+      'Bad mit Badewanne und Dusche',
+      'Kostenloser Parkplatz direkt am Haus',
+    ],
+    whoH: 'Für wen sich das Apartment für längere Aufenthalte eignet',
+    cards: [
+      { h: 'Studierende und internationale Praktikanten', p: 'Für ein Semester oder Praktikum sind eigene Küche, Waschmaschine und Ruhe zum Lernen mehr wert als ein Wohnheim‑ oder Hotelzimmer. Wir beherbergen internationale Studierende — zum Beispiel aus China —, die an der Südböhmischen Universität (JČU) und der VŠTE studieren.' },
+      { h: 'Mitarbeiter und Fachkräfte', p: 'Für Arbeitseinsätze, Projekte und neue Jobs. Firmenrechnung mit oder ohne MwSt., der Preis passt sich der Aufenthaltsdauer an.', link: { key: 'business', label: 'Firmenunterkunft →' } },
+      { h: 'Umzug und Übergangswohnen', p: 'Sie ziehen nach Budweis, warten auf eine neue Wohnung oder eine Renovierung? Das Apartment überbrückt die Zeit ohne Jahresvertrag und ohne Möbelumzug.' },
+    ] as Card[],
+    priceH: 'Preis nach Aufenthaltsdauer',
+    priceP: 'Kurzaufenthalte im Lets Go beginnen bei 1.200 CZK pro Nacht. Für Aufenthalte von Wochen oder Monaten erstellen wir ein individuelles Angebot nach Termin, Dauer und Gästezahl — schreiben Sie uns für einen konkreten Preis.',
+    priceFrom: 'Kurzaufenthalte ab',
+    priceAmount: '1.200',
+    priceUnit: 'CZK / Nacht',
+    formH: 'Langzeitaufenthalt anfragen',
+    formP: 'Nennen Sie uns voraussichtliche An‑ und Abreise sowie die Gästezahl. Innerhalb von 24 Stunden erhalten Sie ein konkretes Angebot.',
+    photos: ['Voll ausgestattete Küche', 'Schlafzimmer mit Doppelbett', 'Waschmaschine und Trockner'],
+  },
+}[lang];
+
+const photoFiles = ['03', '07', '23'];
+---
+<section class="relative overflow-hidden bg-white">
+  <div class="absolute inset-0 -z-10 overflow-hidden pointer-events-none">
+    <div class="absolute -top-24 -left-16 w-[26rem] h-[26rem] rounded-full opacity-[0.14] blur-3xl" style="background: var(--color-lego-blue);"></div>
+    <div class="absolute -top-16 right-0 w-[18rem] h-[18rem] rounded-full opacity-[0.12] blur-3xl" style="background: var(--color-lego-yellow);"></div>
+  </div>
+  <div class="container-wide pt-12 md:pt-20 pb-10 relative">
+    <span class="inline-block text-sm uppercase tracking-[0.2em] mb-4 font-semibold" style="color: var(--color-lego-blue);">{c.eyebrow}</span>
+    <h1 class="text-4xl md:text-5xl lg:text-6xl font-medium mb-5 leading-[1.05] max-w-4xl break-words">{c.h1}</h1>
+    <p class="text-lg md:text-xl text-[var(--color-ink-soft)] max-w-2xl mb-8 leading-relaxed">{c.lead}</p>
+    <div class="flex flex-wrap gap-3">
+      <a href="#poptavka" class="btn-primary">
+        {c.cta}
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </a>
+      <a href="tel:+420777925594" class="btn-ghost">+420 777 925 594</a>
+    </div>
+  </div>
+</section>
+
+<section class="py-10 md:py-14">
+  <div class="container-wide grid lg:grid-cols-12 gap-10 items-start">
+    <div class="lg:col-span-5">
+      <h2 class="text-3xl md:text-4xl font-medium mb-4">{c.homeH}</h2>
+      <p class="text-[var(--color-ink-soft)] leading-relaxed mb-6">{c.homeP}</p>
+      <ul class="space-y-3">
+        {c.included.map((item) => (
+          <li class="flex items-start gap-3">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" class="shrink-0 mt-0.5 text-[var(--color-cta)]" aria-hidden="true"><path d="M5 12l5 5L20 7"/></svg>
+            <span>{item}</span>
+          </li>
+        ))}
+      </ul>
+    </div>
+    <div class="lg:col-span-7 grid grid-cols-2 gap-3">
+      {photoFiles.map((f, i) => (
+        <div class:list={['relative overflow-hidden rounded-2xl bg-[var(--color-line)]', i === 0 ? 'col-span-2 aspect-[16/9]' : 'aspect-[4/3]']}>
+          <picture>
+            <source srcset={`/images/gallery/${f}.webp`} type="image/webp" />
+            <img src={`/images/gallery/${f}.jpg`} alt={c.photos[i]} class="absolute inset-0 w-full h-full object-cover" loading="lazy" decoding="async" />
+          </picture>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<section class="py-10 md:py-14 bg-[var(--color-bg)]">
+  <div class="container-wide">
+    <h2 class="text-3xl md:text-4xl font-medium mb-8 max-w-3xl">{c.whoH}</h2>
+    <div class="grid md:grid-cols-3 gap-6">
+      {c.cards.map((card) => (
+        <div class="bg-white rounded-2xl p-7 border border-[var(--color-line)] flex flex-col">
+          <h3 class="text-xl font-display font-medium mb-3">{card.h}</h3>
+          <p class="text-[var(--color-ink-soft)] leading-relaxed">{card.p}</p>
+          {card.link && (
+            <a href={getRoute(card.link.key, lang)} class="mt-4 font-medium text-[var(--color-cta)] hover:underline underline-offset-4">{card.link.label}</a>
+          )}
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<section class="py-10 md:py-14">
+  <div class="container-wide">
+    <div class="bg-white border border-[var(--color-line)] rounded-2xl p-6 md:p-8 grid md:grid-cols-12 gap-6 items-center shadow-sm">
+      <div class="md:col-span-8">
+        <h2 class="text-2xl md:text-3xl font-medium mb-3">{c.priceH}</h2>
+        <p class="text-[var(--color-ink-soft)] leading-relaxed">{c.priceP}</p>
+      </div>
+      <div class="md:col-span-4 rounded-xl p-5 text-white" style="background: var(--color-lego-blue);">
+        <span class="block text-sm text-white/75 mb-1">{c.priceFrom}</span>
+        <div class="flex items-baseline gap-2">
+          <span class="text-5xl font-display font-medium leading-none">{c.priceAmount}</span>
+          <span class="text-lg text-white/85">{c.priceUnit}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="poptavka" class="py-12 md:py-16 bg-[var(--color-bg)] scroll-mt-20">
+  <div class="container-narrow">
+    <div class="text-center mb-8">
+      <h2 class="text-3xl md:text-4xl font-medium mb-4">{c.formH}</h2>
+      <p class="text-[var(--color-ink-soft)] max-w-xl mx-auto">{c.formP}</p>
+    </div>
+    <div class="bg-white border border-[var(--color-line)] rounded-2xl p-7 md:p-10">
+      <ContactForm stayType="dlouhodoby" />
+    </div>
+  </div>
+</section>

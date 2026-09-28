@@ -7,6 +7,36 @@ import ContactForm from './ContactForm.astro';
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
+
+const copy = {
+  cs: {
+    blocks: [
+      { h: 'Zázemí pro běžné každodenní fungování', p: 'Host má vlastní kuchyň s myčkou a americkou lednicí, pračku se sušičkou a dost prostoru na 70 m². Není odkázaný na restaurace ani hotelovou prádelnu — po práci normálně bydlí.' },
+      { h: 'Parkování zdarma přímo u domu', p: 'Praktické pro zaměstnance, kteří jezdí na pracoviště autem. Z klidné čtvrti Suché Vrbné je to kousek na D3 i do průmyslových zón města.' },
+      { h: 'Fakturace na firmu', p: 'Vystavíme standardní fakturu s DPH i bez. Konečná cena závisí na délce pobytu, počtu hostů a dostupnosti — u pobytů na týdny a měsíce připravíme nabídku na míru.' },
+      { h: 'Větší tým nebo zahraniční kolegové', p: 'Potřebujete ubytovat víc lidí? Napište počet osob a termín, ověříme i další jednotky v okolí. Máme zkušenosti se zahraničními hosty, komunikujeme česky, anglicky a německy.' },
+    ],
+    longStayLink: 'Ubytováváte studenty nebo stážisty? Dlouhodobé ubytování →',
+  },
+  en: {
+    blocks: [
+      { h: 'A base for everyday life', p: 'Your guest has their own kitchen with dishwasher and American fridge, a washer and dryer and plenty of space on 70 m². No depending on restaurants or hotel laundry — after work they simply live normally.' },
+      { h: 'Free parking right at the house', p: 'Handy for employees who drive to work. From the quiet Suché Vrbné district it is a short drive to the D3 motorway and the city’s industrial areas.' },
+      { h: 'Company invoicing', p: 'We issue a standard invoice with or without VAT. The final price depends on length of stay, number of guests and availability — for stays of weeks or months we prepare a tailored offer.' },
+      { h: 'Larger team or international colleagues', p: 'Need to house more people? Send us the number of guests and dates and we will check further units nearby. We are used to international guests and speak Czech, English and German.' },
+    ],
+    longStayLink: 'Hosting students or interns? Long-term accommodation →',
+  },
+  de: {
+    blocks: [
+      { h: 'Alles für den Alltag', p: 'Ihr Gast hat eine eigene Küche mit Geschirrspüler und amerikanischem Kühlschrank, Waschmaschine und Trockner sowie viel Platz auf 70 m². Kein Angewiesensein auf Restaurants oder Hotelwäscherei.' },
+      { h: 'Kostenloser Parkplatz direkt am Haus', p: 'Praktisch für Mitarbeiter, die mit dem Auto zur Arbeit fahren. Vom ruhigen Viertel Suché Vrbné ist man schnell auf der D3 und in den Gewerbegebieten der Stadt.' },
+      { h: 'Firmenrechnung', p: 'Wir stellen eine Standardrechnung mit oder ohne MwSt. aus. Der Endpreis hängt von Aufenthaltsdauer, Gästezahl und Verfügbarkeit ab — für Wochen oder Monate erstellen wir ein individuelles Angebot.' },
+      { h: 'Größeres Team oder internationale Kollegen', p: 'Mehr Personen unterzubringen? Nennen Sie uns Gästezahl und Termin, wir prüfen weitere Einheiten in der Nähe. Wir sprechen Tschechisch, Englisch und Deutsch.' },
+    ],
+    longStayLink: 'Studierende oder Praktikanten? Langzeitunterkunft →',
+  },
+}[lang];
 ---
 {/* Wrapper opaquely covers the body's LEGO stud pattern so the whole page
     feels like the original calm corporate design. */}
@@ -72,6 +102,21 @@ const t = useTranslations(lang);
 </section>
 
 <B2BSection variant="classic" />
+
+<section class="py-12 md:py-16" style="background: var(--color-classic-bg);">
+  <div class="container-wide grid md:grid-cols-2 gap-8 md:gap-12">
+    {copy.blocks.map((b) => (
+      <div>
+        <h2 class="text-2xl md:text-3xl font-medium mb-3">{b.h}</h2>
+        <p class="text-[var(--color-ink-soft)] leading-relaxed">{b.p}</p>
+      </div>
+    ))}
+  </div>
+  <div class="container-wide mt-8">
+    <a href={getRoute('longstay', lang)} class="font-medium underline underline-offset-4" style="color: var(--color-classic-cta);">{copy.longStayLink}</a>
+  </div>
+</section>
+
 <Features />
 
 <section class="py-12 md:py-16" style="background: var(--color-classic-bg);">
@@ -81,7 +126,7 @@ const t = useTranslations(lang);
       <p class="text-[var(--color-ink-soft)] max-w-xl mx-auto">{t('contact.lead')}</p>
     </div>
     <div class="bg-white border rounded-2xl p-7 md:p-10" style="border-color: var(--color-classic-line);">
-      <ContactForm />
+      <ContactForm stayType="firemni" />
     </div>
   </div>
 </section>

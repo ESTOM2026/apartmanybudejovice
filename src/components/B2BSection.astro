@@ -25,6 +25,7 @@ const points: Point[] = [
 ];
 
 const isLego = variant === 'lego';
+const longStayLink = lang === 'cs' ? 'Studenti, stážisté a delší pobyty →' : lang === 'en' ? 'Students, interns & long stays →' : 'Studierende, Praktikanten & Langzeit →';
 ---
 {isLego ? (
   <section class="stud-band py-12 md:py-20 text-white relative overflow-hidden" style="background: var(--color-lego-blue);">
@@ -34,10 +35,15 @@ const isLego = variant === 'lego';
           <span class="inline-block text-sm uppercase tracking-[0.2em] mb-4 font-semibold" style="color: var(--color-lego-yellow);">B2B</span>
           <h2 class="text-4xl md:text-5xl font-medium mb-6 text-white leading-[1.05]">{t('b2b.title')}</h2>
           <p class="text-white/85 text-lg leading-relaxed mb-8">{t('b2b.lead')}</p>
-          <a href={getRoute('contact', lang)} class="btn-yellow">
-            {t('b2b.cta')}
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-          </a>
+          <div class="flex flex-wrap items-center gap-x-6 gap-y-3">
+            <a href={getRoute('business', lang)} class="btn-yellow">
+              {t('nav.business')}
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+            </a>
+            <a href={getRoute('longstay', lang)} class="text-white font-medium underline underline-offset-4 decoration-white/40 hover:decoration-white">
+              {longStayLink}
+            </a>
+          </div>
         </div>
 
         <ul class="lg:col-span-7 grid sm:grid-cols-2 gap-6">

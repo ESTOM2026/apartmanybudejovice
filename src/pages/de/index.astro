@@ -6,6 +6,7 @@ import EbikeCallout from '../../components/EbikeCallout.astro';
 import B2BSection from '../../components/B2BSection.astro';
 import HomeSections from '../../components/HomeSections.astro';
 import ReviewsSection from '../../components/ReviewsSection.astro';
+import AlsoOnSection from '../../components/AlsoOnSection.astro';
 import { useTranslations } from '../../i18n/utils';
 import { getRoute } from '../../i18n/routes';
 
@@ -14,8 +15,8 @@ const t = useTranslations(lang);
 ---
 <BaseLayout
   pageKey="home"
-  title="Ferienwohnung mieten Budweis – ab 1.200 CZK/Nacht"
-  description="Familienapartment zur Miete in Budweis – 70 m² (2+1), voll ausgestattete Küche, kostenfreie Parkplätze. Ideal für Familien und Firmenaufenthalte."
+  title="Ferienwohnung Budweis mit Parkplatz – ab 1.200 CZK/Nacht"
+  description="Geräumiges Familienapartment in Budweis (České Budějovice): 70 m², voll ausgestattete Küche, Waschmaschine & Trockner, Kinderausstattung, kostenloser Parkplatz."
 >
   <Hero />
   <Features />
@@ -36,4 +37,6 @@ const t = useTranslations(lang);
       </a>
     </div>
   </section>
+
+  <AlsoOnSection />
 </BaseLayout>
