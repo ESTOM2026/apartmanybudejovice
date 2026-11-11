@@ -5,14 +5,14 @@ const lang = getLangFromUrl(Astro.url);
 
 // Booking availability notice. Change / remove here when the situation changes.
 const text = {
-  cs: '14. 10. 2026 – 15. 3. 2027 obsazeno · volné termíny od března 2027',
-  en: 'Fully booked 14 Oct 2026 – 15 Mar 2027 · available from March 2027',
-  de: '14. 10. 2026 – 15. 3. 2027 ausgebucht · frei ab März 2027',
+  cs: 'Máme plně obsazeno · volné termíny od 15. 3. 2027',
+  en: 'We are fully booked · available from 15 March 2027',
+  de: 'Wir sind ausgebucht · frei ab 15. 3. 2027',
 }[lang];
 
 // After this moment the notice is stale: skipped at build time, and hidden
 // in the browser too in case the site isn't rebuilt right away.
-const until = '2027-03-16T00:00:00+01:00';
+const until = '2027-03-15T00:00:00+01:00';
 const expired = Date.now() >= new Date(until).getTime();
 ---
 {!expired && (
